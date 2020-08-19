@@ -370,4 +370,9 @@
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Scene.hpp">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
