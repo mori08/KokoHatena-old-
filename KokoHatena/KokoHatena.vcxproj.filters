@@ -98,6 +98,9 @@
     <Filter Include="Src\Scene\Title">
       <UniqueIdentifier>{138b070f-3d3e-4773-aa20-8cb85262c52a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\MyLibrary">
+      <UniqueIdentifier>{9c46115d-f8d8-4d3f-8e03-f2b315b2eec1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -378,6 +381,9 @@
     <ClCompile Include="Src\Scene\Title\TitleScene.cpp">
       <Filter>Src\Scene\Title</Filter>
     </ClCompile>
+    <ClCompile Include="Src\MyLibrary\MyLibrary.cpp">
+      <Filter>Src\MyLibrary</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -385,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\Scene.hpp">
       <Filter>Src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\MyLibrary\MyLibrary.hpp">
+      <Filter>Src\MyLibrary</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
