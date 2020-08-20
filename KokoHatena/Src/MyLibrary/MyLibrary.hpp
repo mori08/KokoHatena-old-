@@ -6,6 +6,23 @@
 
 namespace Kokoha
 {
+	// 黒
+	constexpr ColorF MyBlack(Color(0x0F));
+
+	// 白
+	constexpr ColorF MyWhite(Color(0xF0));
+
+	/// <summary>
+	/// 色の出力
+	/// </summary>
+	/// <param name="rgb"  > rgbの値 [0,1] </param>
+	/// <param name="alpha"> 不透明度[0,1] </param>
+	constexpr inline ColorF myColor(double rgb, double alpha = 1.0)
+	{
+		return ColorF(Max(0.0, Min(1.0, rgb)) * (MyBlack.r - MyWhite.r) + MyWhite.r, alpha);
+	}
+
+
 #ifdef _DEBUG
 	/// <summary>
 	/// デバッグ用の文字列を出力
