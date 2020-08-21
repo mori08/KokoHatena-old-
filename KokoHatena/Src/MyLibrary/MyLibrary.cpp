@@ -22,17 +22,16 @@ namespace Kokoha
 			// 指定されたパスがファイルであるとき
 			else if (FileSystem::IsFile(content))
 			{
-
 				// 拡張子がpngのとき
 				if (FileSystem::Extension(content) == U"png")
 				{
-					TextureAsset::Register(FileSystem::BaseName(content), Resource(dirName + fileName));
+					TextureAsset::Register(FileSystem::BaseName(content), dirName + fileName);
 				}
 
 				// 拡張子がmp3のとき
 				if (FileSystem::Extension(content) == U"mp3")
 				{
-					AudioAsset::Register(FileSystem::BaseName(content), Resource(dirName + fileName));
+					AudioAsset::Register(FileSystem::BaseName(content), dirName + fileName);
 				}
 
 			}

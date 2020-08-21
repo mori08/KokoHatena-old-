@@ -241,6 +241,11 @@
     <ClInclude Include="Src\Scene\Scene.hpp" />
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App\asset\shader\TitleLogoShader.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

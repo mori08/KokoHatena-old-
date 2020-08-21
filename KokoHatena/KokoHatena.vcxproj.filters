@@ -101,6 +101,9 @@
     <Filter Include="Src\MyLibrary">
       <UniqueIdentifier>{9c46115d-f8d8-4d3f-8e03-f2b315b2eec1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{4e40cfed-eb18-40c7-90d1-4f20bb759fda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -313,6 +316,9 @@
     </None>
     <None Include="App\example\zip\zip_test.zip">
       <Filter>Resource Files\example\zip</Filter>
+    </None>
+    <None Include="App\asset\shader\TitleLogoShader.hlsl">
+      <Filter>Shader</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
