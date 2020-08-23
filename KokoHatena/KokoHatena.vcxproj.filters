@@ -399,6 +399,9 @@
     <ClCompile Include="Src\ButtonSet\Button\Button.cpp">
       <Filter>Src\ButtonSet\Button</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ButtonSet\ButtonSet.cpp">
+      <Filter>Src\ButtonSet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -412,6 +415,9 @@
     </ClInclude>
     <ClInclude Include="Src\ButtonSet\Button\Button.hpp">
       <Filter>Src\ButtonSet\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ButtonSet\ButtonSet.hpp">
+      <Filter>Src\ButtonSet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

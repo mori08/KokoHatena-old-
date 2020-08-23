@@ -42,7 +42,7 @@ namespace Kokoha
 	{
 		if (!m_shiftShader)
 		{
-			throw Error(U"TitleLogoShader‚ğ“Ç‚İ‚İ‚É¸”s");
+			throw Error(U"Failed to load [TitleLogoShader.hlsl]");
 		}
 	}
 
