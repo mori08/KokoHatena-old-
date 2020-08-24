@@ -110,6 +110,12 @@
     <Filter Include="Src\ButtonSet\Button">
       <UniqueIdentifier>{f31468f7-8d7e-4e87-a038-03c38908dccd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\RecordManager">
+      <UniqueIdentifier>{410b8af6-7646-4a23-8273-182f1205ce08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\RecordManager\Record">
+      <UniqueIdentifier>{84c9482e-eaf2-4263-a9f1-05066015ebfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -402,6 +408,12 @@
     <ClCompile Include="Src\ButtonSet\ButtonSet.cpp">
       <Filter>Src\ButtonSet</Filter>
     </ClCompile>
+    <ClCompile Include="Src\RecordManager\Record\Record.cpp">
+      <Filter>Src\RecordManager\Record</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\RecordManager\RecordManager.cpp">
+      <Filter>Src\RecordManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -418,6 +430,12 @@
     </ClInclude>
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp">
       <Filter>Src\ButtonSet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\RecordManager\RecordManager.hpp">
+      <Filter>Src\RecordManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\RecordManager\Record\Record.hpp">
+      <Filter>Src\RecordManager\Record</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

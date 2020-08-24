@@ -8,7 +8,7 @@ namespace Kokoha
 {
 	/// <summary>
 	/// Recordクラス
-	/// フラグや数値，文字列の管理
+	/// フラグや数値の管理
 	/// 何bitに対応するか指定
 	/// </summary>
 	class Record
