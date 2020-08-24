@@ -18,11 +18,17 @@ namespace Kokoha
 		// ボタンの管理
 		ButtonSet m_buttonSet;
 
-		// カーソル
-		RectF m_cursor;
+		// カーソルの幅
+		double m_cursorWidth;
+
+		// カーソルの横に出る線の長さ
+		double m_cursorLineLength;
+
+		// カーソルの横に出る線の不透明度
+		double m_cursorLineAlpha;
 
 		// タイトルロゴ用のピクセルシェーダ
-		const PixelShader m_shiftShader;
+		const PixelShader m_logoShader;
 
 	public:
 
@@ -31,8 +37,6 @@ namespace Kokoha
 		void update() override;
 
 		void draw() const override;
-
-		void drawFadeOut(double) const override;
 
 	private:
 
