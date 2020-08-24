@@ -39,7 +39,7 @@ namespace Kokoha
 			throw Error(U"Faild to find [" + name + U"] button");
 		}
 
-		m_buttonMap[name].setOnClickFunc(onClickFunc);
+		m_buttonMap.find(name)->second.setOnClickFunc(onClickFunc);
 	}
 
 

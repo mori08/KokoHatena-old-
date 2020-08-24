@@ -75,8 +75,7 @@ namespace Kokoha
 		/// 決定キーが押されたときそのボタンのOnClick関数を呼びます
 		/// 1フレームに2度以上使わないでください。
 		/// </remarks>
-		void update(const Point& basePos);
-
+		void update(const Point& basePos = Point::Zero());
 
 	};
 }

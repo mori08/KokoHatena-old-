@@ -56,7 +56,7 @@ namespace Kokoha
 		/// 範囲のサイズの変更
 		/// </summary>
 		/// <param name="pos"> 範囲の基準座標 </param>
-		void setPos(const Size& size)
+		void setSize(const Size& size)
 		{
 			m_region.setSize(size);
 		}
