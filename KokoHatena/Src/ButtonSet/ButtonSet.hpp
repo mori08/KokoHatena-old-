@@ -70,12 +70,13 @@ namespace Kokoha
 		/// ボタンの選択及びボタンを押されたときの処理の呼び出し
 		/// </summary>
 		/// <param name="basePos"> 基準座標 </param>
+		/// <returns> 選択しているボタンが変更されたとき true , そうでないとき false </returns>
 		/// <remarks>
 		/// 入力に応じたボタン選択の変更と
 		/// 決定キーが押されたときそのボタンのOnClick関数を呼びます
 		/// 1フレームに2度以上使わないでください。
 		/// </remarks>
-		void update(const Point& basePos = Point::Zero());
+		bool update(const Point& basePos = Point::Zero());
 
 	};
 }

@@ -71,12 +71,13 @@ namespace Kokoha
 	}
 
 
-	void ButtonSet::update(const Point& basePos)
+	bool ButtonSet::update(const Point& basePos)
 	{
 		for (const auto& itr : m_buttonMap)
 		{
 			if (!itr.second.getRegion().movedBy(basePos).mouseOver()) { continue; }
 		
+			bool rtn = (m_selectedButtonName != itr.first);
 			m_selectedButtonName = itr.first;
 
 			if (MouseL.up())
@@ -84,8 +85,10 @@ namespace Kokoha
 				itr.second.onClick();
 			}
 
-			break;
+			return rtn;
 		}
+
+		return false;
 	}
 
 }
