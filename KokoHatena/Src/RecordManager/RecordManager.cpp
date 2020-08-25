@@ -19,6 +19,12 @@ namespace
 
 namespace Kokoha
 {
+	RecordManager::RecordManager()
+	{
+		m_recordMap.try_emplace(U"TestFlag" , std::move(Record(1, 0)));
+		m_recordMap.try_emplace(U"TestValue", std::move(Record(3, 5)));
+	}
+
 
     Kokoha::RecordManager::LoadResult Kokoha::RecordManager::load()
     {

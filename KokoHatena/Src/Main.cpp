@@ -3,6 +3,7 @@
 
 // シーン
 #include "Scene/Title/TitleScene.hpp"
+#include "Scene/Load/TestLoad/TestLoadScene.hpp"
 
 namespace
 {
@@ -30,7 +31,8 @@ void Main()
 
 	// シーン
 	MyApp sceneManager;
-	sceneManager.add<Kokoha::TitleScene>(SceneName::TITLE);
+	sceneManager.add<Kokoha::TitleScene>   (SceneName::TITLE);
+	sceneManager.add<Kokoha::TestLoadScene>(SceneName::TEST_LOAD);
 
 	while (System::Update())
 	{
