@@ -36,6 +36,8 @@ namespace Kokoha
 
 		void update() override;
 
+		void updateFadeOut(double) override;
+
 		void draw() const override;
 
 	private:

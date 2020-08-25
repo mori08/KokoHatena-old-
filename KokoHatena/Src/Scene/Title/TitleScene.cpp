@@ -91,6 +91,7 @@ namespace Kokoha
 
 	void TitleScene::update()
 	{
+		// カーソルの幅の変更
 		internalDividingPoint
 		(
 			m_cursorWidth,
@@ -98,6 +99,7 @@ namespace Kokoha
 			CURSOR_MOVE_RATE
 		);
 
+		// カーソルの横に出る線の長さの変更
 		internalDividingPoint
 		(
 			m_cursorLineLength,
@@ -105,6 +107,7 @@ namespace Kokoha
 			CURSOR_MOVE_RATE
 		);
 
+		// カーソルの横に出る線の不透明度の変更
 		internalDividingPoint
 		(
 			m_cursorLineAlpha,
@@ -118,6 +121,34 @@ namespace Kokoha
 			m_cursorLineLength = 0;
 			m_cursorLineAlpha = 1;
 		}
+	}
+
+
+	void TitleScene::updateFadeOut(double)
+	{
+		// カーソルの幅の変更
+		internalDividingPoint
+		(
+			m_cursorWidth,
+			BUTTON_SIZE.x,
+			CURSOR_MOVE_RATE
+		);
+
+		// カーソルの横に出る線の長さの変更
+		internalDividingPoint
+		(
+			m_cursorLineLength,
+			Scene::Width(),
+			CURSOR_MOVE_RATE
+		);
+
+		// カーソルの横に出る線の不透明度の変更
+		internalDividingPoint
+		(
+			m_cursorLineAlpha,
+			0,
+			CURSOR_MOVE_RATE
+		);
 	}
 
 
