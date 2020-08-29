@@ -4,7 +4,7 @@
 namespace
 {
 	// ボードのサイズ
-	constexpr Size BOARD_SIZE(200, 200);
+	constexpr Size BOARD_SIZE(640, 480);
 }
 
 
@@ -16,13 +16,16 @@ namespace Kokoha
 	{
 	}
 
+
 	void TestBoard::inputInBoard()
 	{
 	}
 
+
 	void TestBoard::updateInBoard()
 	{
 	}
+
 
 	void TestBoard::drawInBoard() const
 	{

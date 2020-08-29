@@ -435,7 +435,9 @@
     <ClCompile Include="Src\Board\Board.cpp">
       <Filter>Src\Board</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Board\Test\TestBoard.cpp" />
+    <ClCompile Include="Src\Board\Test\TestBoard.cpp">
+      <Filter>Src\Board\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">

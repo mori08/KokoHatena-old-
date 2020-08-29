@@ -19,7 +19,7 @@ namespace Kokoha
 	/// <param name="alpha"> •s“§–¾“x[0,1] </param>
 	constexpr inline ColorF myColor(double rgb, double alpha = 1.0)
 	{
-		return ColorF(Max(0.0, Min(1.0, rgb)) * (MyBlack.r - MyWhite.r) + MyWhite.r, alpha);
+		return ColorF(Max(0.0, Min(1.0, rgb)) * (MyWhite.r - MyBlack.r) + MyBlack.r, alpha);
 	}
 
 
