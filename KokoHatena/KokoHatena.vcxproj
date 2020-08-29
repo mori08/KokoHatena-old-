@@ -233,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Board\Board.cpp" />
+    <ClCompile Include="Src\Board\Test\TestBoard.cpp" />
     <ClCompile Include="Src\ButtonSet\ButtonSet.cpp" />
     <ClCompile Include="Src\ButtonSet\Button\Button.cpp" />
     <ClCompile Include="Src\Main.cpp" />
@@ -245,6 +246,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Board\Board.hpp" />
+    <ClInclude Include="Src\Board\Test\TestBoard.hpp" />
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp" />
     <ClInclude Include="Src\ButtonSet\Button\Button.hpp" />
     <ClInclude Include="Src\MyLibrary\MyLibrary.hpp" />

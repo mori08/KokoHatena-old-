@@ -19,7 +19,8 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			MAIL // メール
+			TEST, // テスト
+			MAIL  // メール
 		};
 
 		/// <summary>

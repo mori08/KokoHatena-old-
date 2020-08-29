@@ -1,6 +1,13 @@
 #include "Board.hpp"
 
 
+namespace
+{
+    // èâä˙ç¿ïW
+    constexpr Point INIT_POS(100, 100);
+}
+
+
 namespace Kokoha
 {
 
@@ -8,6 +15,7 @@ namespace Kokoha
         : m_role(role)
         , m_name(name)
         , m_size(size)
+        , m_pos(INIT_POS)
     {
     }
 
