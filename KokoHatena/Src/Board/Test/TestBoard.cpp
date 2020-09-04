@@ -24,7 +24,7 @@ namespace Kokoha
 
 	void TestBoard::updateInBoard()
 	{
-		m_circleCenter = Cursor::Pos();
+		m_circleCenter = cursorPosFInBoard();;
 	}
 
 

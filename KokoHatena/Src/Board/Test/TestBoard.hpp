@@ -15,7 +15,7 @@ namespace Kokoha
 	{
 	private:
 
-		Point m_circleCenter;
+		Vec2 m_circleCenter;
 
 	public:
 
