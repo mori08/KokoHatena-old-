@@ -47,6 +47,9 @@ namespace Kokoha
 		// ウィンドウを左上の座標
 		Point m_pos;
 
+		// レンダーテクスチャ(ボード内の描画)
+		const MSRenderTexture m_render;
+
 	public:
 
 		Board(Role role, const String& name, const Size& size);

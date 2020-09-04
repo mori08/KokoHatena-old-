@@ -24,11 +24,14 @@ namespace Kokoha
 
 	void TestBoard::updateInBoard()
 	{
+		m_circleCenter = Cursor::Pos();
 	}
 
 
 	void TestBoard::drawInBoard() const
 	{
+		Circle(0, 0, 100).draw(Palette::Red);
+		Circle(m_circleCenter, 100).draw(Palette::Blue);
 	}
 
 }

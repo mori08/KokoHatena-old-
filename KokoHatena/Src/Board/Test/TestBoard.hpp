@@ -13,6 +13,10 @@ namespace Kokoha
 	/// </summary>
 	class TestBoard : public Board
 	{
+	private:
+
+		Point m_circleCenter;
+
 	public:
 
 		TestBoard();

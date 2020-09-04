@@ -26,6 +26,7 @@ namespace Kokoha
         , m_name(name)
         , m_size(size)
         , m_pos(INIT_POS)
+        , m_render(size, MyWhite)
     {
     }
 
@@ -51,7 +52,15 @@ namespace Kokoha
         // ボード背景の描画
         Rect(m_pos, m_size).draw(MyBlack);
 
-        drawInBoard();
+        m_render.clear(MyWhite);
+        {
+            // レンダーを設定してボード内の描画
+            ScopedRenderTarget2D target(m_render);
+            drawInBoard();
+        }
+        Graphics2D::Flush();
+        m_render.resolve();
+        m_render.draw(m_pos);
 
         // 内側のフレームを描画
         Rect(m_pos, m_size).drawFrame(FRAME_THICKNESS, 0, FRAME_COLOR);
