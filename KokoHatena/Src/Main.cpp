@@ -5,6 +5,8 @@
 #include "Scene/Title/TitleScene.hpp"
 #include "Scene/Load/TestLoad/TestLoadScene.hpp"
 
+#include "Board/Test/TestBoard.hpp"
+
 namespace
 {
 	// 画面サイズ
@@ -34,9 +36,16 @@ void Main()
 	sceneManager.add<Kokoha::TitleScene>   (SceneName::TITLE);
 	sceneManager.add<Kokoha::TestLoadScene>(SceneName::TEST_LOAD);
 
+	Kokoha::TestBoard board;
+
 	while (System::Update())
 	{
-		sceneManager.update();
+		//sceneManager.update();
+
+		board.input();
+		board.update();
+		Scene::Rect().draw(Kokoha::MyBlack);
+		board.draw();
 
 		Kokoha::showFPS();
 	}

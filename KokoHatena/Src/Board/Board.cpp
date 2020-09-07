@@ -15,6 +15,12 @@ namespace
 
     // フレームの色
     constexpr ColorF FRAME_COLOR = Kokoha::myColor(0.8);
+
+    // ボード内の色
+    constexpr ColorF BOARD_COLOR = Kokoha::myColor(0.2);
+
+    // アルファ値変更の比率
+    constexpr double CHANGE_ALPHA_RATE = 0.05;
 }
 
 
@@ -26,7 +32,8 @@ namespace Kokoha
         , m_name(name)
         , m_size(size)
         , m_pos(INIT_POS)
-        , m_render(size, MyWhite)
+        , m_alpha(0)
+        , m_render(size, BOARD_COLOR)
     {
     }
 
@@ -41,6 +48,8 @@ namespace Kokoha
 
     Board::StateChange Board::update()
     {
+        internalDividingPoint(m_alpha, 1.0, CHANGE_ALPHA_RATE);
+
         updateInBoard();
 
         return StateChange::NONE;
@@ -49,29 +58,27 @@ namespace Kokoha
 
     void Board::draw() const
     {
-        // ボード背景の描画
-        Rect(m_pos, m_size).draw(MyBlack);
+        // レンダーテクスチャのクリア
+        m_render.clear(BOARD_COLOR);
 
-        m_render.clear(MyWhite);
         {
-            // レンダーを設定してボード内の描画
             ScopedRenderTarget2D target(m_render);
+
+            // ボード内の描画
             drawInBoard();
+
+            // 内側のフレームを描画
+            Rect(Point::Zero(), m_size).drawFrame(FRAME_THICKNESS, 0, FRAME_COLOR);
+
+            // ボード上部の操作フレームの描画
+            Rect(Point::Zero(), Size(m_size.x, CONTROL_FRAME_THICKNESS))
+                .draw(FRAME_COLOR);
         }
+
+        // レンダーテクスチャの描画
         Graphics2D::Flush();
         m_render.resolve();
-        m_render.draw(m_pos);
-
-        // 内側のフレームを描画
-        Rect(m_pos, m_size).drawFrame(FRAME_THICKNESS, 0, FRAME_COLOR);
-
-        // ボード上部の操作フレームの描画
-        Rect(m_pos + Point(0, -CONTROL_FRAME_THICKNESS), Size(m_size.x, CONTROL_FRAME_THICKNESS))
-            .draw(FRAME_COLOR);
-
-        // 外側フレームの描画
-        Rect(m_pos + Point(0, -CONTROL_FRAME_THICKNESS), m_size + Size(0, CONTROL_FRAME_THICKNESS))
-            .drawFrame(0, CONTROL_FRAME_THICKNESS, MyBlack);
+        m_render.draw(m_pos, AlphaF(m_alpha));
     }
 
 }

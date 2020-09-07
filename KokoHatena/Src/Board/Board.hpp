@@ -47,6 +47,9 @@ namespace Kokoha
 		// ウィンドウを左上の座標
 		Point m_pos;
 
+		// 不当明度
+		double m_alpha;
+
 		// レンダーテクスチャ(ボード内の描画)
 		const MSRenderTexture m_render;
 
