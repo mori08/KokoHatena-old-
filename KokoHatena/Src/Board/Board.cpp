@@ -39,6 +39,7 @@ namespace Kokoha
         , m_size(size)
         , m_pos(INIT_POS)
         , m_state(StateChange::NONE)
+        , m_optMovePos(none)
         , m_alpha(0)
         , m_closeButton(CLOSE_BUTTON.movedBy(size.x,0))
         , m_minimizeButton(MINIMIZE_BUTTON.movedBy(size.x, 0))
@@ -62,6 +63,17 @@ namespace Kokoha
         if (MouseL.up() && m_minimizeButton.contains(cursorPosInBoard()))
         {
             m_state = StateChange::MINIMIZE;
+            return;
+        }
+
+        // 操作フレームを持って移動
+        if (MouseL.down() && Rect(Point::Zero(), Size(m_size.x, CONTROL_FRAME_THICKNESS)).contains(cursorPosFInBoard()))
+        {
+            m_optMovePos = cursorPosInBoard();
+        }
+        if (m_optMovePos)
+        {
+            movePos();
             return;
         }
 
@@ -132,6 +144,24 @@ namespace Kokoha
         }
         
         return false;
+    }
+
+
+    void Board::movePos()
+    {
+        if (MouseL.up())
+        {
+            m_optMovePos = none;
+            return;
+        }
+
+        // カーソルの座標
+        Point cursorPos = Cursor::Pos();
+        cursorPos.x = Clamp(cursorPos.x, 0, Scene::Width());
+        cursorPos.y = Clamp(cursorPos.y, 0, Scene::Height());
+
+        // 座標の変更
+        m_pos = cursorPos - m_optMovePos.value();
     }
 
 }

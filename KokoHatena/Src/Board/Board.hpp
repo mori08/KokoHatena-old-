@@ -50,6 +50,9 @@ namespace Kokoha
 		// 状態
 		StateChange m_state;
 
+		// 座標移動時の基準座標(noneのとき移動しない)
+		Optional<Point> m_optMovePos;
+
 		// 不当明度
 		double m_alpha;
 
@@ -130,6 +133,11 @@ namespace Kokoha
 		/// </summary>
 		/// <returns> 変更が終了したとき true , そうでないとき false </returns>
 		bool changeAlpha();
+
+		/// <summary>
+		/// カーソルでの座標の移動
+		/// <\summary>
+		void movePos();
 
 	};
 
