@@ -44,8 +44,11 @@ namespace Kokoha
 		// サイズ
 		const Size m_size;
 
-		// ウィンドウを左上の座標
+		// 左上の座標
 		Point m_pos;
+
+		// 状態
+		StateChange m_state;
 
 		// 不当明度
 		double m_alpha;
@@ -119,6 +122,14 @@ namespace Kokoha
 		{
 			return Cursor::PosF() - m_pos;
 		}
+
+	private:
+
+		/// <summary>
+		/// 不当明度の変更
+		/// </summary>
+		/// <returns> 変更が終了したとき true , そうでないとき false </returns>
+		bool changeAlpha();
 
 	};
 
