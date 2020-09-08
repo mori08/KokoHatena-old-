@@ -21,6 +21,12 @@ namespace
 
     // アルファ値変更の比率
     constexpr double CHANGE_ALPHA_RATE = 0.05;
+
+    // 閉じるボタンの位置
+    constexpr Rect CLOSE_BUTTON = Kokoha::getRectFromCenter(Point(-15, 15), Size(20, 20));
+
+    // 最小化ボタンの位置
+    constexpr Rect MINIMIZE_BUTTON = Kokoha::getRectFromCenter(Point(-45, 15), Size(20, 20));
 }
 
 
@@ -33,6 +39,8 @@ namespace Kokoha
         , m_size(size)
         , m_pos(INIT_POS)
         , m_alpha(0)
+        , m_closeButton(CLOSE_BUTTON.movedBy(size.x,0))
+        , m_minimizeButton(MINIMIZE_BUTTON.movedBy(size.x, 0))
         , m_render(size, BOARD_COLOR)
     {
     }
@@ -67,12 +75,16 @@ namespace Kokoha
             // ボード内の描画
             drawInBoard();
 
-            // 内側のフレームを描画
+            // フレームを描画
             Rect(Point::Zero(), m_size).drawFrame(FRAME_THICKNESS, 0, FRAME_COLOR);
 
             // ボード上部の操作フレームの描画
             Rect(Point::Zero(), Size(m_size.x, CONTROL_FRAME_THICKNESS))
                 .draw(FRAME_COLOR);
+
+            // 閉じる・最小化ボタンを描画
+            TextureAsset(U"CloseButton").draw(m_closeButton.pos);
+            TextureAsset(U"MinimizeButton").draw(m_minimizeButton.pos);
         }
 
         // レンダーテクスチャの描画

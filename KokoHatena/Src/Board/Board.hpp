@@ -50,6 +50,12 @@ namespace Kokoha
 		// 不当明度
 		double m_alpha;
 
+		// 閉じるボタン
+		const Rect m_closeButton;
+
+		// 最小化ボタン
+		const Rect m_minimizeButton;
+
 		// レンダーテクスチャ(ボード内の描画)
 		const MSRenderTexture m_render;
 
