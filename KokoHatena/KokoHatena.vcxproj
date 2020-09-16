@@ -241,6 +241,7 @@
     <ClCompile Include="Src\RecordManager\RecordManager.cpp" />
     <ClCompile Include="Src\RecordManager\Record\Record.cpp" />
     <ClCompile Include="Src\Scene\Load\LoadScene.cpp" />
+    <ClCompile Include="Src\Scene\Load\Record\LoadRecordScene.cpp" />
     <ClCompile Include="Src\Scene\Load\TestLoad\TestLoadScene.cpp" />
     <ClCompile Include="Src\Scene\Title\TitleScene.cpp" />
   </ItemGroup>
@@ -253,6 +254,7 @@
     <ClInclude Include="Src\RecordManager\RecordManager.hpp" />
     <ClInclude Include="Src\RecordManager\Record\Record.hpp" />
     <ClInclude Include="Src\Scene\Load\LoadScene.hpp" />
+    <ClInclude Include="Src\Scene\Load\Record\LoadRecordScene.hpp" />
     <ClInclude Include="Src\Scene\Load\TestLoad\TestLoadScene.hpp" />
     <ClInclude Include="Src\Scene\Scene.hpp" />
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp" />

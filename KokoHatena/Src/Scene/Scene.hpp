@@ -7,8 +7,10 @@
 // シーンの名前
 enum class SceneName
 {
-	TITLE,    // タイトル
-	TEST_LOAD // ロードシーンのテスト
+	TITLE,      // タイトル
+
+	TEST_LOAD,  // ロードシーンのテスト
+	RECORD_LOAD // レコードのロード
 };
 
 // シーンで共有されるデータ

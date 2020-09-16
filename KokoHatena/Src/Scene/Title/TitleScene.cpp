@@ -85,6 +85,8 @@ namespace Kokoha
 			m_buttonSet.registerButton(button);
 		}
 
+		m_buttonSet.setOnClickFunc(NEWGAME_BUTTON.getName(), [this]() {changeScene(SceneName::RECORD_LOAD); });
+
 		m_buttonSet.setSelectedButton(LOADGAME_BUTTON.getName());
 	}
 

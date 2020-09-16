@@ -4,6 +4,7 @@
 // シーン
 #include "Scene/Title/TitleScene.hpp"
 #include "Scene/Load/TestLoad/TestLoadScene.hpp"
+#include "Scene/Load/Record/LoadRecordScene.hpp"
 
 #include "Board/Test/TestBoard.hpp"
 
@@ -33,19 +34,13 @@ void Main()
 
 	// シーン
 	MyApp sceneManager;
-	sceneManager.add<Kokoha::TitleScene>   (SceneName::TITLE);
-	sceneManager.add<Kokoha::TestLoadScene>(SceneName::TEST_LOAD);
-
-	Kokoha::TestBoard board;
+	sceneManager.add<Kokoha::TitleScene>     (SceneName::TITLE);
+	sceneManager.add<Kokoha::TestLoadScene>  (SceneName::TEST_LOAD);
+	sceneManager.add<Kokoha::LoadRecordScene>(SceneName::RECORD_LOAD);
 
 	while (System::Update())
 	{
-		//sceneManager.update();
-
-		board.input();
-		board.update();
-		Scene::Rect().draw(Kokoha::MyBlack);
-		board.draw();
+		sceneManager.update();
 
 		Kokoha::showFPS();
 	}
