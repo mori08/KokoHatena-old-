@@ -244,6 +244,7 @@
     <ClCompile Include="Src\Scene\Load\Record\LoadRecordScene.cpp" />
     <ClCompile Include="Src\Scene\Load\TestLoad\TestLoadScene.cpp" />
     <ClCompile Include="Src\Scene\Title\TitleScene.cpp" />
+    <ClCompile Include="Src\SliceTexture\Animation\Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Board\Board.hpp" />
@@ -258,6 +259,8 @@
     <ClInclude Include="Src\Scene\Load\TestLoad\TestLoadScene.hpp" />
     <ClInclude Include="Src\Scene\Scene.hpp" />
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp" />
+    <ClInclude Include="Src\SliceTexture\Animation\Animation.hpp" />
+    <ClInclude Include="Src\SliceTexture\SliceTexture.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App\asset\shader\TitleLogoShader.hlsl">
