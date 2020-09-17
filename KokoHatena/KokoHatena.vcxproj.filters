@@ -137,9 +137,6 @@
     <Filter Include="Src\SliceTexture\Animation">
       <UniqueIdentifier>{e1295423-6354-4a5c-a740-76104dbbd46f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\SliceTexture\Linearly">
-      <UniqueIdentifier>{fddee718-8c55-4282-90f1-753c2ddebb1b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -456,6 +453,9 @@
     <ClCompile Include="Src\SliceTexture\Animation\Animation.cpp">
       <Filter>Src\SliceTexture\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="Src\SliceTexture\SliceTexture.cpp">
+      <Filter>Src\SliceTexture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -499,9 +499,6 @@
     </ClInclude>
     <ClInclude Include="Src\SliceTexture\Animation\Animation.hpp">
       <Filter>Src\SliceTexture\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\SliceTexture\Linearly\Linearly.hpp">
-      <Filter>Src\SliceTexture\Linearly</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
