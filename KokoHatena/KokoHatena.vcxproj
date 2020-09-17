@@ -260,6 +260,7 @@
     <ClInclude Include="Src\Scene\Scene.hpp" />
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp" />
     <ClInclude Include="Src\SliceTexture\Animation\Animation.hpp" />
+    <ClInclude Include="Src\SliceTexture\Linearly\Linearly.hpp" />
     <ClInclude Include="Src\SliceTexture\SliceTexture.hpp" />
   </ItemGroup>
   <ItemGroup>
