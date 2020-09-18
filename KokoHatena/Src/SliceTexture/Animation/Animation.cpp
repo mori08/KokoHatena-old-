@@ -9,6 +9,7 @@ namespace Kokoha
 		, m_posOrder(getPosOrder(posOrder))
 		, m_isLoop(isLoop)
 	{
+		
 	}
 
 
@@ -31,7 +32,7 @@ namespace Kokoha
 		while (g - l > 1)
 		{
 			size_t mid = (l + g) / 2;
-			if (m_posOrder[mid].first < animSecond)
+			if (animSecond < m_posOrder[mid].first)
 			{
 				g = mid;
 			}

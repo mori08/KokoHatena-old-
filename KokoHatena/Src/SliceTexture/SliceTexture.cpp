@@ -56,7 +56,7 @@ namespace Kokoha
 	TextureRegion SliceTexture::getTexture() const
 	{
 		const Point texturePos = m_animMap.find(m_animName)->second.getTexturePos(m_animSecond);
-
+		
 		auto texture = TextureAsset(m_textureName)(texturePos * m_sliceSize, m_sliceSize);
 		if (m_mirror) { texture = texture.mirrored(); }
 
