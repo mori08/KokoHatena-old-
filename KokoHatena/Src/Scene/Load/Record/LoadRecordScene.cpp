@@ -5,16 +5,48 @@
 namespace
 {
 	// テキストを表示する座標
-	constexpr Point TEXT_DRAW_POS(420, 480);
+	constexpr Point TEXT_DRAW_POS(420, 420);
 
 	// 演出の円
-	constexpr Circle LOADING_CIRCLE(360, 480, 11.0);
+	constexpr Circle LOADING_CIRCLE(360, 420, 11.0);
 	// 演出の弧の太さ
 	constexpr double LOADING_ARC_THICNESS = 2.0;
 	// 演出の弧の長さ
 	constexpr double LOADING_ARC_LENGTH = 5.0;
 	// 小さな円の個数
 	constexpr int32  SMALL_CIRCLE_NUM = 10;
+
+	// ロゴのサイズ
+	constexpr Size LOGO_SIZE(180, 180);
+	// ロゴのアニメーション
+	const Kokoha::Animation LOGO_ANIM
+	(
+		Kokoha::PosOrder
+		{ 
+			{0.04,Point(0,0)},
+			{0.04,Point(1,0)},
+			{0.04,Point(2,0)},
+			{0.04,Point(3,0)},
+			{0.04,Point(0,1)},
+			{0.04,Point(1,1)},
+			{0.04,Point(2,1)},
+			{0.04,Point(3,1)},
+			{0.04,Point(0,2)},
+			{0.04,Point(1,2)},
+			{0.04,Point(2,2)},
+			{0.04,Point(3,2)},
+			{0.04,Point(0,3)},
+			{0.04,Point(1,3)},
+			{0.04,Point(2,3)},
+			{0.04,Point(3,3)},
+			{0.04,Point(0,4)},
+			{0.50,Point(1,4)},
+			{0.04,Point(2,4)},
+			{0.04,Point(3,4)},
+			{0.04,Point(0,5)}
+		},
+		false
+	);
 }
 
 
@@ -30,13 +62,16 @@ namespace Kokoha
 				return SceneName::TITLE;
 			}
 		)
+		, m_boardLogo(U"BoardLogo", LOGO_SIZE)
 	{
+		m_boardLogo.setAnimation(U"Update", LOGO_ANIM);
+		m_boardLogo.start(U"Update");
 	}
 
 
 	void LoadRecordScene::subUpdate()
 	{
-
+		m_boardLogo.update();
 	}
 
 
@@ -56,6 +91,8 @@ namespace Kokoha
 		}
 		LOADING_CIRCLE.drawArc(angle, LOADING_ARC_LENGTH, LOADING_ARC_THICNESS, LOADING_ARC_THICNESS, MyWhite);
 		
+		m_boardLogo.getTexture().drawAt(Scene::Center());
+
 		FontAsset(U"20")(U"Loading").drawAt(TEXT_DRAW_POS, MyWhite);
 	}
 

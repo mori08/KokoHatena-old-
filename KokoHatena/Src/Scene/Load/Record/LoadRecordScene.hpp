@@ -2,6 +2,7 @@
 
 
 #include "../LoadScene.hpp"
+#include "../../../SliceTexture/SliceTexture.hpp"
 
 
 namespace Kokoha
@@ -14,6 +15,7 @@ namespace Kokoha
 	{
 	private:
 
+		SliceTexture m_boardLogo;
 
 	public:
 
