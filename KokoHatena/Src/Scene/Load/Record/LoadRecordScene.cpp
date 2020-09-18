@@ -1,20 +1,21 @@
 #include "LoadRecordScene.hpp"
+#include "../../../RecordManager/RecordManager.hpp"
 #include "../../../MyLibrary/MyLibrary.hpp"
 
 
 namespace
 {
 	// テキストを表示する座標
-	constexpr Point TEXT_DRAW_POS(420, 420);
+	constexpr Point TEXT_DRAW_POS(410, 410);
 
 	// 演出の円
-	constexpr Circle LOADING_CIRCLE(360, 420, 11.0);
+	constexpr Circle LOADING_CIRCLE(350, 410, 8.0);
 	// 演出の弧の太さ
-	constexpr double LOADING_ARC_THICNESS = 2.0;
+	constexpr double LOADING_ARC_THICNESS = 1.5;
 	// 演出の弧の長さ
 	constexpr double LOADING_ARC_LENGTH = 5.0;
 	// 小さな円の個数
-	constexpr int32  SMALL_CIRCLE_NUM = 10;
+	constexpr int32  SMALL_CIRCLE_NUM = 8;
 
 	// ロゴのサイズ
 	constexpr Size LOGO_SIZE(180, 180);
@@ -58,7 +59,14 @@ namespace Kokoha
 			init,
 			[]()
 			{
-				std::this_thread::sleep_for(std::chrono::seconds(5));
+				std::this_thread::sleep_for(std::chrono::seconds(3));
+				switch (RecordManager::instance().load())
+				{
+				case RecordManager::LoadResult::NEW_GAME:
+				case RecordManager::LoadResult::CONTINUE:
+				case RecordManager::LoadResult::ERROR:
+					return SceneName::TITLE;
+				}
 				return SceneName::TITLE;
 			}
 		)
