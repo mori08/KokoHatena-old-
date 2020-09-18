@@ -5,8 +5,7 @@
 #include "Scene/Title/TitleScene.hpp"
 #include "Scene/Load/TestLoad/TestLoadScene.hpp"
 #include "Scene/Load/Record/LoadRecordScene.hpp"
-
-#include "Board/Test/TestBoard.hpp"
+#include "Scene/Desktop/DesktopScene.hpp"
 
 namespace
 {
@@ -37,6 +36,7 @@ void Main()
 	sceneManager.add<Kokoha::TitleScene>     (SceneName::TITLE);
 	sceneManager.add<Kokoha::TestLoadScene>  (SceneName::TEST_LOAD);
 	sceneManager.add<Kokoha::LoadRecordScene>(SceneName::RECORD_LOAD);
+	sceneManager.add<Kokoha::DesktopScene>   (SceneName::DESKTOP);
 
 	while (System::Update())
 	{

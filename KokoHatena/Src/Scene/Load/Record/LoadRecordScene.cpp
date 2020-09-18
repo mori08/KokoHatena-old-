@@ -41,7 +41,7 @@ namespace
 			{0.04,Point(2,3)},
 			{0.04,Point(3,3)},
 			{0.04,Point(0,4)},
-			{0.50,Point(1,4)},
+			{0.80,Point(1,4)},
 			{0.04,Point(2,4)},
 			{0.04,Point(3,4)},
 			{0.04,Point(0,5)}
@@ -64,6 +64,7 @@ namespace Kokoha
 				{
 				case RecordManager::LoadResult::NEW_GAME:
 				case RecordManager::LoadResult::CONTINUE:
+					return SceneName::DESKTOP;
 				case RecordManager::LoadResult::ERROR:
 					return SceneName::TITLE;
 				}

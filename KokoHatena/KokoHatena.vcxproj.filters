@@ -137,6 +137,9 @@
     <Filter Include="Src\SliceTexture\Animation">
       <UniqueIdentifier>{e1295423-6354-4a5c-a740-76104dbbd46f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Scene\Desktop">
+      <UniqueIdentifier>{8717c9d6-8bbc-4777-93b0-08cc23592ae1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -456,6 +459,9 @@
     <ClCompile Include="Src\SliceTexture\SliceTexture.cpp">
       <Filter>Src\SliceTexture</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Scene\Desktop\DesktopScene.cpp">
+      <Filter>Src\Scene\Desktop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -499,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="Src\SliceTexture\Animation\Animation.hpp">
       <Filter>Src\SliceTexture\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\Desktop\DesktopScene.hpp">
+      <Filter>Src\Scene\Desktop</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
