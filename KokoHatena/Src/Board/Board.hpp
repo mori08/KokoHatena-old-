@@ -69,6 +69,8 @@ namespace Kokoha
 
 		Board(Role role, const String& name, const Size& size);
 
+		virtual ~Board() {}
+
 	public:
 
 		/// <summary>
@@ -77,15 +79,23 @@ namespace Kokoha
 		void input();
 
 		/// <summary>
-		/// ボード内の入力の受付
-		/// </summary>
-		virtual void inputInBoard() = 0;
-
-		/// <summary>
 		/// 更新
 		/// </summary>
 		/// <returns> 状態の変更 </returns>
 		StateChange update();
+
+		/// <summary>
+		/// 描画
+		/// </summary>
+		void draw() const;
+
+	protected:
+
+
+		/// <summary>
+		/// ボード内の入力の受付
+		/// </summary>
+		virtual void inputInBoard() = 0;
 
 		/// <summary>
 		/// ボード内の更新
@@ -95,11 +105,6 @@ namespace Kokoha
 		/// input関数で行う
 		/// </remarks>
 		virtual void updateInBoard() = 0;
-
-		/// <summary>
-		/// 描画
-		/// </summary>
-		void draw() const;
 
 		/// <summary>
 		/// ボード内の描画

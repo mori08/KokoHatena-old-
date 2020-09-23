@@ -2,6 +2,7 @@
 
 
 #include "../Scene.hpp"
+#include "../../Board/Board.hpp"
 
 
 namespace Kokoha
@@ -13,6 +14,8 @@ namespace Kokoha
 	class DesktopScene : public MyApp::Scene
 	{
 	private:
+
+		std::list<std::unique_ptr<Board>> m_boardList;
 
 	public:
 

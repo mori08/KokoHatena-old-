@@ -4,9 +4,6 @@
 
 namespace
 {
-    // èâä˙ç¿ïW
-    constexpr Point INIT_POS(100, 100);
-
     // ÉtÉåÅ[ÉÄÇÃå˙Ç≥
     constexpr double FRAME_THICKNESS = 1.5;
 
@@ -37,11 +34,11 @@ namespace Kokoha
         : m_role(role)
         , m_name(name)
         , m_size(size)
-        , m_pos(INIT_POS)
+        , m_pos(Scene::Center() - size / 2)
         , m_state(StateChange::NONE)
         , m_optMovePos(none)
         , m_alpha(0)
-        , m_closeButton(CLOSE_BUTTON.movedBy(size.x,0))
+        , m_closeButton(CLOSE_BUTTON.movedBy(size.x, 0))
         , m_minimizeButton(MINIMIZE_BUTTON.movedBy(size.x, 0))
         , m_render(size, BOARD_COLOR)
     {
