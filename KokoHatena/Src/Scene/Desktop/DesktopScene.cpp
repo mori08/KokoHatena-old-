@@ -22,17 +22,37 @@ namespace Kokoha
 		: IScene(init)
 	{
 		m_boardList.emplace_back(std::make_unique<TestBoard>());
+		m_boardList.emplace_back(std::make_unique<TestBoard>());
 	}
 
 
 	void DesktopScene::update()
 	{
-		(*m_boardList.begin())->input();
-
-		for (auto& itr : m_boardList)
+		if (MouseL.down())
 		{
-			itr->input();
-			itr->update();
+			// æ“ª‚ÌBoard‚ÌŒˆ’è
+			for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end(); ++boardItr)
+			{
+				if (!(*boardItr)->getRect().mouseOver()) { continue; }
+				// Board‚ðƒNƒŠƒbƒN‚µ‚½‚Æ‚«
+
+				// Board‚ðæ“ª‚ÉˆÚ“®
+				auto boardPtr = std::move(*boardItr);
+				m_boardList.erase(boardItr);
+				m_boardList.emplace_front(std::move(boardPtr));
+
+				break;
+			}
+		}
+
+		if (!m_boardList.empty())
+		{
+			(*m_boardList.begin())->input();
+		}
+
+		for (const auto& boardPtr : m_boardList)
+		{
+			boardPtr->update();
 		}
 	}
 
@@ -41,9 +61,9 @@ namespace Kokoha
 	{
 		Scene::Rect().draw(BACK_COLOR);
 
-		for (const auto& itr : m_boardList)
+		for (auto boardItr = m_boardList.rbegin(); boardItr != m_boardList.rend(); ++boardItr)
 		{
-			itr->draw();
+			(*boardItr)->draw();
 		}
 
 		Rect(0, Scene::Height() - ICONBAR_THICK, Scene::Width(), ICONBAR_THICK).draw(ICONBAR_COLOR);

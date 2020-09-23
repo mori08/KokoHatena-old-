@@ -89,6 +89,15 @@ namespace Kokoha
 		/// </summary>
 		void draw() const;
 
+		/// <summary>
+		/// ウィンドウの範囲を示す長方形の取得
+		/// </summary>
+		/// <returns> ウィンドウの範囲を示す長方形 </returns>
+		Rect getRect() const
+		{
+			return std::move(Rect(m_pos, m_size));
+		}
+
 	protected:
 
 
