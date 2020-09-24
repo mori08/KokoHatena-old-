@@ -28,6 +28,9 @@ namespace Kokoha
 
 	void DesktopScene::update()
 	{
+		ClearPrint();
+		Print << m_boardList.size();
+
 		if (MouseL.down())
 		{
 			// æ“ª‚ÌBoard‚ÌŒˆ’è
@@ -50,9 +53,18 @@ namespace Kokoha
 			(*m_boardList.begin())->input();
 		}
 
-		for (const auto& boardPtr : m_boardList)
+		for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end();)
 		{
-			boardPtr->update();
+			auto state = (*boardItr)->update();
+			if (state == Board::StateChange::CLOSE)
+			{
+				auto ersItr = boardItr;
+				++boardItr;
+				m_boardList.erase(ersItr);
+				continue;
+			}
+			
+			++boardItr;
 		}
 	}
 
