@@ -15,7 +15,11 @@ namespace Kokoha
 	{
 	private:
 
+		// 表示中のボードのリスト
 		std::list<std::unique_ptr<Board>> m_boardList;
+
+		// 非表示のボードのリスト
+		std::list<std::unique_ptr<Board>> m_hideBoardList;
 
 	public:
 

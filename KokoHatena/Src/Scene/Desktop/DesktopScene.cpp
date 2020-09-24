@@ -30,6 +30,7 @@ namespace Kokoha
 	{
 		ClearPrint();
 		Print << m_boardList.size();
+		Print << m_hideBoardList.size();
 
 		if (MouseL.down())
 		{
@@ -56,11 +57,24 @@ namespace Kokoha
 		for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end();)
 		{
 			auto state = (*boardItr)->update();
+
+			// ボードの削除
 			if (state == Board::StateChange::CLOSE)
 			{
 				auto ersItr = boardItr;
 				++boardItr;
 				m_boardList.erase(ersItr);
+				continue;
+			}
+
+			// ボードの非表示
+			if (state == Board::StateChange::MINIMIZE)
+			{
+				auto boardPtr = std::move(*boardItr);
+				auto ersItr = boardItr;
+				++boardItr;
+				m_boardList.erase(ersItr);
+				m_hideBoardList.emplace_back(std::move(boardPtr));
 				continue;
 			}
 			
