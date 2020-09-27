@@ -140,6 +140,9 @@
     <Filter Include="Src\Scene\Desktop">
       <UniqueIdentifier>{8717c9d6-8bbc-4777-93b0-08cc23592ae1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\BoardSymbol">
+      <UniqueIdentifier>{a941378f-b962-4117-b566-ed3be620e4ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -462,6 +465,9 @@
     <ClCompile Include="Src\Scene\Desktop\DesktopScene.cpp">
       <Filter>Src\Scene\Desktop</Filter>
     </ClCompile>
+    <ClCompile Include="Src\BoardSymbol\BoardSymbol.cpp">
+      <Filter>Src\BoardSymbol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -508,6 +514,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\Desktop\DesktopScene.hpp">
       <Filter>Src\Scene\Desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardSymbol\BoardSymbol.hpp">
+      <Filter>Src\BoardSymbol</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
