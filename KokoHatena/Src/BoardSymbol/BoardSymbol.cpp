@@ -29,7 +29,7 @@ namespace Kokoha
 
 	void BoardSymbol::draw() const
 	{
-		TextureAsset(U"BoardSymbol")(SYMBOL_SIZE.x * m_id, 0, SYMBOL_SIZE).drawAt(m_region.center());
+		TextureAsset(U"BoardSymbol")(TEXTURE_SIZE.x * m_id, 0, TEXTURE_SIZE).drawAt(m_region.center());
 	}
 
 }

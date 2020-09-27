@@ -3,6 +3,7 @@
 
 #include "../Scene.hpp"
 #include "../../Board/Board.hpp"
+#include "../../BoardSymbol/BoardSymbol.hpp"
 
 
 namespace Kokoha
@@ -20,6 +21,9 @@ namespace Kokoha
 
 		// 非表示のボードのリスト
 		std::list<std::unique_ptr<Board>> m_hideBoardList;
+
+		// タスクバーに配置するボタン
+		std::unordered_map<Board::Role, BoardSymbol> m_boardSymbolMap;
 
 	public:
 

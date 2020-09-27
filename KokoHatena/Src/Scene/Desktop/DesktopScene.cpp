@@ -6,12 +6,18 @@
 namespace
 {
 	// 背景色
-	constexpr ColorF BACK_COLOR = Kokoha::myColor(0.05);
+	constexpr ColorF BACK_COLOR = Kokoha::myColor(0.4);
 
-	// アイコンバーの太さ
-	constexpr int32 ICONBAR_THICK = 60;
-	// アイコンバーの色
-	constexpr ColorF ICONBAR_COLOR = Kokoha::myColor(0.4);
+	// タスクバーの太さ
+	constexpr int32 TASKBAR_THICK = 60;
+	
+	// タスクバーの右上の座標
+	constexpr Point TASKBAR_POS = Point(0, 600 - TASKBAR_THICK);
+
+	// タスクバーの色
+	constexpr ColorF TASKBAR_COLOR = Kokoha::myColor(0.05);
+
+
 }
 
 
@@ -22,16 +28,14 @@ namespace Kokoha
 		: IScene(init)
 	{
 		m_boardList.emplace_back(std::make_unique<TestBoard>());
-		m_boardList.emplace_back(std::make_unique<TestBoard>());
+
+		// タスクバーのボタンの設定
+		m_boardSymbolMap.try_emplace(Board::Role::TEST, std::move(BoardSymbol(TASKBAR_POS, 0)));
 	}
 
 
 	void DesktopScene::update()
 	{
-		ClearPrint();
-		Print << m_boardList.size();
-		Print << m_hideBoardList.size();
-
 		if (MouseL.down())
 		{
 			// 先頭のBoardの決定
@@ -92,7 +96,12 @@ namespace Kokoha
 			(*boardItr)->draw();
 		}
 
-		Rect(0, Scene::Height() - ICONBAR_THICK, Scene::Width(), ICONBAR_THICK).draw(ICONBAR_COLOR);
+		Rect(TASKBAR_POS, Scene::Width(), TASKBAR_THICK).draw(TASKBAR_COLOR);
+
+		for (const auto& symbol : m_boardSymbolMap)
+		{
+			symbol.second.draw();
+		}
 	}
 
 }
