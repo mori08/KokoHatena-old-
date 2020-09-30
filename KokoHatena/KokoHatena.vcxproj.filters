@@ -359,6 +359,9 @@
     <None Include="App\asset\shader\TitleLogoShader.hlsl">
       <Filter>Shader</Filter>
     </None>
+    <None Include="App\asset\shader\BoardSymbolShader.hlsl">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="App\engine\font\fontawesome\LICENSE.txt">

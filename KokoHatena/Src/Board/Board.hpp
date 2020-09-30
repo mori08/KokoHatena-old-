@@ -90,6 +90,15 @@ namespace Kokoha
 		void draw() const;
 
 		/// <summary>
+		/// 種類(役割)の取得
+		/// </summary>
+		/// <returns> 種類(役割) </returns>
+		Role getRole() const
+		{
+			return m_role;
+		}
+
+		/// <summary>
 		/// ウィンドウの範囲を示す長方形の取得
 		/// </summary>
 		/// <returns> ウィンドウの範囲を示す長方形 </returns>

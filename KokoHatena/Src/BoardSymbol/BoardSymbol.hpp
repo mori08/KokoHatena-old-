@@ -34,6 +34,12 @@ namespace Kokoha
 		// 対応するBoardの状態
 		BoardState m_state;
 
+		// 光の厚さ
+		double m_lightWidth;
+
+		// ピクセルシェーダ
+		const PixelShader m_shader;
+
 	public:
 
 		/// <summary>
@@ -54,6 +60,14 @@ namespace Kokoha
 		/// 描画
 		/// </summary>
 		void draw() const;
+
+	private:
+
+		/// <summary>
+		/// 状態に対応する光の厚さの取得
+		/// </summary>
+		/// <returns> 状態に対応する光の厚さ </returns>
+		double getLightWidth() const;
 
 	};
 }

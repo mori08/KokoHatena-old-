@@ -60,6 +60,11 @@ namespace Kokoha
 
 		for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end();)
 		{
+			if (m_boardSymbolMap.count((*boardItr)->getRole()))
+			{
+				m_boardSymbolMap.find((*boardItr)->getRole())->second.update();
+			}
+
 			auto state = (*boardItr)->update();
 
 			// ƒ{[ƒh‚Ìíœ
