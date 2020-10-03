@@ -16,11 +16,18 @@ namespace Kokoha
 	{
 	private:
 
+		/// <summary>
+		/// Boardのポインタのリスト
+		/// </summary>
+		using BoardPtrList = std::list<std::unique_ptr<Board>>;
+
+	private:
+
 		// 表示中のボードのリスト
-		std::list<std::unique_ptr<Board>> m_boardList;
+		BoardPtrList m_boardList;
 
 		// 非表示のボードのリスト
-		std::list<std::unique_ptr<Board>> m_hideBoardList;
+		BoardPtrList m_hideBoardList;
 
 		// タスクバーに配置するボタン
 		std::unordered_map<Board::Role, BoardSymbol> m_boardSymbolMap;
@@ -34,6 +41,15 @@ namespace Kokoha
 		void update() override;
 
 		void draw() const override;
+
+	private:
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="boardItr"></param>
+		/// <returns></returns>
+		BoardPtrList::iterator moveBoardToTop(BoardPtrList::iterator boardItr);
 
 	};
 }

@@ -61,6 +61,15 @@ namespace Kokoha
 		/// </summary>
 		void draw() const;
 
+		/// <summary>
+		/// Board‚Ìİ’è‚Ì•ÏX
+		/// </summary>
+		/// <param name="state"> Board‚Ìİ’è </param>
+		void setState(BoardState state)
+		{
+			m_state = state;
+		}
+
 	private:
 
 		/// <summary>

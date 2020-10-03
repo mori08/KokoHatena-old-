@@ -109,4 +109,28 @@ namespace Kokoha
 		}
 	}
 
+
+	DesktopScene::BoardPtrList::iterator DesktopScene::moveBoardToTop(BoardPtrList::iterator boardItr)
+	{
+		if (m_boardList.empty())
+		{
+			throw Error(U"BoardList is empty");
+		}
+
+		// 処理前に最前面にいるBoardの状態をDisplayに変更
+		m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::DISPLAY);
+
+		// 指定されたBoardを最前面に移動
+		auto ersItr = boardItr; // 削除するイテレータ
+		auto topPtr = std::move(*boardItr); // 最前面に移送させたいポインタ
+		++boardItr;
+		m_boardList.erase(ersItr);
+		m_boardList.emplace_front(std::move(topPtr));
+
+		// 処理前に最前面にいるBoardの状態をTopに変更
+		m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::TOP);
+
+		return boardItr;
+	}
+
 }
