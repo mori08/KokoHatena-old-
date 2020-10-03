@@ -11,9 +11,10 @@ namespace
 namespace Kokoha
 {
 
-	TestBoard::TestBoard()
-		: Board(Role::TEST, U"Test", BOARD_SIZE)
+	TestBoard::TestBoard(const Role& role, int32 num)
+		: Board(role, U"Test", BOARD_SIZE)
 	{
+		m_number = num;
 	}
 
 
@@ -24,14 +25,13 @@ namespace Kokoha
 
 	void TestBoard::updateInBoard()
 	{
-		m_circleCenter = cursorPosFInBoard();;
+		
 	}
 
 
 	void TestBoard::drawInBoard() const
 	{
-		Circle(0, 0, 100).draw(Palette::Red);
-		Circle(m_circleCenter, 100).draw(Palette::Blue);
+		FontAsset(U"30")(ToString(m_number)).draw(40, 40);
 	}
 
 }

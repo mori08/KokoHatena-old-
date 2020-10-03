@@ -27,10 +27,9 @@ namespace Kokoha
 	DesktopScene::DesktopScene(const InitData& init)
 		: IScene(init)
 	{
-		m_boardList.emplace_back(std::make_unique<TestBoard>());
-
+		// TODO 登録関数の作成
 		// タスクバーのボタンの設定
-		m_boardSymbolMap.try_emplace(Board::Role::TEST, std::move(BoardSymbol(TASKBAR_POS, 0)));
+		// m_boardSymbolMap.try_emplace(Board::Role::TEST, std::move(BoardSymbol(TASKBAR_POS, 0)));
 	}
 
 

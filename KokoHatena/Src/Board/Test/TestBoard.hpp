@@ -15,11 +15,11 @@ namespace Kokoha
 	{
 	private:
 
-		Vec2 m_circleCenter;
+		int32 m_number;
 
 	public:
 
-		TestBoard();
+		TestBoard(const Role& role, int32 num);
 
 	public:
 
@@ -29,6 +29,24 @@ namespace Kokoha
 
 		void drawInBoard() const override;
 
+	};
+
+
+	class Test1Board : public TestBoard
+	{
+	public:
+		Test1Board()
+			: TestBoard(Role::TEST1, 1)
+		{
+		}
+	};
+	class Test2Board : public TestBoard
+	{
+	public:
+		Test2Board()
+			: TestBoard(Role::TEST2, 2)
+		{
+		}
 	};
 
 }
