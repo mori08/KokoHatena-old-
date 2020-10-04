@@ -23,6 +23,11 @@ namespace Kokoha
 			TOP      // 一番前面
 		};
 
+	public:
+
+		// 一辺の長さ
+		static const int32 SIZE = 60;
+
 	private:
 
 		// タスクバーに配置する位置

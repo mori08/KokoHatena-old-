@@ -4,9 +4,6 @@
 
 namespace
 {
-	// ボタンのサイズ
-	constexpr Size SYMBOL_SIZE(60, 60);
-
 	// 画像のサイズ
 	constexpr Size TEXTURE_SIZE(40, 40);
 
@@ -32,7 +29,7 @@ namespace Kokoha
 {
 
 	BoardSymbol::BoardSymbol(const Point& pos, const int32& id)
-		: m_region(pos, SYMBOL_SIZE)
+		: m_region(pos, SIZE)
 		, m_id(id)
 		, m_state(BoardState::NONE)
 		, m_lightWidth(0)
@@ -43,11 +40,6 @@ namespace Kokoha
 
 	void BoardSymbol::update()
 	{
-		if (Key1.down()) { m_state = BoardState::NONE; }
-		if (Key2.down()) { m_state = BoardState::HIDE; }
-		if (Key3.down()) { m_state = BoardState::DISPLAY; }
-		if (Key4.down()) { m_state = BoardState::TOP; }
-
 		internalDividingPoint(m_lightWidth, getLightWidth(), LIGHT_RATE);
 	}
 
@@ -56,7 +48,7 @@ namespace Kokoha
 	{
 		RectF rect
 		(
-			m_region.pos + Vec2(LIGHT_BLANK, SYMBOL_SIZE.y - m_lightWidth),
+			m_region.pos + Vec2(LIGHT_BLANK, SIZE - m_lightWidth),
 			Vec2(m_region.w - 2 * LIGHT_BLANK, m_lightWidth)
 		);
 		rect.draw(MyWhite);
