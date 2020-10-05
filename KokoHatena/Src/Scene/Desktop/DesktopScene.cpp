@@ -51,7 +51,7 @@ namespace Kokoha
 		}
 
 		// 各BoardSymbolの更新
-		for (auto boardSymbol : m_boardSymbolMap)
+		for (auto& boardSymbol : m_boardSymbolMap)
 		{
 			auto boardState = boardSymbol.second.update();
 
@@ -70,20 +70,12 @@ namespace Kokoha
 		// 各Boardの更新
 		for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end();)
 		{
-			if (m_boardSymbolMap.count((*boardItr)->getRole()))
-			{
-				auto boardState = m_boardSymbolMap.find((*boardItr)->getRole())->second.update();
-			}
-
 			auto stateChange = (*boardItr)->update();
 
 			// ボードの削除
 			if (stateChange == Board::StateChange::CLOSE)
 			{
-				// TODO eraseBoardに変更
-				auto ersItr = boardItr;
-				++boardItr;
-				m_boardList.erase(ersItr);
+				boardItr = eraseBoard(boardItr);
 				continue;
 			}
 
@@ -134,11 +126,6 @@ namespace Kokoha
 
 	DesktopScene::BoardPtrList::iterator DesktopScene::moveBoardToTop(BoardPtrList::iterator boardItr)
 	{
-		if (m_boardList.empty())
-		{
-			throw Error(U"BoardList is empty");
-		}
-
 		if (boardItr == m_boardList.end())
 		{
 			throw Error(U"Failed to find Board");
@@ -154,8 +141,33 @@ namespace Kokoha
 		m_boardList.erase(ersItr);
 		m_boardList.emplace_front(std::move(topPtr));
 
-		// 処理前に最前面にいるBoardの状態をTopに変更
+		// 処理後に最前面にいるBoardの状態をTopに変更
 		m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::TOP);
+
+		return boardItr;
+	}
+
+
+	DesktopScene::BoardPtrList::iterator DesktopScene::eraseBoard(BoardPtrList::iterator boardItr)
+	{
+		if (boardItr == m_boardList.end())
+		{
+			throw Error(U"Failed to find Board");
+		}
+
+		// 削除するBoardの状態をNoneに変更
+		m_boardSymbolMap.find((*boardItr)->getRole())->second.setState(BoardSymbol::BoardState::NONE);
+
+		// 指定されたBoardの削除
+		auto ersItr = boardItr;
+		++boardItr;
+		m_boardList.erase(ersItr);
+
+		// 最前面にきたBoardをTopに変更
+		if (!m_boardList.empty())
+		{
+			m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::TOP);
+		}
 
 		return boardItr;
 	}

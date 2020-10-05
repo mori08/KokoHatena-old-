@@ -79,6 +79,13 @@ namespace Kokoha
 		template<typename BoardType>
 		void generateBoard();
 
+		/// <summary>
+		/// Boardの削除
+		/// </summary>
+		/// <param name="boardItr"> 削除したいBoardのイテレータ </param>
+		/// <returns> 次のイテレータ </returns>
+		BoardPtrList::iterator eraseBoard(BoardPtrList::iterator boardItr);
+
 	};
 	
 
