@@ -17,6 +17,10 @@ namespace Kokoha
 
 		int32 m_number;
 
+		double m_time;
+
+		int32 m_inputFlag;
+
 	public:
 
 		TestBoard(const Role& role, int32 num);

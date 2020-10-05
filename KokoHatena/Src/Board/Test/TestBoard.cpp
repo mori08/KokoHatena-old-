@@ -15,23 +15,30 @@ namespace Kokoha
 		: Board(role, U"Test", BOARD_SIZE)
 	{
 		m_number = num;
+		m_time = 0;
 	}
 
 
 	void TestBoard::inputInBoard()
 	{
+		m_inputFlag = -1;
 	}
 
 
 	void TestBoard::updateInBoard()
 	{
-		
+		m_time += Scene::DeltaTime();
+		++m_inputFlag;
 	}
 
 
 	void TestBoard::drawInBoard() const
 	{
 		FontAsset(U"30")(ToString(m_number)).draw(40, 40);
+		if (!m_inputFlag)
+		{
+			FontAsset(U"30")(ToString(int32(m_time))).draw(40, 80);
+		}
 	}
 
 }

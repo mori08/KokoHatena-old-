@@ -50,14 +50,14 @@ namespace Kokoha
         if (m_state != StateChange::NONE) { return; }
 
         // 閉じるボタンに押したとき
-        if (MouseL.up() && m_closeButton.contains(cursorPosInBoard()))
+        if (MouseL.down() && m_closeButton.contains(cursorPosInBoard()))
         {
             m_state = StateChange::CLOSE;
             return;
         }
 
         // 閉じるボタンに押したとき
-        if (MouseL.up() && m_minimizeButton.contains(cursorPosInBoard()))
+        if (MouseL.down() && m_minimizeButton.contains(cursorPosInBoard()))
         {
             m_state = StateChange::MINIMIZE;
             return;

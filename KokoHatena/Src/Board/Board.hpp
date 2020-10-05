@@ -109,6 +109,14 @@ namespace Kokoha
 		}
 
 		/// <summary>
+		/// ï\é¶
+		/// </summary>
+		void display()
+		{
+			m_state = StateChange::NONE;
+		}
+
+		/// <summary>
 		/// ç≈è¨âª
 		/// </summary>
 		void minimize()

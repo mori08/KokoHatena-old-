@@ -67,6 +67,9 @@ namespace Kokoha
 
 			case BoardSymbol::BoardState::TOP:       // 非表示
 				(*findBoardFromRole(boardSymbol.first))->minimize(); break;
+
+			case BoardSymbol::BoardState::HIDDEN:
+				displayBoard(boardSymbol.first); break;
 			}
 		}
 
@@ -180,7 +183,37 @@ namespace Kokoha
 		m_boardList.erase(ersItr);
 		m_hideBoardMap.try_emplace(boardPtr->getRole(), std::move(boardPtr));
 
+		// 最前面にきたBoardをTopに変更
+		if (!m_boardList.empty())
+		{
+			m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::TOP);
+		}
+
 		return boardItr;
+	}
+
+
+	void DesktopScene::displayBoard(Board::Role role)
+	{
+		if (!m_hideBoardMap.count(role))
+		{
+			throw Error(U"Failed to find Board");
+		}
+
+		if (!m_boardList.empty())
+		{
+			// 処理前に最前面にいるBoardの状態をDisplayに変更
+			m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::DISPLAYED);
+		}
+
+		// 指定されたBoardを表示
+		auto hideItr = m_hideBoardMap.find(role);
+		hideItr->second->display();
+		m_boardList.emplace_front(std::move(hideItr->second));
+		m_hideBoardMap.erase(role);
+
+		// 処理前に最前面にいるBoardの状態をTopに変更
+		m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::TOP);
 	}
 
 }

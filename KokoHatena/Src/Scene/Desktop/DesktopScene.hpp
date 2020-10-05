@@ -93,8 +93,16 @@ namespace Kokoha
 		/// <returns> 次のイテレータ </returns>
 		BoardPtrList::iterator hideBoard(BoardPtrList::iterator boardItr);
 
+		/// <summary>
+		/// Boardの表示
+		/// </summary>
+		/// <param name="role"> 表示するBoardに対応するBoard::Role </param>
+		void displayBoard(Board::Role role);
+
 	};
 	
+
+
 
 	template<typename BoardType>
 	void DesktopScene::registerBoard(const Board::Role& role, int32 id)
