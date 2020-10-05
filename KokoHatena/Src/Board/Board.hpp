@@ -108,6 +108,14 @@ namespace Kokoha
 			return std::move(Rect(m_pos, m_size));
 		}
 
+		/// <summary>
+		/// ç≈è¨âª
+		/// </summary>
+		void minimize()
+		{
+			m_state = StateChange::MINIMIZE;
+		}
+
 	protected:
 
 

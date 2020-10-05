@@ -30,7 +30,7 @@ namespace Kokoha
 		BoardPtrList m_boardList;
 
 		// 非表示のボードのリスト
-		BoardPtrList m_hideBoardList;
+		std::map<Board::Role, std::unique_ptr<Board>> m_hideBoardMap;
 
 		// タスクバーに配置するボタン
 		std::unordered_map<Board::Role, BoardSymbol> m_boardSymbolMap;
@@ -82,9 +82,16 @@ namespace Kokoha
 		/// <summary>
 		/// Boardの削除
 		/// </summary>
-		/// <param name="boardItr"> 削除したいBoardのイテレータ </param>
+		/// <param name="boardItr"> 削除するBoardのイテレータ </param>
 		/// <returns> 次のイテレータ </returns>
 		BoardPtrList::iterator eraseBoard(BoardPtrList::iterator boardItr);
+
+		/// <summary>
+		/// Boardの非表示
+		/// </summary>
+		/// <param name="boardItr"> 非表示するBoardのイテレータ </param>
+		/// <returns> 次のイテレータ </returns>
+		BoardPtrList::iterator hideBoard(BoardPtrList::iterator boardItr);
 
 	};
 	
