@@ -6,7 +6,7 @@
 namespace
 {
 	// 背景色
-	constexpr ColorF BACK_COLOR = Kokoha::myColor(0.4);
+	constexpr ColorF BACK_COLOR = Kokoha::myColor(0.15);
 	
 	// タスクバーの右上の座標
 	constexpr Point TASKBAR_POS = Point(0, 600 - Kokoha::BoardSymbol::SIZE);
@@ -39,13 +39,7 @@ namespace Kokoha
 			for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end(); ++boardItr)
 			{
 				if (!(*boardItr)->getRect().mouseOver()) { continue; }
-
-				// TODO moveBoardToTopに変更
-				// Boardを先頭に移動
-				auto boardPtr = std::move(*boardItr);
-				m_boardList.erase(boardItr);
-				m_boardList.emplace_front(std::move(boardPtr));
-
+				moveBoardToTop(boardItr);
 				break;
 			}
 		}
@@ -65,8 +59,11 @@ namespace Kokoha
 
 			switch (boardState.value())
 			{
-			case BoardSymbol::BoardState::NONE: // Boardの生成
+			case BoardSymbol::BoardState::NONE:      // Boardの生成
 				m_generateBoardMap[boardSymbol.first](); break;
+
+			case BoardSymbol::BoardState::DISPLAYED: // 最前面に移動
+				moveBoardToTop(findBoardFromRole(boardSymbol.first)); break;
 			}
 		}
 
@@ -125,11 +122,26 @@ namespace Kokoha
 	}
 
 
+	DesktopScene::BoardPtrList::iterator DesktopScene::findBoardFromRole(const Board::Role& role)
+	{
+		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
+		{
+			if ((*itr)->getRole() == role) { return itr; }
+		}
+		return m_boardList.end();
+	}
+
+
 	DesktopScene::BoardPtrList::iterator DesktopScene::moveBoardToTop(BoardPtrList::iterator boardItr)
 	{
 		if (m_boardList.empty())
 		{
 			throw Error(U"BoardList is empty");
+		}
+
+		if (boardItr == m_boardList.end())
+		{
+			throw Error(U"Failed to find Board");
 		}
 
 		// 処理前に最前面にいるBoardの状態をDisplayに変更

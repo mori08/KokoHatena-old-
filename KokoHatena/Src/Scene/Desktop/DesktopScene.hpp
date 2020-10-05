@@ -59,6 +59,13 @@ namespace Kokoha
 		void registerBoard(const Board::Role& role, int32 id);
 
 		/// <summary>
+		/// Board::Roleに対応するBoardのイテレータを探す
+		/// </summary>
+		/// <param name="role"> Boardに対応するBoard::Role </param>
+		/// <returns> 対応するイテレータ </returns>
+		BoardPtrList::iterator findBoardFromRole(const Board::Role& role);
+
+		/// <summary>
 		/// 指定したBoardを最前面に移動
 		/// </summary>
 		/// <param name="boardItr"> 指定したBoardに対応したイテレータ </param>

@@ -84,8 +84,8 @@ namespace Kokoha
 		{
 		case BoardState::NONE:      return 0.0;
 		case BoardState::HIDDEN:    return 3.0;
-		case BoardState::DISPLAYED: return 55.0;
-		case BoardState::TOP:       return 59.0;
+		case BoardState::DISPLAYED: return 53.0;
+		case BoardState::TOP:       return 57.0;
 		}
 		return 0.0;
 	}
