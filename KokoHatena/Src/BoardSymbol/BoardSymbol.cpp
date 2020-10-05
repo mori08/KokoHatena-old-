@@ -38,9 +38,16 @@ namespace Kokoha
 	}
 
 
-	void BoardSymbol::update()
+	Optional<Kokoha::BoardSymbol::BoardState> BoardSymbol::update()
 	{
 		internalDividingPoint(m_lightWidth, getLightWidth(), LIGHT_RATE);
+
+		if (m_region.leftClicked())
+		{
+			return m_state;
+		}
+
+		return none;
 	}
 
 
@@ -75,10 +82,10 @@ namespace Kokoha
 	{
 		switch (m_state)
 		{
-		case BoardState::NONE:    return 0.0;
-		case BoardState::HIDE:    return 3.0;
-		case BoardState::DISPLAY: return 55.0;
-		case BoardState::TOP:     return 59.0;
+		case BoardState::NONE:      return 0.0;
+		case BoardState::HIDDEN:    return 3.0;
+		case BoardState::DISPLAYED: return 55.0;
+		case BoardState::TOP:       return 59.0;
 		}
 		return 0.0;
 	}

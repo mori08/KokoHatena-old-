@@ -17,10 +17,10 @@ namespace Kokoha
 		// Boardの状態
 		enum class BoardState
 		{
-			NONE,    // インスタンスなし
-			HIDE,    // 非表示
-			DISPLAY, // 表示中
-			TOP      // 一番前面
+			NONE,      // インスタンスなし
+			HIDDEN,    // 非表示
+			DISPLAYED, // 表示中
+			TOP        // 一番前面
 		};
 
 	public:
@@ -59,7 +59,8 @@ namespace Kokoha
 		/// <summary>
 		/// 更新
 		/// </summary>
-		void update();
+		/// <returns> クリックされたとき対応するBoardの状態 , それ以外では none </returns>
+		Optional<BoardState> update();
 
 		/// <summary>
 		/// 描画

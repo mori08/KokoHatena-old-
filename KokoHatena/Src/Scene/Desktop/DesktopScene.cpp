@@ -27,7 +27,7 @@ namespace Kokoha
 		: IScene(init)
 	{
 		registerBoard<Test1Board>(Board::Role::TEST1, 0);
-		registerBoard<Test1Board>(Board::Role::TEST2, 0);
+		registerBoard<Test2Board>(Board::Role::TEST2, 0);
 	}
 
 
@@ -39,8 +39,8 @@ namespace Kokoha
 			for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end(); ++boardItr)
 			{
 				if (!(*boardItr)->getRect().mouseOver()) { continue; }
-				// Boardをクリックしたとき
 
+				// TODO moveBoardToTopに変更
 				// Boardを先頭に移動
 				auto boardPtr = std::move(*boardItr);
 				m_boardList.erase(boardItr);
@@ -52,21 +52,38 @@ namespace Kokoha
 
 		if (!m_boardList.empty())
 		{
+			// 先頭のBoardの入力処理
 			(*m_boardList.begin())->input();
 		}
 
+		// 各BoardSymbolの更新
+		for (auto boardSymbol : m_boardSymbolMap)
+		{
+			auto boardState = boardSymbol.second.update();
+
+			if (!boardState) { continue; }
+
+			switch (boardState.value())
+			{
+			case BoardSymbol::BoardState::NONE: // Boardの生成
+				m_generateBoardMap[boardSymbol.first](); break;
+			}
+		}
+
+		// 各Boardの更新
 		for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end();)
 		{
 			if (m_boardSymbolMap.count((*boardItr)->getRole()))
 			{
-				m_boardSymbolMap.find((*boardItr)->getRole())->second.update();
+				auto boardState = m_boardSymbolMap.find((*boardItr)->getRole())->second.update();
 			}
 
-			auto state = (*boardItr)->update();
+			auto stateChange = (*boardItr)->update();
 
 			// ボードの削除
-			if (state == Board::StateChange::CLOSE)
+			if (stateChange == Board::StateChange::CLOSE)
 			{
+				// TODO eraseBoardに変更
 				auto ersItr = boardItr;
 				++boardItr;
 				m_boardList.erase(ersItr);
@@ -74,8 +91,9 @@ namespace Kokoha
 			}
 
 			// ボードの非表示
-			if (state == Board::StateChange::MINIMIZE)
+			if (stateChange == Board::StateChange::MINIMIZE)
 			{
+				// TODO hideBoardに変更
 				auto boardPtr = std::move(*boardItr);
 				auto ersItr = boardItr;
 				++boardItr;
@@ -115,7 +133,7 @@ namespace Kokoha
 		}
 
 		// 処理前に最前面にいるBoardの状態をDisplayに変更
-		m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::DISPLAY);
+		m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::DISPLAYED);
 
 		// 指定されたBoardを最前面に移動
 		auto ersItr = boardItr; // 削除するイテレータ
