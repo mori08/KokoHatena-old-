@@ -13,11 +13,18 @@ namespace Kokoha
 	/// </summary>
 	class BoardShareData
 	{
+	private:
+
+		String m_text;
+
 	public:
 
-		String text;
-
 		BoardShareData();
+
+	public:
+
+		void set(const String& text) { m_text = text; }
+		const String& get() const { return m_text; }
 
 	};
 }

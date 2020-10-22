@@ -26,6 +26,9 @@ namespace Kokoha
 		// タスクバーの右上の座標
 		static const Point TASKBAR_POS;
 
+		// Board間の共有データ
+		BoardShareData m_boardShareData;
+
 		// 表示中のボードのリスト
 		BoardPtrList m_boardList;
 
@@ -76,8 +79,9 @@ namespace Kokoha
 		/// Boardの生成
 		/// </summary>
 		/// <typeparam name="BoardType"> Boardの型 </typeparam>
+		/// <param name="role"> Boardに対応するBoard::Role </param>
 		template<typename BoardType>
-		void generateBoard();
+		void generateBoard(const Board::Role& role);
 
 		/// <summary>
 		/// Boardの削除
@@ -113,12 +117,12 @@ namespace Kokoha
 		m_boardSymbolMap.try_emplace(role, std::move(BoardSymbol(pos, id)));
 
 		// TODO 関数作る
-		m_generateBoardMap[role] = [this]() { generateBoard<BoardType>(); };
+		m_generateBoardMap[role] = [this,role]() { generateBoard<BoardType>(role); };
 	}
 
 
 	template<typename BoardType>
-	inline void DesktopScene::generateBoard()
+	inline void DesktopScene::generateBoard(const Board::Role& role)
 	{
 		if (!m_boardList.empty())
 		{
@@ -127,7 +131,7 @@ namespace Kokoha
 		}
 
 		// ボードの生成
-		m_boardList.emplace_front(std::make_unique<BoardType>());
+		m_boardList.emplace_front(std::make_unique<BoardType>(role));
 
 		// 処理前に最前面にいるBoardの状態をTopに変更
 		m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::TOP);

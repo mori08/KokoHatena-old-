@@ -26,8 +26,8 @@ namespace Kokoha
 	DesktopScene::DesktopScene(const InitData& init)
 		: IScene(init)
 	{
-		registerBoard<Test1Board>(Board::Role::TEST1, 0);
-		registerBoard<Test2Board>(Board::Role::TEST2, 0);
+		registerBoard<TestBoard>(Board::Role::TEST1, 0);
+		registerBoard<TestBoard>(Board::Role::TEST2, 0);
 	}
 
 
@@ -68,7 +68,7 @@ namespace Kokoha
 			case BoardSymbol::BoardState::TOP:       // ”ñ•\Ž¦
 				(*findBoardFromRole(boardSymbol.first))->minimize(); break;
 
-			case BoardSymbol::BoardState::HIDDEN:
+			case BoardSymbol::BoardState::HIDDEN:    // Board‚Ì•\Ž¦
 				displayBoard(boardSymbol.first); break;
 			}
 		}

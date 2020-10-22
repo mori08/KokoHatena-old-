@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include<Siv3D.hpp>
+#include"../BoardShareData/BoardShareData.hpp"
 
 
 namespace Kokoha
@@ -88,6 +88,7 @@ namespace Kokoha
 		/// <summary>
 		/// 描画
 		/// </summary>
+		/// <param name="shareData"> 共有データ </param>
 		void draw() const;
 
 		/// <summary>

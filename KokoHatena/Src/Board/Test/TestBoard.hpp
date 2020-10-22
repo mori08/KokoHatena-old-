@@ -15,15 +15,11 @@ namespace Kokoha
 	{
 	private:
 
-		int32 m_number;
-
-		double m_time;
-
-		int32 m_inputFlag;
+		String m_text;
 
 	public:
 
-		TestBoard(const Role& role, int32 num);
+		TestBoard(const Role& role);
 
 	public:
 
@@ -33,24 +29,6 @@ namespace Kokoha
 
 		void drawInBoard() const override;
 
-	};
-
-
-	class Test1Board : public TestBoard
-	{
-	public:
-		Test1Board()
-			: TestBoard(Role::TEST1, 1)
-		{
-		}
-	};
-	class Test2Board : public TestBoard
-	{
-	public:
-		Test2Board()
-			: TestBoard(Role::TEST2, 2)
-		{
-		}
 	};
 
 }
