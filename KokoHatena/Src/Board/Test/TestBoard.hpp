@@ -23,11 +23,11 @@ namespace Kokoha
 
 	public:
 
-		void inputInBoard() override;
+		void inputInBoard(BoardShareData& shareData) override;
 
-		void updateInBoard() override;
+		void updateInBoard(BoardShareData& shareData) override;
 
-		void drawInBoard() const override;
+		void drawInBoard(const BoardShareData& shareData) const override;
 
 	};
 

@@ -45,7 +45,7 @@ namespace Kokoha
     }
 
 
-    void Board::input()
+    void Board::input(BoardShareData& shareData)
     {
         if (m_state != StateChange::NONE) { return; }
 
@@ -74,24 +74,24 @@ namespace Kokoha
             return;
         }
 
-        inputInBoard();
+        inputInBoard(shareData);
     }
 
 
-    Board::StateChange Board::update()
+    Board::StateChange Board::update(BoardShareData& shareData)
     {
         if (changeAlpha())
         {
             return m_state;
         }
 
-        updateInBoard();
+        updateInBoard(shareData);
 
         return StateChange::NONE;
     }
 
 
-    void Board::draw() const
+    void Board::draw(const BoardShareData& shareData) const
     {
         // レンダーテクスチャのクリア
         m_render.clear(BOARD_COLOR);
@@ -100,7 +100,7 @@ namespace Kokoha
             ScopedRenderTarget2D target(m_render);
 
             // ボード内の描画
-            drawInBoard();
+            drawInBoard(shareData);
 
             // フレームを描画
             Rect(Point::Zero(), m_size).drawFrame(FRAME_THICKNESS, 0, FRAME_COLOR);

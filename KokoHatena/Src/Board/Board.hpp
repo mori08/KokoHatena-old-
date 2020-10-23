@@ -2,6 +2,7 @@
 
 
 #include"../BoardShareData/BoardShareData.hpp"
+#include"../BoardSymbol/BoardSymbol.hpp"
 
 
 namespace Kokoha
@@ -77,19 +78,19 @@ namespace Kokoha
 		/// <summary>
 		/// 入力の受付
 		/// </summary>
-		void input();
+		void input(BoardShareData& shareData);
 
 		/// <summary>
 		/// 更新
 		/// </summary>
 		/// <returns> 状態の変更 </returns>
-		StateChange update();
+		StateChange update(BoardShareData& shareData);
 
 		/// <summary>
 		/// 描画
 		/// </summary>
 		/// <param name="shareData"> 共有データ </param>
-		void draw() const;
+		void draw(const BoardShareData& shareData) const;
 
 		/// <summary>
 		/// 種類(役割)の取得
@@ -107,6 +108,17 @@ namespace Kokoha
 		Rect getRect() const
 		{
 			return std::move(Rect(m_pos, m_size));
+		}
+
+		/// <summary>
+		/// マウスで左クリック
+		/// </summary>
+		/// <returns></returns>
+		bool mouseLeftDown() const
+		{
+			return MouseL.down() 
+				&& Rect(m_pos, m_size).mouseOver() 
+				&& (Cursor::PosF().y < Scene::Height() - BoardSymbol::SIZE);
 		}
 
 		/// <summary>
@@ -131,21 +143,24 @@ namespace Kokoha
 		/// <summary>
 		/// ボード内の入力の受付
 		/// </summary>
-		virtual void inputInBoard() = 0;
+		/// <param name="shareData"> 共有データ </param>
+		virtual void inputInBoard(BoardShareData& shareData) = 0;
 
 		/// <summary>
 		/// ボード内の更新
 		/// </summary>
+		/// <param name="shareData"> 共有データ </param>
 		/// <remarks>
 		/// マウスやキーボードの入力が必要なものは
 		/// input関数で行う
 		/// </remarks>
-		virtual void updateInBoard() = 0;
+		virtual void updateInBoard(BoardShareData& shareData) = 0;
 
 		/// <summary>
 		/// ボード内の描画
 		/// </summary>
-		virtual void drawInBoard() const = 0;
+		/// <param name="shareData"> 共有データ </param>
+		virtual void drawInBoard(const BoardShareData& shareData) const = 0;
 
 	protected:
 

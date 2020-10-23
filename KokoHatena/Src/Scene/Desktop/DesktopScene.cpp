@@ -33,21 +33,18 @@ namespace Kokoha
 
 	void DesktopScene::update()
 	{
-		if (MouseL.down())
+		// 先頭のBoardの決定
+		for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end(); ++boardItr)
 		{
-			// 先頭のBoardの決定
-			for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end(); ++boardItr)
-			{
-				if (!(*boardItr)->getRect().mouseOver()) { continue; }
-				moveBoardToTop(boardItr);
-				break;
-			}
+			if (!(*boardItr)->mouseLeftDown()) { continue; }
+			moveBoardToTop(boardItr);
+			break;
 		}
 
 		if (!m_boardList.empty())
 		{
 			// 先頭のBoardの入力処理
-			(*m_boardList.begin())->input();
+			(*m_boardList.begin())->input(m_boardShareData);
 		}
 
 		// 各BoardSymbolの更新
@@ -76,7 +73,7 @@ namespace Kokoha
 		// 各Boardの更新
 		for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end();)
 		{
-			auto stateChange = (*boardItr)->update();
+			auto stateChange = (*boardItr)->update(m_boardShareData);
 
 			// ボードの削除
 			if (stateChange == Board::StateChange::CLOSE) { boardItr = eraseBoard(boardItr); continue; }
@@ -95,7 +92,7 @@ namespace Kokoha
 
 		for (auto boardItr = m_boardList.rbegin(); boardItr != m_boardList.rend(); ++boardItr)
 		{
-			(*boardItr)->draw();
+			(*boardItr)->draw(m_boardShareData);
 		}
 
 		Rect(TASKBAR_POS, Scene::Width(), BoardSymbol::SIZE).draw(TASKBAR_COLOR);
