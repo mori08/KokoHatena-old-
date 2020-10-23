@@ -146,6 +146,9 @@
     <Filter Include="Src\BoardShareData">
       <UniqueIdentifier>{72f4b5e8-2868-4374-a287-0711c4a6e263}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\MyShader">
+      <UniqueIdentifier>{b48b75ca-1814-439b-8f16-c3af74549380}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -477,6 +480,9 @@
     <ClCompile Include="Src\BoardShareData\BoardShareData.cpp">
       <Filter>Src\BoardShareData</Filter>
     </ClCompile>
+    <ClCompile Include="Src\MyPixelShader\MyPixelShader.cpp">
+      <Filter>Src\MyShader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -529,6 +535,9 @@
     </ClInclude>
     <ClInclude Include="Src\BoardShareData\BoardShareData.hpp">
       <Filter>Src\BoardShareData</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\MyPixelShader\MyPixelShader.hpp">
+      <Filter>Src\MyShader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

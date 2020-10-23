@@ -1,5 +1,6 @@
 #include "BoardSymbol.hpp"
 #include "../MyLibrary/MyLibrary.hpp"
+#include "../MyPixelShader/MyPixelShader.hpp"
 
 
 namespace
@@ -33,8 +34,8 @@ namespace Kokoha
 		, m_id(id)
 		, m_state(BoardState::NONE)
 		, m_lightWidth(0)
-		, m_shader(U"asset/shader/BoardSymbolShader.hlsl", { { U"PSConstants2D", 0 }, { U"Region", 1 } })
 	{
+		
 	}
 
 
@@ -70,7 +71,7 @@ namespace Kokoha
 			Graphics2D::SetConstantBuffer(ShaderStage::Pixel, 1, cb);
 
 			// シェーダの開始
-			ScopedCustomShader2D shader(m_shader);
+			ScopedCustomShader2D shader(MyPixelShader::get(MyPixelShader::Type::BOARD_SYMBOL));
 
 			// ボタンの描画
 			TextureAsset(U"BoardSymbol")(TEXTURE_SIZE.x * m_id, 0, TEXTURE_SIZE).drawAt(m_region.center());

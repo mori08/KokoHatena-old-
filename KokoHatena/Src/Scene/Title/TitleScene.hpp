@@ -27,9 +27,6 @@ namespace Kokoha
 		// カーソルの横に出る線の不透明度
 		double m_cursorLineAlpha;
 
-		// タイトルロゴ用のピクセルシェーダ
-		const PixelShader m_logoShader;
-
 	public:
 
 		TitleScene(const InitData& init);

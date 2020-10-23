@@ -240,6 +240,7 @@
     <ClCompile Include="Src\ButtonSet\Button\Button.cpp" />
     <ClCompile Include="Src\Main.cpp" />
     <ClCompile Include="Src\MyLibrary\MyLibrary.cpp" />
+    <ClCompile Include="Src\MyPixelShader\MyPixelShader.cpp" />
     <ClCompile Include="Src\RecordManager\RecordManager.cpp" />
     <ClCompile Include="Src\RecordManager\Record\Record.cpp" />
     <ClCompile Include="Src\Scene\Desktop\DesktopScene.cpp" />
@@ -258,6 +259,7 @@
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp" />
     <ClInclude Include="Src\ButtonSet\Button\Button.hpp" />
     <ClInclude Include="Src\MyLibrary\MyLibrary.hpp" />
+    <ClInclude Include="Src\MyPixelShader\MyPixelShader.hpp" />
     <ClInclude Include="Src\RecordManager\RecordManager.hpp" />
     <ClInclude Include="Src\RecordManager\Record\Record.hpp" />
     <ClInclude Include="Src\Scene\Desktop\DesktopScene.hpp" />

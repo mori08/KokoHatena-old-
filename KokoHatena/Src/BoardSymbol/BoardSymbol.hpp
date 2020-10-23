@@ -42,9 +42,6 @@ namespace Kokoha
 		// 光の厚さ
 		double m_lightWidth;
 
-		// ピクセルシェーダ
-		const PixelShader m_shader;
-
 	public:
 
 		/// <summary>

@@ -1,5 +1,6 @@
 #include "TitleScene.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
+#include "../../MyPixelShader/MyPixelShader.hpp"
 
 
 namespace
@@ -72,13 +73,7 @@ namespace Kokoha
 		, m_cursorWidth(BUTTON_SIZE.x)
 		, m_cursorLineLength(Scene::Size().x)
 		, m_cursorLineAlpha(0)
-		, m_logoShader(U"asset/shader/TitleLogoShader.hlsl", { { U"PSConstants2D", 0 }, { U"Shift", 1 } })
 	{
-		if (!m_logoShader)
-		{
-			throw Error(U"Failed to load [TitleLogoShader.hlsl]");
-		}
-
 		// ボタンの設定
 		for (const auto& button : BUTTON_LIST)
 		{
@@ -195,7 +190,7 @@ namespace Kokoha
 			Graphics2D::SetConstantBuffer(ShaderStage::Pixel, 1, cb);
 
 			// シェーダの開始
-			ScopedCustomShader2D shader(m_logoShader);
+			ScopedCustomShader2D shader(MyPixelShader::get(MyPixelShader::Type::TITLE_LOGO));
 
 			// ロゴの描画
 			TextureAsset(U"Logo").drawAt(LOGO_POS);
