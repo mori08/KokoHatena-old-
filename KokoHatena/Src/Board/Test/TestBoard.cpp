@@ -26,7 +26,7 @@ namespace Kokoha
 	}
 
 
-	void TestBoard::updateInBoard(BoardShareData& shareData)
+	void TestBoard::updateInBoard(BoardShareData&)
 	{
 
 	}

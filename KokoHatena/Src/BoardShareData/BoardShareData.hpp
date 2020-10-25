@@ -2,6 +2,7 @@
 
 
 #include<Siv3D.hpp>
+#include"MessageData/MessageData.hpp"
 
 
 namespace Kokoha
@@ -16,6 +17,9 @@ namespace Kokoha
 	private:
 
 		String m_text;
+
+		// メッセージのデータ
+		MessageData m_messageData;
 
 	public:
 

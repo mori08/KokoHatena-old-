@@ -233,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\BoardShareData\BoardShareData.cpp" />
+    <ClCompile Include="Src\BoardShareData\MessageData\MessageData.cpp" />
     <ClCompile Include="Src\BoardSymbol\BoardSymbol.cpp" />
     <ClCompile Include="Src\Board\Board.cpp" />
     <ClCompile Include="Src\Board\Test\TestBoard.cpp" />
@@ -253,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\BoardShareData\BoardShareData.hpp" />
+    <ClInclude Include="Src\BoardShareData\MessageData\MessageData.hpp" />
     <ClInclude Include="Src\BoardSymbol\BoardSymbol.hpp" />
     <ClInclude Include="Src\Board\Board.hpp" />
     <ClInclude Include="Src\Board\Test\TestBoard.hpp" />
