@@ -1,30 +1,6 @@
 #include "Board.hpp"
+#include "../Config/Config.hpp"
 #include "../MyLibrary/MyLibrary.hpp"
-
-
-namespace
-{
-    // フレームの厚さ
-    constexpr double FRAME_THICKNESS = 1.5;
-
-    // 操作フレームの厚さ
-    constexpr int32 CONTROL_FRAME_THICKNESS = 30;
-
-    // フレームの色
-    constexpr ColorF FRAME_COLOR = Kokoha::myColor(0.8);
-
-    // ボード内の色
-    constexpr ColorF BOARD_COLOR = Kokoha::myColor(0.2);
-
-    // アルファ値変更の速度
-    constexpr double CHANGE_ALPHA_SPEED = 4.0;
-
-    // 閉じるボタンの位置
-    constexpr Rect CLOSE_BUTTON = Kokoha::getRectFromCenter(Point(-15, 15), Size(30, 30));
-
-    // 最小化ボタンの位置
-    constexpr Rect MINIMIZE_BUTTON = Kokoha::getRectFromCenter(Point(-45, 15), Size(30, 30));
-}
 
 
 namespace Kokoha
@@ -34,13 +10,14 @@ namespace Kokoha
         : m_role(role)
         , m_name(name)
         , m_size(size)
+        , m_controlFrame(Point::Zero(),size.x,Config::get<int32>(U"Board.controlFrameHeight"))
+        , m_closeButton(Config::get<Rect>(U"Board.closeButton").movedBy(size.x, 0))
+        , m_minimizeButton(Config::get<Rect>(U"Board.minimizeButton").movedBy(size.x, 0))
+        , m_render(size)
         , m_pos(Scene::Center() - size / 2)
+        , m_alpha(0)
         , m_state(StateChange::NONE)
         , m_optMovePos(none)
-        , m_alpha(0)
-        , m_closeButton(CLOSE_BUTTON.movedBy(size.x, 0))
-        , m_minimizeButton(MINIMIZE_BUTTON.movedBy(size.x, 0))
-        , m_render(size, BOARD_COLOR)
     {
     }
 
@@ -64,7 +41,7 @@ namespace Kokoha
         }
 
         // 操作フレームを持って移動
-        if (MouseL.down() && Rect(Point::Zero(), Size(m_size.x, CONTROL_FRAME_THICKNESS)).contains(cursorPosFInBoard()))
+        if (MouseL.down() && m_controlFrame.contains(cursorPosFInBoard()))
         {
             m_optMovePos = cursorPosInBoard();
         }
@@ -93,6 +70,13 @@ namespace Kokoha
 
     void Board::draw(const BoardShareData& shareData) const
     {
+        // フレームの太さ
+        static const double FRAME_THICKNESS = Config::get<double>(U"Board.frameThickness");
+        // フレームの色
+        static const ColorF FRAME_COLOR = Config::get<ColorF>(U"Board.frameColor");
+        // ボード内の色
+        static const ColorF BOARD_COLOR = Config::get<ColorF>(U"Board.boardColor");
+
         // レンダーテクスチャのクリア
         m_render.clear(BOARD_COLOR);
 
@@ -106,8 +90,7 @@ namespace Kokoha
             Rect(Point::Zero(), m_size).drawFrame(FRAME_THICKNESS, 0, FRAME_COLOR);
 
             // ボード上部の操作フレームの描画
-            Rect(Point::Zero(), Size(m_size.x, CONTROL_FRAME_THICKNESS))
-                .draw(FRAME_COLOR);
+            m_controlFrame.draw(FRAME_COLOR);
 
             // 閉じる・最小化ボタンを描画
             if (m_closeButton   .contains(cursorPosInBoard())) { m_closeButton   .draw(MyWhite); }
@@ -125,6 +108,9 @@ namespace Kokoha
 
     bool Board::changeAlpha()
     {
+        // アルファ値変更の速度
+        static const double CHANGE_ALPHA_SPEED = Config::get<double>(U"Board.changeAlphaSpeed");
+
         if (m_state == StateChange::NONE)
         {
             m_alpha += Scene::DeltaTime() * CHANGE_ALPHA_SPEED;

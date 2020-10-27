@@ -46,17 +46,8 @@ namespace Kokoha
 		// サイズ
 		const Size m_size;
 
-		// 左上の座標
-		Point m_pos;
-
-		// 状態
-		StateChange m_state;
-
-		// 座標移動時の基準座標(noneのとき移動しない)
-		Optional<Point> m_optMovePos;
-
-		// 不当明度
-		double m_alpha;
+		// 操作フレーム
+		const Rect m_controlFrame;
 
 		// 閉じるボタン
 		const Rect m_closeButton;
@@ -66,6 +57,18 @@ namespace Kokoha
 
 		// レンダーテクスチャ(ボード内の描画)
 		const MSRenderTexture m_render;
+
+		// 左上の座標
+		Point m_pos;
+
+		// 不当明度
+		double m_alpha;
+
+		// 状態
+		StateChange m_state;
+
+		// 座標移動時の基準座標(noneのとき移動しない)
+		Optional<Point> m_optMovePos;
 
 	public:
 
