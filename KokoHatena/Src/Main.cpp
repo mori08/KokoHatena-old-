@@ -1,5 +1,6 @@
 ﻿
 #include"MyLibrary/MyLibrary.hpp"
+#include"Config/Config.hpp"
 #include"MyPixelShader/MyPixelShader.hpp"
 
 // シーン
@@ -8,21 +9,16 @@
 #include "Scene/Load/Record/LoadRecordScene.hpp"
 #include "Scene/Desktop/DesktopScene.hpp"
 
-namespace
-{
-	// 画面サイズ
-	constexpr Size WINDOW_SIZE(800, 600);
-}
 
 void Main()
 {
 	// ウィンドウの設定
-	Window::Resize(WINDOW_SIZE);
-	Window::SetTitle(U"55?");
+	Window::Resize(Kokoha::Config::get<Point>(U"Window.size"));
+	Window::SetTitle(Kokoha::Config::get<String>(U"Window.name"));
 
 	// 描画設定
 	Scene::SetBackground(Kokoha::MyBlack);
-	Scene::Resize(WINDOW_SIZE);
+	Scene::Resize(Kokoha::Config::get<Point>(U"Window.size"));
 
 	// アセット管理
 	Kokoha::registerAsset(U"asset/");
