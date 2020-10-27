@@ -1,0 +1,31 @@
+[Window]
+    size = {x = 800, y = 600}
+    name = "55?"
+
+[TitleScene]
+    logoPos    = {x = 400, y = 200}
+    buttonSize = {x = 150, y = 30}
+
+    [TitleScene.Shift]
+        frequency = 0.4
+        length    = 0.025
+
+    [[TitleScene.Button]]
+        name = "はじめから"
+        pos = {x = 400, y = 390}
+    [[TitleScene.Button]]
+        name = "つづきから"
+        pos = {x = 400, y = 450}
+    [[TitleScene.Button]]
+        name = "やめる"
+        pos = {x = 400, y = 510}
+
+[Board]
+    closeButton    = {x=-30,y=0,w=30,h=30}
+    minimizeButton = {x=-60,y=0,w=30,h=30}
+    controlFrameHeight = 30
+    frameThickness     = 1.5
+    changeAlphaSpeed   = 4.0
+    frameColor = {rgb=0.7}
+    boardColor = {rgb=0.3}
+
