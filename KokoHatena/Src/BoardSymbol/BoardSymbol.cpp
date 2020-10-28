@@ -1,19 +1,11 @@
 #include "BoardSymbol.hpp"
 #include "../MyLibrary/MyLibrary.hpp"
+#include "../Config/Config.hpp"
 #include "../MyPixelShader/MyPixelShader.hpp"
 
 
 namespace
 {
-	// 画像のサイズ
-	constexpr Size TEXTURE_SIZE(40, 40);
-
-	// 光変更の割合
-	constexpr double LIGHT_RATE = 0.0001;
-
-	// 光の余白
-	constexpr double LIGHT_BLANK = 1.0;
-
 	/*
 	* 定数バッファ (PS_1)
 	* 範囲
@@ -30,7 +22,7 @@ namespace Kokoha
 {
 
 	BoardSymbol::BoardSymbol(const Point& pos, const int32& id)
-		: m_region(pos, SIZE)
+		: m_region(pos, height())
 		, m_id(id)
 		, m_state(BoardState::NONE)
 		, m_lightWidth(0)
@@ -41,6 +33,9 @@ namespace Kokoha
 
 	Optional<Kokoha::BoardSymbol::BoardState> BoardSymbol::update()
 	{
+		// 光変更の割合
+		static const double LIGHT_RATE = Config::get<double>(U"BoardSymbol.lightRate");
+
 		internalDividingPoint(m_lightWidth, getLightWidth(), LIGHT_RATE);
 
 		if (m_region.leftClicked())
@@ -54,9 +49,14 @@ namespace Kokoha
 
 	void BoardSymbol::draw() const
 	{
+		// 光の余白
+		static const double LIGHT_BLANK = Config::get<double>(U"BoardSymbol.lightBlank");
+		// 画像のサイズ
+		static const Size TEXTURE_SIZE = Config::get<Size>(U"BoardSymbol.textureSize");
+
 		RectF rect
 		(
-			m_region.pos + Vec2(LIGHT_BLANK, SIZE - m_lightWidth),
+			m_region.pos + Vec2(LIGHT_BLANK, height() - m_lightWidth),
 			Vec2(m_region.w - 2 * LIGHT_BLANK, m_lightWidth)
 		);
 		rect.draw(MyWhite);

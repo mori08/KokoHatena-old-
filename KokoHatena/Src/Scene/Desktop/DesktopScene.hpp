@@ -23,9 +23,6 @@ namespace Kokoha
 
 	private:
 
-		// タスクバーの右上の座標
-		static const Point TASKBAR_POS;
-
 		// Board間の共有データ
 		BoardShareData m_boardShareData;
 
@@ -52,6 +49,16 @@ namespace Kokoha
 		void draw() const override;
 
 	private:
+
+		/// <summary>
+		/// タスクバーの左上の座標の取得
+		/// </summary>
+		/// <returns> タスクバーの左上の座標 </returns>
+		static const Point& getTaskbarPos()
+		{
+			static const Point rtn = Point(0, 600 - Kokoha::BoardSymbol::height());
+			return rtn;
+		}
 
 		/// <summary>
 		/// Boardの登録
@@ -113,7 +120,7 @@ namespace Kokoha
 	{
 		if (m_boardSymbolMap.count(role)) { return; }
 
-		Point pos = TASKBAR_POS + Point(m_boardSymbolMap.size() * BoardSymbol::SIZE, 0);
+		Point pos = getTaskbarPos() + Point(m_boardSymbolMap.size() * BoardSymbol::height(), 0);
 		m_boardSymbolMap.try_emplace(role, std::move(BoardSymbol(pos, id)));
 
 		// TODO 関数作る

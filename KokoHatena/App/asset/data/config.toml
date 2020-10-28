@@ -29,3 +29,9 @@
     frameColor = {rgb=0.7}
     boardColor = {rgb=0.3}
 
+[BoardSymbol]
+    height = 60
+    textureSize = {x=40,y=40}
+    lightRate = 0.0001
+    lightBlank = 1.0
+

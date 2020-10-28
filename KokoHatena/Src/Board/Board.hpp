@@ -121,7 +121,7 @@ namespace Kokoha
 		{
 			return MouseL.down() 
 				&& Rect(m_pos, m_size).mouseOver() 
-				&& (Cursor::PosF().y < Scene::Height() - BoardSymbol::SIZE);
+				&& (Cursor::PosF().y < Scene::Height() - BoardSymbol::height());
 		}
 
 		/// <summary>

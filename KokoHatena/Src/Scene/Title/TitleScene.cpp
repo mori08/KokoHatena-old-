@@ -1,13 +1,11 @@
 #include "TitleScene.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
+#include "../../Config/Config.hpp"
 #include "../../MyPixelShader/MyPixelShader.hpp"
 
 
 namespace
 {
-	// ロゴを描画する座標
-	constexpr Point LOGO_POS(400, 200);
-
 	/*
 	* 定数バッファ (PS_1)
 	* RGBのずれ
@@ -193,7 +191,7 @@ namespace Kokoha
 			ScopedCustomShader2D shader(MyPixelShader::get(MyPixelShader::Type::TITLE_LOGO));
 
 			// ロゴの描画
-			TextureAsset(U"Logo").drawAt(LOGO_POS);
+			TextureAsset(U"Logo").drawAt(Config::get<Point>(U"TitleScene.logoPos"));
 		}
 	}
 

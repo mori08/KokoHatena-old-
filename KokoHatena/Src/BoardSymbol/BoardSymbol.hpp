@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Siv3D.hpp>
+#include "../Config/Config.hpp"
 
 
 namespace Kokoha
@@ -22,11 +22,6 @@ namespace Kokoha
 			DISPLAYED, // 表示中
 			TOP        // 一番前面
 		};
-
-	public:
-
-		// 一辺の長さ
-		static const int32 SIZE = 60;
 
 	private:
 
@@ -50,6 +45,16 @@ namespace Kokoha
 		/// <param name="pos"> 座標 </param>
 		/// <param name="id" > 番号 </param>
 		BoardSymbol(const Point& pos, const int32& id);
+
+		/// <summary>
+		/// タスクバーの太さ
+		/// </summary>
+		/// <returns></returns>
+		static const int32& height()
+		{
+			static int32 h = Config::get<int32>(U"BoardSymbol.height");
+			return h;
+		}
 
 	public:
 

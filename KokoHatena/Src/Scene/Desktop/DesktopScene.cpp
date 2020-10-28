@@ -7,22 +7,15 @@ namespace
 {
 	// 背景色
 	constexpr ColorF BACK_COLOR = Kokoha::myColor(0.15);
-	
-	// タスクバーの右上の座標
-	constexpr Point TASKBAR_POS = Point(0, 600 - Kokoha::BoardSymbol::SIZE);
 
 	// タスクバーの色
 	constexpr ColorF TASKBAR_COLOR = Kokoha::myColor(0.05);
-
 
 }
 
 
 namespace Kokoha
 {
-	const Point DesktopScene::TASKBAR_POS = Point(0, 600 - Kokoha::BoardSymbol::SIZE);
-
-
 	DesktopScene::DesktopScene(const InitData& init)
 		: IScene(init)
 	{
@@ -95,7 +88,7 @@ namespace Kokoha
 			(*boardItr)->draw(m_boardShareData);
 		}
 
-		Rect(TASKBAR_POS, Scene::Width(), BoardSymbol::SIZE).draw(TASKBAR_COLOR);
+		Rect(getTaskbarPos(), Scene::Width(), BoardSymbol::height()).draw(TASKBAR_COLOR);
 
 		for (const auto& symbol : m_boardSymbolMap)
 		{
