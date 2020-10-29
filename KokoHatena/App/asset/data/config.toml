@@ -35,3 +35,6 @@
     lightRate = 0.0001
     lightBlank = 1.0
 
+[DesktopScene]
+    backColor    = {rgb=0.2}
+    taskbarColor = {rgb=0.1}

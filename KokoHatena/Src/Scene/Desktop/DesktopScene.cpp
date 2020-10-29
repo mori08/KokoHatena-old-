@@ -3,17 +3,6 @@
 #include "../../MyLibrary/MyLibrary.hpp"
 
 
-namespace
-{
-	// 背景色
-	constexpr ColorF BACK_COLOR = Kokoha::myColor(0.15);
-
-	// タスクバーの色
-	constexpr ColorF TASKBAR_COLOR = Kokoha::myColor(0.05);
-
-}
-
-
 namespace Kokoha
 {
 	DesktopScene::DesktopScene(const InitData& init)
@@ -81,6 +70,11 @@ namespace Kokoha
 
 	void DesktopScene::draw() const
 	{
+		// 背景色
+		static const ColorF BACK_COLOR = Config::get<ColorF>(U"DesktopScene.backColor");
+		// タスクバーの色
+		static const ColorF TASKBAR_COLOR = Config::get<ColorF>(U"DesktopScene.taskbarColor");
+
 		Scene::Rect().draw(BACK_COLOR);
 
 		for (auto boardItr = m_boardList.rbegin(); boardItr != m_boardList.rend(); ++boardItr)
