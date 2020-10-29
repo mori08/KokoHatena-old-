@@ -1,53 +1,17 @@
 #include "LoadRecordScene.hpp"
 #include "../../../RecordManager/RecordManager.hpp"
 #include "../../../MyLibrary/MyLibrary.hpp"
+#include "../../../Config/Config.hpp"
 
 
 namespace
 {
-	// テキストを表示する座標
-	constexpr Point TEXT_DRAW_POS(410, 410);
-
-	// 演出の円
-	constexpr Circle LOADING_CIRCLE(350, 410, 8.0);
-	// 演出の弧の太さ
-	constexpr double LOADING_ARC_THICNESS = 1.5;
-	// 演出の弧の長さ
-	constexpr double LOADING_ARC_LENGTH = 5.0;
-	// 小さな円の個数
-	constexpr int32  SMALL_CIRCLE_NUM = 8;
-
 	// ロゴのサイズ
-	constexpr Size LOGO_SIZE(180, 180);
-	// ロゴのアニメーション
-	const Kokoha::Animation LOGO_ANIM
-	(
-		Kokoha::PosOrder
-		{ 
-			{0.04,Point(0,0)},
-			{0.04,Point(1,0)},
-			{0.04,Point(2,0)},
-			{0.04,Point(3,0)},
-			{0.04,Point(0,1)},
-			{0.04,Point(1,1)},
-			{0.04,Point(2,1)},
-			{0.04,Point(3,1)},
-			{0.04,Point(0,2)},
-			{0.04,Point(1,2)},
-			{0.04,Point(2,2)},
-			{0.04,Point(3,2)},
-			{0.04,Point(0,3)},
-			{0.04,Point(1,3)},
-			{0.04,Point(2,3)},
-			{0.04,Point(3,3)},
-			{0.04,Point(0,4)},
-			{0.80,Point(1,4)},
-			{0.04,Point(2,4)},
-			{0.04,Point(3,4)},
-			{0.04,Point(0,5)}
-		},
-		false
-	);
+	static const Size& logoSize()
+	{
+		static Size LOGO_SIZE = Kokoha::Config::get<Size>(U"LoadRecordScene.logoSize");
+		return LOGO_SIZE;
+	}
 }
 
 
@@ -71,8 +35,11 @@ namespace Kokoha
 				return SceneName::TITLE;
 			}
 		)
-		, m_boardLogo(U"BoardLogo", LOGO_SIZE)
+		, m_boardLogo(U"BoardLogo", logoSize())
 	{
+		// ロゴのアニメーション
+		static Animation LOGO_ANIM = Config::get<Animation>(U"LoadRecordScene.LogoAnim");
+
 		m_boardLogo.setAnimation(U"Update", LOGO_ANIM);
 		m_boardLogo.start(U"Update");
 	}
@@ -86,6 +53,17 @@ namespace Kokoha
 
 	void LoadRecordScene::draw() const
 	{
+		// テキストを表示する座標
+		static const Point TEXT_DRAW_POS = Config::get<Point>(U"LoadRecordScene.textDrawPos");
+		// 演出の円
+		static const Circle LOADING_CIRCLE = Config::get<Circle>(U"LoadRecordScene.loadingCircle");
+		// 演出の弧の太さ
+		static const double LOADING_ARC_THICNESS = Config::get<double>(U"LoadRecordScene.loadingArcThickness");
+		// 演出の弧の長さ
+		static const double LOADING_ARC_LENGTH = Config::get<double>(U"LoadRecordScene.loadingArcLength");
+		// 小さな円の個数
+		static const int32  SMALL_CIRCLE_NUM = Config::get<int32>(U"LoadRecordScene.smallCircleNum");
+
 		// 演出用の円の描画
 		static double angle = 0;
 		angle += Scene::DeltaTime();

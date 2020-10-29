@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include<Siv3D.hpp>
+#include"../SliceTexture/Animation/Animation.hpp"
 
 
 namespace Kokoha
@@ -53,8 +53,8 @@ namespace Kokoha
 	inline Point Config::get(const String& name)
 	{
 		return Point(
-			instance().m_toml[name + U".x"].get<int32>(),
-			instance().m_toml[name + U".y"].get<int32>()
+			instance().m_toml[name][U"x"].get<int32>(),
+			instance().m_toml[name][U"y"].get<int32>()
 		);
 	}
 
@@ -62,22 +62,49 @@ namespace Kokoha
 	inline Rect Config::get(const String& name)
 	{
 		return Rect(
-			instance().m_toml[name + U".x"].get<int32>(),
-			instance().m_toml[name + U".y"].get<int32>(),
-			instance().m_toml[name + U".w"].get<int32>(),
-			instance().m_toml[name + U".h"].get<int32>()
+			instance().m_toml[name][U"x"].get<int32>(),
+			instance().m_toml[name][U"y"].get<int32>(),
+			instance().m_toml[name][U"w"].get<int32>(),
+			instance().m_toml[name][U"h"].get<int32>()
 		);
 	}
 
 	template<>
 	inline ColorF Config::get(const String& name)
 	{
-		ColorF color(instance().m_toml[name + U".rgb"].getOr<double>(0.0));
-		color.r = instance().m_toml[name + U".r"].getOr<double>(color.r);
-		color.g = instance().m_toml[name + U".g"].getOr<double>(color.g);
-		color.b = instance().m_toml[name + U".b"].getOr<double>(color.b);
-		color.a = instance().m_toml[name + U".a"].getOr<double>(1.0);
+		ColorF color(instance().m_toml[name][U"rgb"].getOr<double>(0.0));
+		color.r = instance().m_toml[name][U"r"].getOr<double>(color.r);
+		color.g = instance().m_toml[name][U"g"].getOr<double>(color.g);
+		color.b = instance().m_toml[name][U"b"].getOr<double>(color.b);
+		color.a = instance().m_toml[name][U"a"].getOr<double>(1.0);
 		return color;
+	}
+
+	template<>
+	inline Circle Config::get(const String& name)
+	{
+		return Circle
+		(
+			instance().m_toml[name][U"x"].get<double>(),
+			instance().m_toml[name][U"y"].get<double>(),
+			instance().m_toml[name][U"r"].get<double>()
+		);
+	}
+
+	template<>
+	inline Animation Config::get(const String& name)
+	{
+		PosOrder posOrder;
+		for (const auto& obj : instance().m_toml[name][U"posOrder"].tableArrayView())
+		{
+			std::pair<double, Point> timePos;
+			timePos.first = obj[U"t"].get<double>();
+			timePos.second.x = obj[U"x"].get<int32>();
+			timePos.second.y = obj[U"y"].get<int32>();
+			posOrder << timePos;
+		}
+		bool loop = instance().m_toml[name][U"loop"].get<bool>();
+		return std::move(Animation(posOrder, loop));
 	}
 
 }
