@@ -5,20 +5,23 @@
 [TitleScene]
     logoPos    = {x = 400, y = 200}
     buttonSize = {x = 150, y = 30}
+    shiftFrequency = 0.4
+    shiftLength    = 0.025
+    cursorMoveRate = 0.005
 
     [TitleScene.Shift]
         frequency = 0.4
         length    = 0.025
 
-    [[TitleScene.Button]]
+    [TitleScene.NewgameButton]
         name = "はじめから"
-        pos = {x = 400, y = 390}
-    [[TitleScene.Button]]
+        region = {x=325,y=375,w=150,h=30}
+    [TitleScene.LoadgameButton]
         name = "つづきから"
-        pos = {x = 400, y = 450}
-    [[TitleScene.Button]]
+        region = {x=325,y=435,w=150,h=30}
+    [TitleScene.ExitgameButton]
         name = "やめる"
-        pos = {x = 400, y = 510}
+        region = {x=325,y=495,w=150,h=30}
 
 [Board]
     closeButton    = {x=-30,y=0,w=30,h=30}

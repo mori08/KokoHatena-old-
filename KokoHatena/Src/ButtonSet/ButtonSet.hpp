@@ -50,6 +50,15 @@ namespace Kokoha
 		void setOnClickFunc(const String& name, std::function<void()> onClickFunc);
 
 		/// <summary>
+		/// ボタンのリストの取得
+		/// </summary>
+		/// <returns> ボタンのリスト </returns>
+		const std::unordered_map<String, Button>& getButtonList() const
+		{
+			return m_buttonMap;
+		}
+
+		/// <summary>
 		/// 選択中のボタンの取得
 		/// </summary>
 		/// <returns> 選択中のボタン </returns>

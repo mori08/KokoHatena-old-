@@ -2,6 +2,7 @@
 
 
 #include"../SliceTexture/Animation/Animation.hpp"
+#include"../ButtonSet/Button/Button.hpp"
 
 
 namespace Kokoha
@@ -106,5 +107,17 @@ namespace Kokoha
 		bool loop = instance().m_toml[name][U"loop"].get<bool>();
 		return std::move(Animation(posOrder, loop));
 	}
+
+	template<>
+	inline Button Config::get(const String& name)
+	{
+		return Button
+		(
+			instance().m_toml[name][U"name"].getString(),
+			instance().get<Rect>(name + U".region")
+		);
+	}
+	
+	
 
 }

@@ -18,47 +18,33 @@ namespace
 		Float2 unusedB = {};
 	};
 
-	// シフトの頻度
-	constexpr double SHIFT_FREQUENCY = 0.4;
-
-	// シフトの量
-	constexpr double SHIFT_LENGTH = 0.025;
-
-
 	// ボタンサイズ
-	constexpr Size BUTTON_SIZE(150, 30);
+	const Size& buttonSize()
+	{
+		static const Size& size = Kokoha::Config::get<Size>(U"TitleScene.buttonSize");
+		return size;
+	}
 
 	// NEWGAMEボタン
-	const Kokoha::Button NEWGAME_BUTTON
-	(
-		U"はじめから",
-		Kokoha::getRectFromCenter(Point(400, 390), BUTTON_SIZE)
-	);
+	const Kokoha::Button& newgameButton()
+	{
+		static const Kokoha::Button button = Kokoha::Config::get<Kokoha::Button>(U"TitleScene.NewgameButton");
+		return button;
+	}
 
 	// LOADGAMEボタン
-	const Kokoha::Button LOADGAME_BUTTON
-	(
-		U"つづきから",
-		Kokoha::getRectFromCenter(Point(400, 450), BUTTON_SIZE)
-	);
+	const Kokoha::Button& loadgameButton()
+	{
+		static const Kokoha::Button button = Kokoha::Config::get<Kokoha::Button>(U"TitleScene.LoadgameButton");
+		return button;
+	}
 
 	// EXITGAMEボタン
-	const Kokoha::Button EXITGAME_BUTTON
-	(
-		U"やめる",
-		Kokoha::getRectFromCenter(Point(400, 510), BUTTON_SIZE)
-	);
-
-	// ボタンのリスト
-	const Array<Kokoha::Button> BUTTON_LIST
+	const Kokoha::Button& exitgameButton()
 	{
-		NEWGAME_BUTTON,
-		LOADGAME_BUTTON,
-		EXITGAME_BUTTON
-	};
-
-	// カーソルの移動の比
-	constexpr double CURSOR_MOVE_RATE = 0.005;
+		static const Kokoha::Button button = Kokoha::Config::get<Kokoha::Button>(U"TitleScene.ExitgameButton");
+		return button;
+	}
 
 }
 
@@ -68,47 +54,23 @@ namespace Kokoha
 
 	TitleScene::TitleScene(const InitData& init)
 		: IScene(init)
-		, m_cursorWidth(BUTTON_SIZE.x)
+		, m_cursorWidth(buttonSize().x)
 		, m_cursorLineLength(Scene::Size().x)
 		, m_cursorLineAlpha(0)
 	{
-		// ボタンの設定
-		for (const auto& button : BUTTON_LIST)
-		{
-			m_buttonSet.registerButton(button);
-		}
+		m_buttonSet.registerButton(newgameButton());
+		m_buttonSet.registerButton(loadgameButton());
+		m_buttonSet.registerButton(exitgameButton());
 
-		m_buttonSet.setOnClickFunc(NEWGAME_BUTTON.getName(), [this]() {changeScene(SceneName::RECORD_LOAD); });
+		m_buttonSet.setOnClickFunc(newgameButton().getName(), [this]() {changeScene(SceneName::RECORD_LOAD); });
 
-		m_buttonSet.setSelectedButton(LOADGAME_BUTTON.getName());
+		m_buttonSet.setSelectedButton(loadgameButton().getName());
 	}
 
 
 	void TitleScene::update()
 	{
-		// カーソルの幅の変更
-		internalDividingPoint
-		(
-			m_cursorWidth,
-			BUTTON_SIZE.x,
-			CURSOR_MOVE_RATE
-		);
-
-		// カーソルの横に出る線の長さの変更
-		internalDividingPoint
-		(
-			m_cursorLineLength,
-			Scene::Width(),
-			CURSOR_MOVE_RATE
-		);
-
-		// カーソルの横に出る線の不透明度の変更
-		internalDividingPoint
-		(
-			m_cursorLineAlpha,
-			0,
-			CURSOR_MOVE_RATE
-		);
+		updateFadeOut(0);
 
 		if (m_buttonSet.update())
 		{
@@ -121,11 +83,14 @@ namespace Kokoha
 
 	void TitleScene::updateFadeOut(double)
 	{
+		// カーソルの移動の比
+		static const double CURSOR_MOVE_RATE = Config::get<double>(U"TitleScene.cursorMoveRate");
+
 		// カーソルの幅の変更
 		internalDividingPoint
 		(
 			m_cursorWidth,
-			BUTTON_SIZE.x,
+			buttonSize().x,
 			CURSOR_MOVE_RATE
 		);
 
@@ -149,6 +114,11 @@ namespace Kokoha
 
 	void TitleScene::draw() const
 	{
+		// シフトの頻度
+		static const double SHIFT_FREQUENCY = Config::get<double>(U"TitleScene.shiftFrequency");
+		// シフトの量
+		static const double SHIFT_LENGTH = Config::get<double>(U"TitleScene.shiftLength");
+
 		// ロゴの描画
 		drawLogo(SHIFT_FREQUENCY, SHIFT_LENGTH);
 
@@ -156,7 +126,7 @@ namespace Kokoha
 		getRectFromCenter
 		(
 			m_buttonSet.getSelectedButton().getRegion().center().asPoint(),
-			Size((int32)m_cursorWidth, BUTTON_SIZE.y)
+			Size((int32)m_cursorWidth, buttonSize().y)
 		).draw(MyWhite);
 		getRectFromCenter
 		(
@@ -165,20 +135,22 @@ namespace Kokoha
 		).draw(ColorF(MyWhite, m_cursorLineAlpha));
 
 		// ボタンの描画
-		for (const auto& button : BUTTON_LIST)
+		for (const auto& button : m_buttonSet.getButtonList())
 		{
-			Color color = (button.getName() == m_buttonSet.getSelectedButton().getName())
+			Color color = (button.first == m_buttonSet.getSelectedButton().getName())
 				? MyBlack
 				: MyWhite;
 
-			FontAsset(U"20")(button.getName())
-				.drawAt(button.getRegion().center(), color);
+			FontAsset(U"20")(button.first)
+				.drawAt(button.second.getRegion().center(), color);
 		}
 	}
 
 
 	void TitleScene::drawLogo(double frequency, double shift) const
 	{
+		static const Point LOGO_POS = Config::get<Point>(U"TitleScene.logoPos");
+
 		{
 			// 定数バッファの設定
 			ConstantBuffer<Shift> cb;
@@ -191,7 +163,7 @@ namespace Kokoha
 			ScopedCustomShader2D shader(MyPixelShader::get(MyPixelShader::Type::TITLE_LOGO));
 
 			// ロゴの描画
-			TextureAsset(U"Logo").drawAt(Config::get<Point>(U"TitleScene.logoPos"));
+			TextureAsset(U"Logo").drawAt(LOGO_POS);
 		}
 	}
 
