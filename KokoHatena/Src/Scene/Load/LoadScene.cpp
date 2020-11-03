@@ -1,12 +1,5 @@
 #include "LoadScene.hpp"
-
-
-namespace
-{
-	// テキストを表示する座標
-	constexpr Point TEXT_POS = Point(690, 530);
-}
-
+#include "../../Config/Config.hpp"
 
 
 namespace Kokoha
@@ -48,6 +41,8 @@ namespace Kokoha
 
 	void LoadScene::draw() const
 	{
+		// テキストを表示する座標
+		static const Point TEXT_POS = Config::get<Point>(U"LoadScene.textPos");
 		FontAsset(U"20")(U"Loading").draw(TEXT_POS);
 	}
 

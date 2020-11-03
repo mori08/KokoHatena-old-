@@ -79,6 +79,21 @@ namespace Kokoha
 		/// <returns> レコードの値 </returns>
 		int32 getRecord(const String& name) const;
 
+		/// <summary>
+		/// テキストファイルにレコードの内容を書き込み
+		/// </summary>
+		void writeDebugText() const
+		{
+#ifdef _DEBUG
+			TextWriter writer(U"asset/data/debug.txt");
+			for (const auto& record : m_recordMap)
+			{
+				writer.writeln(U"[" + record.first + U"] -> " + ToString(record.second.get()));
+			}
+			writer.close();
+#endif // _DEBUG
+		}
+
 	private:
 
 		/// <summary>

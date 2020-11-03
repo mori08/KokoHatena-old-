@@ -21,8 +21,18 @@ namespace Kokoha
 {
 	RecordManager::RecordManager()
 	{
-		m_recordMap.try_emplace(U"TestFlag" , std::move(Record(1, 0)));
-		m_recordMap.try_emplace(U"TestValue", std::move(Record(3, 5)));
+		const TOMLReader m_toml(U"asset/data/record.toml");
+
+		for (const auto& obj : m_toml[U"Record"].tableArrayView())
+		{
+			m_recordMap.try_emplace
+			(
+				obj[U"name"].getString(),
+				std::move(Record(obj[U"digit"].get<int32>(), obj[U"default"].get<int32>()))
+			);
+		}
+
+		writeDebugText();
 	}
 
 

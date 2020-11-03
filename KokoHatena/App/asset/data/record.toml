@@ -1,0 +1,9 @@
+[[Record]] # テスト用フラグ
+name    = "TestFlag"
+digit   = 1
+default = 0
+
+[[Record]] # テスト用数値
+name    = "TestValue"
+digit   = 3
+default = 5
