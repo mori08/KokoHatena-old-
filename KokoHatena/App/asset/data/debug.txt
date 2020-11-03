@@ -1,2 +1,4 @@
-﻿[TestFlag] -> 0
-[TestValue] -> 5
+﻿
+[ T ]
+   0 < [TestFlag]
+   5 < [TestValue]

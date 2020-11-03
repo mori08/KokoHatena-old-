@@ -86,9 +86,15 @@ namespace Kokoha
 		{
 #ifdef _DEBUG
 			TextWriter writer(U"asset/data/debug.txt");
+			char32 initChar = U'z';
 			for (const auto& record : m_recordMap)
 			{
-				writer.writeln(U"[" + record.first + U"] -> " + ToString(record.second.get()));
+				if (record.first[0] != initChar) 
+				{
+					initChar = record.first[0];
+					writer.writeln(String(U"\n[ ") + initChar + U" ]");
+				}
+				writer.writeln(Pad(ToString(record.second.get()), { 4,U' ' }) + U" < [" + record.first + U"]");
 			}
 			writer.close();
 #endif // _DEBUG
