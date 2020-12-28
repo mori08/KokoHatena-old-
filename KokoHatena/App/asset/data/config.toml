@@ -29,8 +29,8 @@
     controlFrameHeight = 30
     frameThickness     = 1.5
     changeAlphaSpeed   = 4.0
-    frameColor = {rgb=0.7}
-    boardColor = {rgb=0.3}
+    frameColor = {rgb=0.9}
+    boardColor = {rgb=0.1}
 
 [BoardSymbol]
     height = 60
