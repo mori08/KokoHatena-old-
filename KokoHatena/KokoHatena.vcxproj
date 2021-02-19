@@ -236,6 +236,7 @@
     <ClCompile Include="Src\BoardShareData\MessageData\MessageData.cpp" />
     <ClCompile Include="Src\BoardSymbol\BoardSymbol.cpp" />
     <ClCompile Include="Src\Board\Board.cpp" />
+    <ClCompile Include="Src\Board\Message\MessageBoard.cpp" />
     <ClCompile Include="Src\Board\Test\TestBoard.cpp" />
     <ClCompile Include="Src\ButtonSet\ButtonSet.cpp" />
     <ClCompile Include="Src\ButtonSet\Button\Button.cpp" />
@@ -258,6 +259,7 @@
     <ClInclude Include="Src\BoardShareData\MessageData\MessageData.hpp" />
     <ClInclude Include="Src\BoardSymbol\BoardSymbol.hpp" />
     <ClInclude Include="Src\Board\Board.hpp" />
+    <ClInclude Include="Src\Board\Message\MessageBoard.hpp" />
     <ClInclude Include="Src\Board\Test\TestBoard.hpp" />
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp" />
     <ClInclude Include="Src\ButtonSet\Button\Button.hpp" />

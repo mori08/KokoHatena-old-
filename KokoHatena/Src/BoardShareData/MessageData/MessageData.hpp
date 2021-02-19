@@ -50,17 +50,6 @@ namespace Kokoha
 	public:
 
 		/// <summary>
-		/// メッセージの追加
-		/// </summary>
-		/// <param name="name"   > 会話相手の名前 </param>
-		/// <param name="speaker"> 話し手, trueのとき 自分, falseのとき 相手 </param>
-		/// <param name="text"   > 内容 </param>
-		void addMessage(const String& name, bool speaker, const String& text)
-		{
-			m_history[name].emplace_back(speaker, text);
-		}
-
-		/// <summary>
 		/// 会話履歴の取得
 		/// </summary>
 		/// <param name="name"> 会話相手 </param>
