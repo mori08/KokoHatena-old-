@@ -32,6 +32,14 @@
     frameColor = {rgb=0.9}
     boardColor = {rgb=0.15}
 
+    [Board.Message]
+        size = {x=200,y=350}
+        oneMessageSize = {x=200,y=50}
+        fromPos  = {x=3,y=1}
+        datePos  = {x=158,y=1}
+        titlePos = {x=5,y=20}
+        selectedMessageColor = {rgb = 0.4}
+
 [BoardSymbol]
     height = 60
     textureSize = {x=40,y=40}

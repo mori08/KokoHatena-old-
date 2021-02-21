@@ -14,6 +14,12 @@ namespace Kokoha
 	{
 	private:
 
+		// 表示するメッセージの名前
+		Optional<String> m_messageName;
+
+		// メッセージ用の設定ファイル
+		const TOMLReader m_toml;
+
 	public:
 
 		MessageBoard(const Role& role);

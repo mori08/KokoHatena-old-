@@ -149,9 +149,6 @@
     <Filter Include="Src\MyShader">
       <UniqueIdentifier>{b48b75ca-1814-439b-8f16-c3af74549380}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\BoardShareData\MessageData">
-      <UniqueIdentifier>{75003125-d78e-4d5d-833c-f9c91853c83f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Config">
       <UniqueIdentifier>{4d77d699-4ae1-40a7-9b37-7733049e2ae3}</UniqueIdentifier>
     </Filter>
@@ -492,9 +489,6 @@
     <ClCompile Include="Src\MyPixelShader\MyPixelShader.cpp">
       <Filter>Src\MyShader</Filter>
     </ClCompile>
-    <ClCompile Include="Src\BoardShareData\MessageData\MessageData.cpp">
-      <Filter>Src\BoardShareData\MessageData</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Config\Config.cpp">
       <Filter>Src\Config</Filter>
     </ClCompile>
@@ -556,9 +550,6 @@
     </ClInclude>
     <ClInclude Include="Src\MyPixelShader\MyPixelShader.hpp">
       <Filter>Src\MyShader</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\BoardShareData\MessageData\MessageData.hpp">
-      <Filter>Src\BoardShareData\MessageData</Filter>
     </ClInclude>
     <ClInclude Include="Src\Config\Config.hpp">
       <Filter>Src\Config</Filter>
