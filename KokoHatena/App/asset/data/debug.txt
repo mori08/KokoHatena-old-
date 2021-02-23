@@ -1,4 +1,10 @@
 ﻿
+[ M ]
+   1 < [MessageBoss]
+   1 < [MessageDoctor]
+   1 < [MessageFriend]
+   0 < [MessageRobot]
+
 [ T ]
    0 < [TestFlag]
    5 < [TestValue]

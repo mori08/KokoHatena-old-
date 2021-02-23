@@ -2,6 +2,7 @@
 #include"MyLibrary/MyLibrary.hpp"
 #include"Config/Config.hpp"
 #include"MyPixelShader/MyPixelShader.hpp"
+#include"RecordManager/RecordManager.hpp"
 
 // シーン
 #include "Scene/Title/TitleScene.hpp"
@@ -40,5 +41,6 @@ void Main()
 		sceneManager.update();
 
 		Kokoha::showFPS();
+		Kokoha::RecordManager::instance().writeDebugText();
 	}
 }

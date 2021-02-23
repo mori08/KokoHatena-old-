@@ -54,5 +54,13 @@ namespace Kokoha
 		/// </summary>
 		void drawReadMessage()const;
 
+	private:
+
+		/// <summary>
+		/// ロボットのメッセージを読むことができるか取得
+		/// </summary>
+		/// <returns> ロボットのメッセージを読むことができるとき true ,　そうでないとき false </returns>
+		static bool readAbleRobotMessage();
+
 	};
 }

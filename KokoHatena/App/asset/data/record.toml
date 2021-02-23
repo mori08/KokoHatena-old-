@@ -2,8 +2,24 @@
 name    = "TestFlag"
 digit   = 1
 default = 0
-
 [[Record]] # テスト用数値
 name    = "TestValue"
 digit   = 3
 default = 5
+
+[[Record]] # メッセージ[博士]
+name    = "MessageDoctor"
+digit   = 1
+default = 0
+[[Record]] # メッセージ[上司]
+name    = "MessageBoss"
+digit   = 1
+default = 0
+[[Record]] # メッセージ[友人]
+name    = "MessageFriend"
+digit   = 1
+default = 0
+[[Record]] # メッセージ[ロボット]
+name    = "MessageRobot"
+digit   = 1
+default = 0

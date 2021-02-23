@@ -85,6 +85,7 @@ namespace Kokoha
 		void writeDebugText() const
 		{
 #ifdef _DEBUG
+			if (!Key0.down()) { return; }
 			TextWriter writer(U"asset/data/debug.txt");
 			char32 initChar = U'z';
 			for (const auto& record : m_recordMap)

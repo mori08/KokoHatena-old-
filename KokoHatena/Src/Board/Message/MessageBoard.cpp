@@ -1,5 +1,6 @@
 #include "MessageBoard.hpp"
 #include "../../Config/Config.hpp"
+#include "../../RecordManager/RecordManager.hpp"
 
 
 namespace Kokoha
@@ -52,9 +53,12 @@ namespace Kokoha
 		Point pos = Point::Down(Config::get<int32>(U"Board.controlFrameHeight"));
 		for (const auto& name : m_toml[U"Name.list"].arrayView())
 		{
+			if (name.getString() == U"Robot" && !readAbleRobotMessage()) { break; }
+
 			if (MouseL.down() && Rect(pos, ONE_MESSAGE_SIZE).contains(cursorPosInBoard()))
 			{
 				m_messageName = name.getString();
+				RecordManager::instance().setRecord(U"Message" + name.getString(), 1);
 			}
 			pos.y += ONE_MESSAGE_SIZE.y;
 		}
@@ -78,6 +82,8 @@ namespace Kokoha
 		Point pos = Point::Down(Config::get<int32>(U"Board.controlFrameHeight"));
 		for (const auto& name : m_toml[U"Name.list"].arrayView())
 		{
+			if (name.getString() == U"Robot" && !readAbleRobotMessage()) { break; }
+
 			if (Rect(pos, ONE_MESSAGE_SIZE).contains(cursorPosInBoard()))
 			{
 				Rect(pos, ONE_MESSAGE_SIZE).draw(SELECTED_MESSAGE_COLOR);
@@ -137,6 +143,14 @@ namespace Kokoha
 			BACK_BOTTAN.draw(SELECTED_COLOR);
 		}
 		FontAsset(U"25")(U"Å©").drawAt(BACK_BOTTAN.center());
+	}
+
+
+	bool MessageBoard::readAbleRobotMessage()
+	{
+		return RecordManager::instance().getRecord(U"MessageDoctor") == 1
+			&& RecordManager::instance().getRecord(U"MessageBoss")   == 1
+			&& RecordManager::instance().getRecord(U"MessageFriend") == 1;
 	}
 
 }
