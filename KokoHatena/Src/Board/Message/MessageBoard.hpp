@@ -32,5 +32,27 @@ namespace Kokoha
 
 		void drawInBoard(const BoardShareData& shareData) const override;
 
+	private:
+
+		/// <summary>
+		/// メッセージを選ぶ画面での更新
+		/// </summary>
+		void updateSelectMessage();
+
+		/// <summary>
+		/// メッセージを選ぶ画面での描画
+		/// </summary>
+		void drawSelectMessage() const;
+
+		/// <summary>
+		/// メッセージを読む画面での更新
+		/// </summary>
+		void updateReadMessage();
+
+		/// <summary>
+		/// メッセージを読む画面での描画
+		/// </summary>
+		void drawReadMessage()const;
+
 	};
 }
