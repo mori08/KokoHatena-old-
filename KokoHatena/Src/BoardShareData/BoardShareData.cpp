@@ -5,6 +5,6 @@ namespace Kokoha
 {
 	BoardShareData::BoardShareData()
 	{
-		m_text = U"test";
+		
 	}
 }

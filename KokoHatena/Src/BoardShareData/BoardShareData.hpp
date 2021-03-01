@@ -2,6 +2,7 @@
 
 
 #include<Siv3D.hpp>
+#include"SecurityShareData/SecurityShareData.hpp"
 
 
 namespace Kokoha
@@ -13,18 +14,13 @@ namespace Kokoha
 	/// </summary>
 	class BoardShareData
 	{
-	private:
+	public:
 
-		String m_text;
+		SecurityShareData m_securityData;
 
 	public:
 
 		BoardShareData();
-
-	public:
-
-		void set(const String& text) { m_text = text; }
-		const String& get() const { return m_text; }
 
 	};
 }

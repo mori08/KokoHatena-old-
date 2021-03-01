@@ -1,6 +1,7 @@
 #include "DesktopScene.hpp"
 #include "../../Board/Test/TestBoard.hpp"
 #include "../../Board/Message/MessageBoard.hpp"
+#include "../../Board/Security/SecurityBoard.h"
 #include "../../MyLibrary/MyLibrary.hpp"
 
 
@@ -12,6 +13,7 @@ namespace Kokoha
 		registerBoard<TestBoard>(Board::Role::TEST1, 0);
 		registerBoard<TestBoard>(Board::Role::TEST2, 0);
 		registerBoard<MessageBoard>(Board::Role::MAIL, 1);
+		registerBoard<SecurityBoard>(Board::Role::SECURITY, 4);
 	}
 
 

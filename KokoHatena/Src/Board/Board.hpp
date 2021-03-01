@@ -20,9 +20,10 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			TEST1, // テスト1
-			TEST2, // テスト2
-			MAIL   // メール
+			TEST1,   // テスト1
+			TEST2,   // テスト2
+			MAIL,    // メール
+			SECURITY // セキュリティ
 		};
 
 		/// <summary>

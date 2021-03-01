@@ -18,11 +18,9 @@ namespace Kokoha
 	}
 
 
-	void TestBoard::inputInBoard(BoardShareData& shareData)
+	void TestBoard::inputInBoard(BoardShareData&)
 	{
 		TextInput::UpdateText(m_text);
-		
-		if (KeyEnter.down()) { shareData.set(m_text); }
 	}
 
 
@@ -34,7 +32,7 @@ namespace Kokoha
 
 	void TestBoard::drawInBoard(const BoardShareData& shareData) const
 	{
-		FontAsset(U"30")(m_text + shareData.get()).draw(20, 40);
+		FontAsset(U"30")(m_text).draw(20, 40);
 	}
 
 }

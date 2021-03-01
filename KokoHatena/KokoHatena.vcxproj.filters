@@ -155,6 +155,18 @@
     <Filter Include="Src\Board\MessageBoard">
       <UniqueIdentifier>{9fcb5d11-5c75-4d40-8c3d-63585f38f79e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Board\Security">
+      <UniqueIdentifier>{0a91d8e8-d351-44ba-aff6-52f7b4511645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\BoardShareData\SecurityShareData">
+      <UniqueIdentifier>{48345c23-1f43-49cc-b829-383992bae479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\BoardShareData\SecurityShareData\SecurityState">
+      <UniqueIdentifier>{e6e9cff2-9dad-424d-b8e8-fd8742713d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState">
+      <UniqueIdentifier>{44c79039-8a75-4e18-8d72-ad3d098dae3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -495,6 +507,15 @@
     <ClCompile Include="Src\Board\Message\MessageBoard.cpp">
       <Filter>Src\Board\MessageBoard</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Board\Security\SecurityBoard.cpp">
+      <Filter>Src\Board\Security</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState\SecurityWaitState.cpp">
+      <Filter>Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityShareData.cpp">
+      <Filter>Src\BoardShareData\SecurityShareData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -556,6 +577,18 @@
     </ClInclude>
     <ClInclude Include="Src\Board\Message\MessageBoard.hpp">
       <Filter>Src\Board\MessageBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Board\Security\SecurityBoard.h">
+      <Filter>Src\Board\Security</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityState.hpp">
+      <Filter>Src\BoardShareData\SecurityShareData\SecurityState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState\SecurityWaitState.hpp">
+      <Filter>Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityShareData.hpp">
+      <Filter>Src\BoardShareData\SecurityShareData</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

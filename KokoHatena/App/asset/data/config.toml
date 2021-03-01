@@ -48,6 +48,8 @@
             line2 = {x=5,y=105,w=190,h=1}
             lineColor = {rgb = 0.6}
             backBottan = {x=5,y=33,w=21,h=21}
+    [Board.Security]
+        size = {x=300,y=100}
             
 
 [BoardSymbol]
