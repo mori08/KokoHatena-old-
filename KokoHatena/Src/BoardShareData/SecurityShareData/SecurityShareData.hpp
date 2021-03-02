@@ -44,6 +44,14 @@ namespace Kokoha
 		}
 
 		/// <summary>
+		/// ó‘Ô‚É‰‚¶‚½“ü—Í
+		/// </summary>
+		void stateInput()
+		{
+			m_boardState->input();
+		}
+
+		/// <summary>
 		/// ó‘Ô‚É‰‚¶‚½XV
 		/// </summary>
 		void stateUpdate()

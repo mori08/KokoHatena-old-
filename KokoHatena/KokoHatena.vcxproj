@@ -234,6 +234,7 @@
   <ItemGroup>
     <ClCompile Include="Src\BoardShareData\BoardShareData.cpp" />
     <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityShareData.cpp" />
+    <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityState\SecuritySelectState\SecuritySelectState.cpp" />
     <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState\SecurityWaitState.cpp" />
     <ClCompile Include="Src\BoardSymbol\BoardSymbol.cpp" />
     <ClCompile Include="Src\Board\Board.cpp" />
@@ -259,12 +260,13 @@
   <ItemGroup>
     <ClInclude Include="Src\BoardShareData\BoardShareData.hpp" />
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityShareData.hpp" />
+    <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecuritySelectState\SecuritySelectState.hpp" />
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityState.hpp" />
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState\SecurityWaitState.hpp" />
     <ClInclude Include="Src\BoardSymbol\BoardSymbol.hpp" />
     <ClInclude Include="Src\Board\Board.hpp" />
     <ClInclude Include="Src\Board\Message\MessageBoard.hpp" />
-    <ClInclude Include="Src\Board\Security\SecurityBoard.h" />
+    <ClInclude Include="Src\Board\Security\SecurityBoard.hpp" />
     <ClInclude Include="Src\Board\Test\TestBoard.hpp" />
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp" />
     <ClInclude Include="Src\ButtonSet\Button\Button.hpp" />

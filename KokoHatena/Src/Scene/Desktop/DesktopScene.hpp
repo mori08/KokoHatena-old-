@@ -2,7 +2,7 @@
 
 
 #include "../Scene.hpp"
-#include "../../Board/Board.hpp"
+#include "../../BoardShareData/BoardShareData.hpp"
 #include "../../BoardSymbol/BoardSymbol.hpp"
 
 

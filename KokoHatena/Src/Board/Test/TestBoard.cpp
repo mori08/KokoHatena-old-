@@ -30,7 +30,7 @@ namespace Kokoha
 	}
 
 
-	void TestBoard::drawInBoard(const BoardShareData& shareData) const
+	void TestBoard::drawInBoard(const BoardShareData&) const
 	{
 		FontAsset(U"30")(m_text).draw(20, 40);
 	}

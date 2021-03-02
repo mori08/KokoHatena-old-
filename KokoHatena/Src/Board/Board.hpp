@@ -1,12 +1,13 @@
 #pragma once
 
 
-#include"../BoardShareData/BoardShareData.hpp"
 #include"../BoardSymbol/BoardSymbol.hpp"
 
 
 namespace Kokoha
 {
+	class BoardShareData;
+
 	/// <summary>
 	/// Boardクラス
 	/// ボードの基底

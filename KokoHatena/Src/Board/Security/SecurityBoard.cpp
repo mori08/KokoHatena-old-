@@ -1,4 +1,5 @@
-#include "SecurityBoard.h"
+#include "SecurityBoard.hpp"
+#include "../../BoardShareData/BoardShareData.hpp"
 #include "../../Config/Config.hpp"
 
 
@@ -10,8 +11,9 @@ namespace Kokoha
 	}
 
 
-	void SecurityBoard::inputInBoard(BoardShareData&)
+	void SecurityBoard::inputInBoard(BoardShareData& shareData)
 	{
+		shareData.m_securityData.stateInput();
 	}
 
 

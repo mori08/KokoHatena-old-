@@ -16,11 +16,6 @@ namespace Kokoha
 
 	void MessageBoard::inputInBoard(BoardShareData&)
 	{
-	}
-
-
-	void MessageBoard::updateInBoard(BoardShareData&)
-	{
 		if (m_messageName)
 		{
 			updateReadMessage();
@@ -29,6 +24,11 @@ namespace Kokoha
 		{
 			updateSelectMessage();
 		}
+	}
+
+
+	void MessageBoard::updateInBoard(BoardShareData&)
+	{
 	}
 
 

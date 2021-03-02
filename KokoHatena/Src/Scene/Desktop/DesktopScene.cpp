@@ -1,7 +1,7 @@
 #include "DesktopScene.hpp"
 #include "../../Board/Test/TestBoard.hpp"
 #include "../../Board/Message/MessageBoard.hpp"
-#include "../../Board/Security/SecurityBoard.h"
+#include "../../Board/Security/SecurityBoard.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
 
 

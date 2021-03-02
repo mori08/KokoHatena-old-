@@ -4,6 +4,10 @@
 
 namespace Kokoha
 {
+	/// <summary>
+	/// SecurityBoardクラス
+	/// システムに関わってそうなボード
+	/// </summary>
 	class SecurityBoard : public Board
 	{
 	private:
