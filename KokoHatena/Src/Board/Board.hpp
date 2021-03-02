@@ -116,7 +116,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// マウスで左クリック
+		/// マウスで左クリックしたか
 		/// </summary>
 		/// <returns></returns>
 		bool mouseLeftDown() const

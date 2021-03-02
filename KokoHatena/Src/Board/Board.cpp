@@ -134,6 +134,8 @@ namespace Kokoha
 
     void Board::movePos()
     {
+        static const int32 TASKBAR_HEIGHT = Config::get<int32>(U"BoardSymbol.height");
+
         if (MouseL.up())
         {
             m_optMovePos = none;
@@ -142,11 +144,11 @@ namespace Kokoha
 
         // カーソルの座標
         Point cursorPos = Cursor::Pos();
-        cursorPos.x = Clamp(cursorPos.x, 0, Scene::Width());
-        cursorPos.y = Clamp(cursorPos.y, 0, Scene::Height());
 
         // 座標の変更
         m_pos = cursorPos - m_optMovePos.value();
+        m_pos.x = Clamp(m_pos.x, 0, Scene::Size().x - m_size.x);
+        m_pos.y = Clamp(m_pos.y, 0, Scene::Size().y - TASKBAR_HEIGHT - m_controlFrame.h);
     }
 
 }

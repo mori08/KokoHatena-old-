@@ -55,7 +55,7 @@ namespace Kokoha
 		{
 			if (name.getString() == U"Robot" && !readAbleRobotMessage()) { break; }
 
-			if (MouseL.down() && Rect(pos, ONE_MESSAGE_SIZE).contains(cursorPosInBoard()))
+			if (mouseLeftDown() && Rect(pos, ONE_MESSAGE_SIZE).contains(cursorPosInBoard()))
 			{
 				m_messageName = name.getString();
 				RecordManager::instance().setRecord(U"Message" + name.getString(), 1);
@@ -102,7 +102,7 @@ namespace Kokoha
 	void MessageBoard::updateReadMessage()
 	{
 		static const Rect BACK_BOTTAN = Config::get<Rect>(U"Board.Message.Read.backBottan");
-		if (MouseL.down() && BACK_BOTTAN.contains(cursorPosInBoard()))
+		if (mouseLeftDown() && BACK_BOTTAN.contains(cursorPosInBoard()))
 		{
 			m_messageName = none;
 		}
