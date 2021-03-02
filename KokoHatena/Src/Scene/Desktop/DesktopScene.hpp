@@ -32,6 +32,9 @@ namespace Kokoha
 		// 非表示のボードのリスト
 		std::map<Board::Role, std::unique_ptr<Board>> m_hideBoardMap;
 
+		// 削除待ちのボードリスト
+		BoardPtrList m_erasingBoardList;
+
 		// タスクバーに配置するボタン
 		std::unordered_map<Board::Role, BoardSymbol> m_boardSymbolMap;
 

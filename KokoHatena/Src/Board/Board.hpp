@@ -142,6 +142,15 @@ namespace Kokoha
 			m_state = StateChange::MINIMIZE;
 		}
 
+		/// <summary>
+		/// íœ‘Ò‚¿ó‘Ô‚Å‚ÌXV
+		/// </summary>
+		/// <returns> íœ‚·‚é‚Æ‚« true, ‚»‚¤‚Å‚È‚¢‚Æ‚« false </returns>
+		bool erasingUpdate()
+		{
+			return changeAlpha();
+		}
+
 	protected:
 
 

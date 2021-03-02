@@ -57,6 +57,8 @@ namespace Kokoha
 
     Board::StateChange Board::update(BoardShareData& shareData)
     {
+        if (m_state == StateChange::CLOSE) { return StateChange::CLOSE; }
+
         if (changeAlpha())
         {
             return m_state;

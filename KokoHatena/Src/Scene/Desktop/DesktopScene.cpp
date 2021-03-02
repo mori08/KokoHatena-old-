@@ -69,6 +69,14 @@ namespace Kokoha
 			
 			++boardItr;
 		}
+
+		// 削除待ちBoardの更新
+		for (auto boardItr = m_erasingBoardList.begin(); boardItr != m_erasingBoardList.end();)
+		{
+			auto ersItr = boardItr;
+			++boardItr;
+			if ((*ersItr)->erasingUpdate()) { m_erasingBoardList.erase(ersItr); }
+		}
 	}
 
 
@@ -84,6 +92,11 @@ namespace Kokoha
 		for (auto boardItr = m_boardList.rbegin(); boardItr != m_boardList.rend(); ++boardItr)
 		{
 			(*boardItr)->draw(m_boardShareData);
+		}
+
+		for (const auto& boardPtr : m_erasingBoardList)
+		{
+			boardPtr->draw(m_boardShareData);
 		}
 
 		Rect(getTaskbarPos(), Scene::Width(), BoardSymbol::height()).draw(TASKBAR_COLOR);
@@ -140,9 +153,11 @@ namespace Kokoha
 		m_boardSymbolMap.find((*boardItr)->getRole())->second.setState(BoardSymbol::BoardState::NONE);
 
 		// 指定されたBoardの削除
+		auto boardPtr = std::move(*boardItr);
 		auto ersItr = boardItr;
 		++boardItr;
 		m_boardList.erase(ersItr);
+		m_erasingBoardList.emplace_back(std::move(boardPtr));
 
 		// 最前面にきたBoardをTopに変更
 		if (!m_boardList.empty())
