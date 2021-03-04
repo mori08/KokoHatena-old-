@@ -78,6 +78,14 @@ namespace Kokoha
 			m_state = state;
 		}
 
+		/// <summary>
+		/// Board�̏�Ԃ̎擾
+		/// </summary>
+		BoardState getState() const
+		{
+			return m_state;
+		}
+
 	private:
 
 		/// <summary>

@@ -113,6 +113,11 @@ namespace Kokoha
 		/// <param name="role"> •\¦‚·‚éBoard‚É‘Î‰‚·‚éBoard::Role </param>
 		void displayBoard(Board::Role role);
 
+		/// <summary>
+		/// BoardShareData‚©‚çBoard‚Ìó‘Ô‚ğ•ÏX
+		/// </summary>
+		void boardStateChangeFromShareData();
+
 	};
 	
 

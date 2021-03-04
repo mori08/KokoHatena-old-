@@ -70,6 +70,9 @@ namespace Kokoha
 			++boardItr;
 		}
 
+		// BoardShareDataからのBoardの操作
+		boardStateChangeFromShareData();
+
 		// 削除待ちBoardの更新
 		for (auto boardItr = m_erasingBoardList.begin(); boardItr != m_erasingBoardList.end();)
 		{
@@ -215,8 +218,35 @@ namespace Kokoha
 		m_boardList.emplace_front(std::move(hideItr->second));
 		m_hideBoardMap.erase(role);
 
-		// 処理前に最前面にいるBoardの状態をTopに変更
+		// 処理後に最前面にいるBoardの状態をTopに変更
 		m_boardSymbolMap.find((*m_boardList.begin())->getRole())->second.setState(BoardSymbol::BoardState::TOP);
+	}
+
+
+	void DesktopScene::boardStateChangeFromShareData()
+	{
+		while (auto boardStateChange = m_boardShareData.getBoardStateChange())
+		{
+			
+			if (boardStateChange->second == BoardShareData::BoardStateChange::OPEN) // ボードを開く
+			{
+				switch (m_boardSymbolMap.find(boardStateChange->first)->second.getState())
+				{
+				case BoardSymbol::BoardState::TOP: // 何もしない
+					break;
+
+				case BoardSymbol::BoardState::DISPLAYED: // 最前面に移動
+					moveBoardToTop(findBoardFromRole(boardStateChange->first)); break;
+
+				case BoardSymbol::BoardState::HIDDEN: // 表示
+					displayBoard(boardStateChange->first); break;
+
+				case BoardSymbol::BoardState::NONE: // 生成
+					m_generateBoardMap[boardStateChange->first](); break;
+				}
+			}
+			
+		}
 	}
 
 }
