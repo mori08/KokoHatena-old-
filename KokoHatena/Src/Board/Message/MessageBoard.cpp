@@ -59,6 +59,11 @@ namespace Kokoha
 			{
 				m_messageName = name.getString();
 				RecordManager::instance().setRecord(U"Message" + name.getString(), 1);
+
+				if (name.getString() == U"Robot")
+				{
+
+				}
 			}
 			pos.y += ONE_MESSAGE_SIZE.y;
 		}

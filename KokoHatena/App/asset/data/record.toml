@@ -7,6 +7,7 @@ name    = "TestValue"
 digit   = 3
 default = 5
 
+# MessageBoardについて
 [[Record]] # メッセージ[博士]
 name    = "MessageDoctor"
 digit   = 1
@@ -21,5 +22,14 @@ digit   = 1
 default = 0
 [[Record]] # メッセージ[ロボット]
 name    = "MessageRobot"
+digit   = 1
+default = 0
+
+[[Record]]
+name    = "SecurityBoardOpened"
+digit   = 1
+default = 0
+[[Record]] # 添付ファイルをダウンロード済か
+name    = "SecurityDownloadAccess"
 digit   = 1
 default = 0

@@ -15,6 +15,7 @@ namespace Kokoha
 	public:
 
 		SecurityBoard(const Role& role);
+		~SecurityBoard();
 
 	public:
 

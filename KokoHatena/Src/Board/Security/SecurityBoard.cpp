@@ -1,6 +1,7 @@
 #include "SecurityBoard.hpp"
 #include "../../BoardShareData/BoardShareData.hpp"
 #include "../../Config/Config.hpp"
+#include "../../RecordManager/RecordManager.hpp"
 
 
 namespace Kokoha
@@ -8,6 +9,13 @@ namespace Kokoha
 	SecurityBoard::SecurityBoard(const Role& role)
 		: Board(role, U"Security", Config::get<Size>(U"Board.Security.size"))
 	{
+		RecordManager::instance().setRecord(U"SecurityBoardOpened", 1);
+	}
+
+
+	SecurityBoard::~SecurityBoard()
+	{
+		RecordManager::instance().setRecord(U"SecurityBoardOpened", 0);
 	}
 
 
