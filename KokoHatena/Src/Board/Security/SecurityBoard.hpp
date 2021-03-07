@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Board.hpp"
+#include "../../BoardShareData/SecurityShareData/SecurityState/SecurityState.hpp"
 
 namespace Kokoha
 {
@@ -11,6 +12,9 @@ namespace Kokoha
 	class SecurityBoard : public Board
 	{
 	private:
+
+		// èÛë‘
+		SecurityState m_state;
 
 	public:
 

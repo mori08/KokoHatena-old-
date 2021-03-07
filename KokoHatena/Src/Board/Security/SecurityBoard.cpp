@@ -9,30 +9,30 @@ namespace Kokoha
 	SecurityBoard::SecurityBoard(const Role& role)
 		: Board(role, U"Security", Config::get<Size>(U"Board.Security.size"))
 	{
-		RecordManager::instance().setRecord(U"SecurityBoardOpened", 1);
+		
 	}
 
 
 	SecurityBoard::~SecurityBoard()
 	{
-		RecordManager::instance().setRecord(U"SecurityBoardOpened", 0);
+		
 	}
 
 
 	void SecurityBoard::inputInBoard(BoardShareData& shareData)
 	{
-		shareData.m_securityData.stateInput();
+		m_state.input();
 	}
 
 
 	void SecurityBoard::updateInBoard(BoardShareData& shareData)
 	{
-		shareData.m_securityData.stateUpdate();
+		m_state.update();
 	}
 
 
 	void SecurityBoard::drawInBoard(const BoardShareData& shareData) const
 	{
-		shareData.m_securityData.stateDraw();
+		m_state.draw();
 	}
 }

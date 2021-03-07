@@ -2,9 +2,7 @@
 
 
 #include "SecurityState/SecurityState.hpp"
-#include <memory>
-#include <unordered_map>
-#include <functional>
+#include <Siv3D.hpp>
 
 
 namespace Kokoha
@@ -22,11 +20,11 @@ namespace Kokoha
 
 	private:
 
-		// SecurityBoardの状態
-		std::unique_ptr<SecurityState> m_boardState;
-
 		// ボードを作成する関数
 		std::unordered_map<StateName, std::function<SecurityStatePtr()>> m_makeStateMap;
+
+		// 次の状態
+		Optional<std::function<SecurityStatePtr()>> m_nextStateFunc;
 
 	public:
 		
@@ -40,32 +38,14 @@ namespace Kokoha
 		/// <param name="state"> 切り替え先の状態 </param>
 		void setState(const StateName& stateName)
 		{
-			m_boardState = m_makeStateMap[stateName]();
+			m_nextStateFunc = m_makeStateMap[stateName];
 		}
 
 		/// <summary>
-		/// 状態に応じた入力
+		/// 次の状態の取得
 		/// </summary>
-		void stateInput()
-		{
-			m_boardState->input();
-		}
-
-		/// <summary>
-		/// 状態に応じた更新
-		/// </summary>
-		void stateUpdate()
-		{
-			m_boardState->update();
-		}
-
-		/// <summary>
-		/// 状態に応じた描画
-		/// </summary>
-		void stateDraw() const
-		{
-			m_boardState->draw();
-		}
+		/// <returns> 次の状態 </returns>
+		Optional<std::function<SecurityStatePtr()>> getNextStateFunc();
 
 	};
 }
