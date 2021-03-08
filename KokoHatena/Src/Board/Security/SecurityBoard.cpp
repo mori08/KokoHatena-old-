@@ -2,6 +2,7 @@
 #include "../../BoardShareData/BoardShareData.hpp"
 #include "../../Config/Config.hpp"
 #include "../../RecordManager/RecordManager.hpp"
+#include "../../BoardShareData/SecurityShareData/SecurityState/SecurityWaitState/SecurityWaitState.hpp"
 
 
 namespace Kokoha
@@ -9,30 +10,45 @@ namespace Kokoha
 	SecurityBoard::SecurityBoard(const Role& role)
 		: Board(role, U"Security", Config::get<Size>(U"Board.Security.size"))
 	{
-		
 	}
 
 
 	SecurityBoard::~SecurityBoard()
 	{
-		
+		m_state->closeProcess();
 	}
 
 
 	void SecurityBoard::inputInBoard(BoardShareData& shareData)
 	{
-		m_state.input();
+		if (!m_state)
+		{
+			m_state = std::make_unique<SecurityWaitState>();
+		}
+
+		if (auto nextStateFunc = shareData.m_securityData.getNextStateFunc())
+		{
+			m_state = std::move((nextStateFunc.value())());
+		}
+
+		Optional<Vec2> mouseUpPos = none;
+		if (mouseLeftDown()) { mouseUpPos = cursorPosFInBoard(); }
+		m_state->input(mouseUpPos);
 	}
 
 
 	void SecurityBoard::updateInBoard(BoardShareData& shareData)
 	{
-		m_state.update();
+		if (!m_state) { return; }
+
+		m_state->update();
 	}
 
 
 	void SecurityBoard::drawInBoard(const BoardShareData& shareData) const
 	{
-		m_state.draw();
+		if (!m_state) { return; }
+
+		m_state->draw();
 	}
 }

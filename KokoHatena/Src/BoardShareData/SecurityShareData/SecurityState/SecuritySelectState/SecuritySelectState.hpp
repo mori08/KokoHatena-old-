@@ -36,7 +36,7 @@ namespace Kokoha
 
 	private:
 
-		void input() override;
+		void input(Optional<Vec2>) override;
 
 		void update() override;
 

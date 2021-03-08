@@ -5,7 +5,7 @@
 
 namespace Kokoha
 {
-	void SecurityWaitState::input()
+	void SecurityWaitState::input(Optional<Vec2>)
 	{
 	}
 

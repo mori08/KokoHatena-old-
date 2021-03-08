@@ -14,7 +14,7 @@ namespace Kokoha
 	{
 	public:
 
-		void input() override;
+		void input(Optional<Vec2> mouseUpPos) override;
 
 		void update() override;
 

@@ -14,7 +14,7 @@ namespace Kokoha
 	private:
 
 		// ó‘Ô
-		SecurityState m_state;
+		std::unique_ptr<SecurityState> m_state;
 
 	public:
 

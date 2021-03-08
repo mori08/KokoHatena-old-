@@ -13,7 +13,7 @@ namespace Kokoha
 	}
 
 
-	void SecuritySelectState::input()
+	void SecuritySelectState::input(Optional<Vec2> mouseUpPos)
 	{
 
 	}
