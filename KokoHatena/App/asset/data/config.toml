@@ -54,6 +54,8 @@
         size = {x=300,y=120}
         [Board.Security.Wait]
             textPos = {x=150,y=50}
+        [Board.Security.Text]
+            textPos = {x=10,y=35}
         [Board.Security.Select]
             textPos = {x=10,y=35}
             yesButton  = {x=150,y=75,w=60,h=25}

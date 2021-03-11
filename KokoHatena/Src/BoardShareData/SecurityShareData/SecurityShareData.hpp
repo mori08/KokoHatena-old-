@@ -15,8 +15,9 @@ namespace Kokoha
 
 		enum class StateName
 		{
-			WAIT,
-			SELECT_ACCESS
+			WAIT,             // 待ち状態
+			SELECT_ACCESS,    // AccessBoardをダウンロードするかの選択
+			CANCEL_DOWNLOAD   // ダウンロードのキャンセル
 		};
 
 	private:
