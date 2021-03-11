@@ -4,6 +4,13 @@
 #include"../BoardSymbol/BoardSymbol.hpp"
 
 
+/*
+* shareDataが不完全な型なので
+* 派生クラスを作るときは
+* BoardShareData.hppをincludeする
+*/
+
+
 namespace Kokoha
 {
 	class BoardShareData;
@@ -118,12 +125,21 @@ namespace Kokoha
 		/// <summary>
 		/// マウスで左クリックしたか
 		/// </summary>
-		/// <returns></returns>
+		/// <returns> クリックしたとき true, そうでないとき false </returns>
 		bool mouseLeftDown() const
 		{
 			return MouseL.down() 
 				&& Rect(m_pos, m_size).mouseOver() 
 				&& (Cursor::PosF().y < Scene::Height() - BoardSymbol::height());
+		}
+
+		/// <summary>
+		/// マウスで左クリックしたか
+		/// </summary>
+		/// <returns> クリックしたとき true, そうでないとき false </returns>
+		bool mouseLeftDown(const Rect& rect) const
+		{
+			return mouseLeftDown() && rect.contains(cursorPosInBoard());
 		}
 
 		/// <summary>

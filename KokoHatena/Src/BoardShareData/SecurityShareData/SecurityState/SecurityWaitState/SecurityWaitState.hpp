@@ -16,7 +16,7 @@ namespace Kokoha
 
 		void input(Optional<Vec2> mouseUpPos) override;
 
-		void update() override;
+		void update(const Vec2& cursorPosInBoard) override;
 
 		void draw() const override;
 

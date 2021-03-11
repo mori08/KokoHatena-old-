@@ -24,6 +24,9 @@ namespace Kokoha
 		// noを選んだ時の処理
 		const std::function<void()> m_noFunc;
 
+		// カーソルの座標
+		Vec2 m_cursorPos;
+
 	public:
 
 		/// <summary>
@@ -32,15 +35,22 @@ namespace Kokoha
 		/// <param name="text"> Boardに表示する文 </param>
 		/// <param name="yesFunc"> yesを選んだ時の処理 </param>
 		/// <param name="noFunc"> noを選んだ時の処理 </param>
-		SecuritySelectState(const String& text, std::function<void()> yesFunc, std::function<void()> noFunc);
+		/// <param name="closeProcess"> 閉じたときの処理 </param>
+		SecuritySelectState(const String& text, const std::function<void()>& yesFunc, const std::function<void()>& noFunc, const std::function<void()>& closeProcess);
 
 	private:
 
 		void input(Optional<Vec2>) override;
 
-		void update() override;
+		void update(const Vec2& cursorPosInBoard) override;
 
 		void draw() const override;
+
+	private:
+
+		const Rect& yesButton() const;
+
+		const Rect& noButton() const;
 
 	};
 }

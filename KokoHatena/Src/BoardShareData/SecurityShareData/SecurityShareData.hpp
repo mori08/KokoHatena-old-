@@ -15,7 +15,8 @@ namespace Kokoha
 
 		enum class StateName
 		{
-			WAIT
+			WAIT,
+			SELECT_ACCESS
 		};
 
 	private:
@@ -25,6 +26,9 @@ namespace Kokoha
 
 		// 次の状態
 		Optional<std::function<SecurityStatePtr()>> m_nextStateFunc;
+
+		// 状態の固定(外部ボードからの)
+		bool m_changeAbleState;
 
 	public:
 		
@@ -38,6 +42,7 @@ namespace Kokoha
 		/// <param name="state"> 切り替え先の状態 </param>
 		void setState(const StateName& stateName)
 		{
+			if (!m_changeAbleState) { return; }
 			m_nextStateFunc = m_makeStateMap[stateName];
 		}
 
@@ -46,6 +51,23 @@ namespace Kokoha
 		/// </summary>
 		/// <returns> 次の状態 </returns>
 		Optional<std::function<SecurityStatePtr()>> getNextStateFunc();
+
+		/// <summary>
+		/// 外部からの状態遷移をロック
+		/// </summary>
+		void lockState()
+		{
+			m_changeAbleState = false;
+		}
+
+		/// <summary>
+		/// 状態を変更可能か
+		/// </summary>
+		/// <returns> 可能なとき true, そうでないとき false </returns>
+		bool changeAbleState() const
+		{
+			return m_changeAbleState;
+		}
 
 	};
 }

@@ -14,7 +14,7 @@ namespace Kokoha
 	}
 
 
-	void MessageBoard::inputInBoard(BoardShareData&)
+	void MessageBoard::inputInBoard(BoardShareData& shareData)
 	{
 		if (m_messageName)
 		{
@@ -22,7 +22,7 @@ namespace Kokoha
 		}
 		else
 		{
-			updateSelectMessage();
+			updateSelectMessage(shareData);
 		}
 	}
 
@@ -45,7 +45,7 @@ namespace Kokoha
 	}
 
 
-	void MessageBoard::updateSelectMessage()
+	void MessageBoard::updateSelectMessage(BoardShareData& shareData)
 	{
 		// 1つのメッセージに使う長方形のサイズ
 		static const Point ONE_MESSAGE_SIZE = Config::get<Point>(U"Board.Message.Select.oneMessageSize");
@@ -55,14 +55,18 @@ namespace Kokoha
 		{
 			if (name.getString() == U"Robot" && !readAbleRobotMessage()) { break; }
 
-			if (mouseLeftDown() && Rect(pos, ONE_MESSAGE_SIZE).contains(cursorPosInBoard()))
+			// 左クリックでメッセージ選択したとき
+			if (mouseLeftDown(Rect(pos, ONE_MESSAGE_SIZE)))
 			{
 				m_messageName = name.getString();
 				RecordManager::instance().setRecord(U"Message" + name.getString(), 1);
 
-				if (name.getString() == U"Robot")
+				// SecurityBoardを開く
+				if (name.getString() == U"Robot"&&shareData.m_securityData.changeAbleState())
 				{
-
+					shareData.m_securityData.setState(SecurityShareData::StateName::SELECT_ACCESS);
+					shareData.m_securityData.lockState();
+					shareData.addBoardStateChange(Board::Role::SECURITY, BoardShareData::BoardStateChange::OPEN);
 				}
 			}
 			pos.y += ONE_MESSAGE_SIZE.y;

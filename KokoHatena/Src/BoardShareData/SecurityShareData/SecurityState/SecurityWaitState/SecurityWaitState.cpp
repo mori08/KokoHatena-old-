@@ -9,14 +9,16 @@ namespace Kokoha
 	{
 	}
 
-	void SecurityWaitState::update()
+
+	void SecurityWaitState::update(const Vec2&)
 	{
 	}
+
 
 	void SecurityWaitState::draw() const
 	{
 		static const Point TEXT_POS = Config::get<Point>(U"Board.Security.Wait.textPos");
 
-		FontAsset(U"15")(U"‚±‚Ì’[––‚Í•ÛŒì‚³‚ê‚Ä‚¢‚Ü‚·D").drawAt(TEXT_POS);
+		FontAsset(U"15")(U"‚±‚Ì’[––‚Í•ÛŒì‚³‚ê‚Ä‚¢‚Ü‚·").drawAt(TEXT_POS);
 	}
 }

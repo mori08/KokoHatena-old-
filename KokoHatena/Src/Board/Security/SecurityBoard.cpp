@@ -41,7 +41,7 @@ namespace Kokoha
 	{
 		if (!m_state) { return; }
 
-		m_state->update();
+		m_state->update(cursorPosFInBoard());
 	}
 
 

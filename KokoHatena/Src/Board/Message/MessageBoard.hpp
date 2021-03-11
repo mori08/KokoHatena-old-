@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "../Board.hpp"
+#include "../../BoardShareData/BoardShareData.hpp"
 
 
 namespace Kokoha
@@ -37,7 +37,7 @@ namespace Kokoha
 		/// <summary>
 		/// メッセージを選ぶ画面での更新
 		/// </summary>
-		void updateSelectMessage();
+		void updateSelectMessage(BoardShareData& shareData);
 
 		/// <summary>
 		/// メッセージを選ぶ画面での描画

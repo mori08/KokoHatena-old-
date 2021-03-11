@@ -12,14 +12,29 @@ namespace Kokoha
 	/// </summary>
 	class SecurityState
 	{
+	private:
+
+		const std::function<void()> m_closeProcess;
+
 	public:
+
+		SecurityState()
+			: m_closeProcess([](){})
+		{}
+
+		SecurityState(const std::function<void()>& closeProcess)
+			: m_closeProcess(closeProcess)
+		{}
 
 		virtual ~SecurityState() {};
 
 		/// <summary>
 		/// ボードを閉じたときの処理
 		/// </summary>
-		virtual void closeProcess() {};
+		void closeProcess() const
+		{
+			m_closeProcess();
+		}
 
 		/// <summary>
 		/// ボードの入力処理
@@ -30,7 +45,8 @@ namespace Kokoha
 		/// <summary>
 		/// ボードの更新処理
 		/// </summary>
-		virtual void update() = 0;
+		/// <param name="mousePosInBoard"> ボードの内でのマウス座標 </param>
+		virtual void update(const Vec2& cursorPosInBoard) = 0;
 
 		/// <summary>
 		/// ボードの描画処理

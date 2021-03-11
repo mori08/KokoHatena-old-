@@ -25,10 +25,6 @@ name    = "MessageRobot"
 digit   = 1
 default = 0
 
-[[Record]]
-name    = "SecurityBoardOpened"
-digit   = 1
-default = 0
 [[Record]] # 添付ファイルをダウンロード済か
 name    = "SecurityDownloadAccess"
 digit   = 1
