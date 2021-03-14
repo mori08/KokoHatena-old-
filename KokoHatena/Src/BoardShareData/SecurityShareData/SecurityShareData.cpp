@@ -2,6 +2,7 @@
 #include "SecurityState/SecurityWaitState/SecurityWaitState.hpp"
 #include "SecurityState/SecurityTextState/SecurityTextState.hpp"
 #include "SecurityState/SecuritySelectState/SecuritySelectState.hpp"
+#include "SecurityState/SecurityLoadState/SecurityLoadState.hpp"
 
 
 namespace Kokoha
@@ -16,10 +17,18 @@ namespace Kokoha
 			return std::make_unique<SecuritySelectState>
 				(
 					U"Access.exeをダウンロードしますか？",
-					[]() {  }, // TODO Loading状態へ移行
+					[this]() { m_nextStateFunc = m_makeStateMap[StateName::DOWNLOAD_ACCESS]; },
 					[this]() { m_changeAbleState = true;  m_nextStateFunc = m_makeStateMap[StateName::CANCEL_DOWNLOAD]; },
 					[this]() { m_changeAbleState = true; }
 				);
+		};
+		m_makeStateMap[StateName::DOWNLOAD_ACCESS] = [this]() 
+		{ 
+			return std::make_unique<SecurityLoadState>
+				(
+					U"TestLoad",
+					[this]() { m_changeAbleState = true; }
+				); 
 		};
 		m_makeStateMap[StateName::CANCEL_DOWNLOAD] =
 			[]() { return std::make_unique<SecurityTextState>(U"ダウンロードをキャンセルしました．"); };

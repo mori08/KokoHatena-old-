@@ -17,6 +17,7 @@ namespace Kokoha
 		{
 			WAIT,             // 待ち状態
 			SELECT_ACCESS,    // AccessBoardをダウンロードするかの選択
+			DOWNLOAD_ACCESS,  // AccessBoardのロード
 			CANCEL_DOWNLOAD   // ダウンロードのキャンセル
 		};
 

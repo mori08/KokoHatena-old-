@@ -173,6 +173,9 @@
     <Filter Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityTextState">
       <UniqueIdentifier>{f1a608f3-103d-4748-b202-9c076eae4093}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityLoadState">
+      <UniqueIdentifier>{217f5e3c-9382-47c1-ad6f-d0d82c6cb775}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -528,6 +531,9 @@
     <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityTextState\SecurityTextState.cpp">
       <Filter>Src\BoardShareData\SecurityShareData\SecurityState\SecurityTextState</Filter>
     </ClCompile>
+    <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityLoadState\SecurityLoadState.cpp">
+      <Filter>Src\BoardShareData\SecurityShareData\SecurityState\SecurityLoadState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -607,6 +613,9 @@
     </ClInclude>
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityTextState\SecurityTextState.hpp">
       <Filter>Src\BoardShareData\SecurityShareData\SecurityState\SecurityTextState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityLoadState\SecurityLoadState.hpp">
+      <Filter>Src\BoardShareData\SecurityShareData\SecurityState\SecurityLoadState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

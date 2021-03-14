@@ -6,6 +6,10 @@
 
 namespace Kokoha
 {
+	/*
+	* SecutiryTextStateクラス
+	* 指定されたテキストを表示する状態
+	*/
 	class SecurityTextState : public SecurityState
 	{
 	private:
