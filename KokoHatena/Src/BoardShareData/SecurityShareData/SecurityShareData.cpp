@@ -27,6 +27,7 @@ namespace Kokoha
 			return std::make_unique<SecurityLoadState>
 				(
 					U"TestLoad",
+					[this]() { m_changeAbleState = true; /* // TODO // 他状態への移動とアクセルアプリのダウンロード*/ },
 					[this]() { m_changeAbleState = true; }
 				); 
 		};

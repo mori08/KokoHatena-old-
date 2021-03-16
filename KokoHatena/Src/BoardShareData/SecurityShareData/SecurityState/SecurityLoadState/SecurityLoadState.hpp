@@ -20,9 +20,6 @@ namespace Kokoha
 		// 終了後に行う処理
 		const std::function<void()> m_finishFunc;
 
-		// 途中でウィンドウを閉じられたときの処理
-		const std::function<void()> m_colseFunc;
-
 	private:
 
 		// 進捗状況(0 -> 1)
@@ -30,7 +27,7 @@ namespace Kokoha
 
 	public:
 
-		SecurityLoadState(const String& text, const std::function<void()>& finishFunc);
+		SecurityLoadState(const String& text, const std::function<void()>& finishFunc, const std::function<void()>& closeFunc);
 
 	private:
 

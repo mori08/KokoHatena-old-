@@ -57,11 +57,12 @@
         [Board.Security.Text]
             textPos = {x=10,y=35}
         [Board.Security.Load]
-            textPos = {x=10,y=35}
+            textPos = {x=10,y=45}
             [Board.Security.Load.ProgressBar]
                 range = {init = -0.2, max = 1.4}
-                pos = {x=10,y=75}
+                pos = {x=10,y=80}
                 length = 280
+                width = 10
                 speed = 0.2
         [Board.Security.Select]
             textPos = {x=10,y=35}
