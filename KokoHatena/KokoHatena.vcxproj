@@ -239,6 +239,7 @@
     <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityTextState\SecurityTextState.cpp" />
     <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState\SecurityWaitState.cpp" />
     <ClCompile Include="Src\BoardSymbol\BoardSymbol.cpp" />
+    <ClCompile Include="Src\Board\Access\AccessBoard.cpp" />
     <ClCompile Include="Src\Board\Board.cpp" />
     <ClCompile Include="Src\Board\Message\MessageBoard.cpp" />
     <ClCompile Include="Src\Board\Security\SecurityBoard.cpp" />
@@ -260,6 +261,7 @@
     <ClCompile Include="Src\SliceTexture\SliceTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\AccessShareData.hpp" />
     <ClInclude Include="Src\BoardShareData\BoardShareData.hpp" />
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityShareData.hpp" />
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityLoadState\SecurityLoadState.hpp" />
@@ -268,6 +270,7 @@
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityTextState\SecurityTextState.hpp" />
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityState\SecurityWaitState\SecurityWaitState.hpp" />
     <ClInclude Include="Src\BoardSymbol\BoardSymbol.hpp" />
+    <ClInclude Include="Src\Board\Access\AccessBoard.hpp" />
     <ClInclude Include="Src\Board\Board.hpp" />
     <ClInclude Include="Src\Board\Message\MessageBoard.hpp" />
     <ClInclude Include="Src\Board\Security\SecurityBoard.hpp" />

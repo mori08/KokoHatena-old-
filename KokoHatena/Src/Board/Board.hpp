@@ -28,10 +28,11 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			TEST1,   // テスト1
-			TEST2,   // テスト2
-			MAIL,    // メール
-			SECURITY // セキュリティ
+			TEST1,    // テスト1
+			TEST2,    // テスト2
+			MAIL,     // メール
+			SECURITY, // セキュリティ
+			ACCESS    // アクセス(パズルアクション部分)
 		};
 
 		/// <summary>

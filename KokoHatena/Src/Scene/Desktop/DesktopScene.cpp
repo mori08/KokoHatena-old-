@@ -2,6 +2,7 @@
 #include "../../Board/Test/TestBoard.hpp"
 #include "../../Board/Message/MessageBoard.hpp"
 #include "../../Board/Security/SecurityBoard.hpp"
+#include "../../Board/Access/AccessBoard.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
 
 
@@ -10,10 +11,9 @@ namespace Kokoha
 	DesktopScene::DesktopScene(const InitData& init)
 		: IScene(init)
 	{
-		registerBoard<TestBoard>(Board::Role::TEST1, 0);
-		registerBoard<TestBoard>(Board::Role::TEST2, 0);
 		registerBoard<MessageBoard>(Board::Role::MAIL, 1);
 		registerBoard<SecurityBoard>(Board::Role::SECURITY, 4);
+		registerBoard<AccessBoard>(Board::Role::ACCESS, 5);
 	}
 
 
