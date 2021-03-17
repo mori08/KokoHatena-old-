@@ -27,12 +27,14 @@ namespace Kokoha
 			return std::make_unique<SecurityLoadState>
 				(
 					U"TestLoad",
-					[this]() { m_changeAbleState = true; /* // TODO // 他状態への移動とアクセルアプリのダウンロード*/ },
+					[this]() { m_changeAbleState = true; m_nextStateFunc = m_makeStateMap[StateName::COMPLETE_DOWNLOAD]; },
 					[this]() { m_changeAbleState = true; }
 				); 
 		};
 		m_makeStateMap[StateName::CANCEL_DOWNLOAD] =
 			[]() { return std::make_unique<SecurityTextState>(U"ダウンロードをキャンセルしました．"); };
+		m_makeStateMap[StateName::COMPLETE_DOWNLOAD] = 
+			[]() { return std::make_unique<SecurityTextState>(U"ダウンロードが完了しました．"); };
 	}
 
 	
