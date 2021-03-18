@@ -182,6 +182,9 @@
     <Filter Include="Src\BoardShareData\AccessShareData">
       <UniqueIdentifier>{feed1d2b-9ffe-4027-a372-a8412aac036d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\StageData">
+      <UniqueIdentifier>{00181604-4108-484f-8ef3-d09c299bad4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -543,6 +546,8 @@
     <ClCompile Include="Src\Board\Access\AccessBoard.cpp">
       <Filter>Src\Board\Access</Filter>
     </ClCompile>
+    <ClCompile Include="Src\BoardShareData\AccessShareData\AccessShareData.cpp" />
+    <ClCompile Include="Src\BoardShareData\AccessShareData\StageData\StageData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -631,6 +636,9 @@
     </ClInclude>
     <ClInclude Include="Src\BoardShareData\AccessShareData\AccessShareData.hpp">
       <Filter>Src\BoardShareData\AccessShareData</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\StageData\StageData.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\StageData</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
