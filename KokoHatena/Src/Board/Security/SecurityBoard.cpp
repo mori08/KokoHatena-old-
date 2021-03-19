@@ -37,7 +37,7 @@ namespace Kokoha
 	}
 
 
-	void SecurityBoard::updateInBoard(BoardShareData& shareData)
+	void SecurityBoard::updateInBoard(BoardShareData&)
 	{
 		if (!m_state) { return; }
 

@@ -1,9 +1,15 @@
 ﻿
+[ D ]
+   0 < [Date]
+
 [ M ]
-   1 < [MessageBoss]
-   1 < [MessageDoctor]
-   1 < [MessageFriend]
+   0 < [MessageBoss]
+   0 < [MessageDoctor]
+   0 < [MessageFriend]
    0 < [MessageRobot]
+
+[ S ]
+   0 < [SecurityDownloadAccess]
 
 [ T ]
    0 < [TestFlag]

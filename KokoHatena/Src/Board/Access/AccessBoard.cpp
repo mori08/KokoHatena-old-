@@ -9,17 +9,18 @@ namespace Kokoha
 	}
 
 
-	void AccessBoard::inputInBoard(BoardShareData& shareData)
+	void AccessBoard::inputInBoard(BoardShareData&)
 	{
 	}
 
 
-	void AccessBoard::updateInBoard(BoardShareData& shareData)
+	void AccessBoard::updateInBoard(BoardShareData&)
 	{
 	}
 
 
 	void AccessBoard::drawInBoard(const BoardShareData& shareData) const
 	{
+		shareData.m_accessData.draw();
 	}
 }

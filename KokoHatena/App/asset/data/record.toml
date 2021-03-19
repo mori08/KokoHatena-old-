@@ -7,6 +7,13 @@ name    = "TestValue"
 digit   = 3
 default = 5
 
+
+[[Record]] # ゲーム内の日付
+name    = "Date"
+digit   = 5
+default = 0
+
+
 # MessageBoardについて
 [[Record]] # メッセージ[博士]
 name    = "MessageDoctor"

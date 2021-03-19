@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Siv3D.hpp>
+#include "StageData/StageData.hpp"
 
 
 namespace Kokoha
@@ -12,13 +12,35 @@ namespace Kokoha
 	/// </summary>
 	class AccessShareData
 	{
+	private:
+
+		// 地形・経路のデータ
+		StageData m_stageData;
+
+		// レンダーテクスチャ
+		const MSRenderTexture m_render;
+
 	public:
 
-		
+		AccessShareData();
 
 	public:
 
+		/// <summary>
+		/// ステージデータを記述したファイルの読み込み
+		/// </summary>
+		/// <returns> エラーメッセージ </returns>
+		Optional<String> load();
 
+		/// <summary>
+		/// 更新
+		/// </summary>
+		void update();
+
+		/// <summary>
+		/// 描画
+		/// </summary>
+		void draw() const;
 
 	};
 }

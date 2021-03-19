@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include<Siv3D.hpp>
+#include "../BoardShareData/BoardShareData.hpp"
 
 
 // シーンの名前
@@ -18,7 +18,8 @@ enum class SceneName
 // シーンで共有されるデータ
 struct ShareData
 {
-
+	// Board間の共有データ
+	Kokoha::BoardShareData boardShareData;
 };
 
 // シーン管理クラス

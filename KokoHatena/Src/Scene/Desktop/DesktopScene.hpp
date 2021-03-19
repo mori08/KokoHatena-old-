@@ -23,9 +23,6 @@ namespace Kokoha
 
 	private:
 
-		// Board間の共有データ
-		BoardShareData m_boardShareData;
-
 		// 表示中のボードのリスト
 		BoardPtrList m_boardList;
 

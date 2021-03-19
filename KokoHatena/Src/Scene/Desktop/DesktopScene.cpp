@@ -30,7 +30,7 @@ namespace Kokoha
 		if (!m_boardList.empty())
 		{
 			// 先頭のBoardの入力処理
-			(*m_boardList.begin())->input(m_boardShareData);
+			(*m_boardList.begin())->input(getData().boardShareData);
 		}
 
 		// 各BoardSymbolの更新
@@ -59,7 +59,7 @@ namespace Kokoha
 		// 各Boardの更新
 		for (auto boardItr = m_boardList.begin(); boardItr != m_boardList.end();)
 		{
-			auto stateChange = (*boardItr)->update(m_boardShareData);
+			auto stateChange = (*boardItr)->update(getData().boardShareData);
 
 			// ボードの削除
 			if (stateChange == Board::StateChange::CLOSE) { boardItr = eraseBoard(boardItr); continue; }
@@ -94,12 +94,12 @@ namespace Kokoha
 
 		for (auto boardItr = m_boardList.rbegin(); boardItr != m_boardList.rend(); ++boardItr)
 		{
-			(*boardItr)->draw(m_boardShareData);
+			(*boardItr)->draw(getData().boardShareData);
 		}
 
 		for (const auto& boardPtr : m_erasingBoardList)
 		{
-			boardPtr->draw(m_boardShareData);
+			boardPtr->draw(getData().boardShareData);
 		}
 
 		Rect(getTaskbarPos(), Scene::Width(), BoardSymbol::height()).draw(TASKBAR_COLOR);
@@ -225,7 +225,7 @@ namespace Kokoha
 
 	void DesktopScene::boardStateChangeFromShareData()
 	{
-		while (auto boardStateChange = m_boardShareData.getBoardStateChange())
+		while (auto boardStateChange = getData().boardShareData.getBoardStateChange())
 		{
 			
 			if (boardStateChange->second == BoardShareData::BoardStateChange::OPEN) // ボードを開く

@@ -4,6 +4,7 @@
 #include<Siv3D.hpp>
 #include "../Board/Board.hpp"
 #include"SecurityShareData/SecurityShareData.hpp"
+#include"AccessShareData/AccessShareData.hpp"
 
 
 namespace Kokoha
@@ -31,7 +32,10 @@ namespace Kokoha
 	public:
 
 		// SecurityBoardの状態に関する共有データ
-		SecurityShareData m_securityData;		
+		SecurityShareData m_securityData;
+
+		// AccessBoardの状態に関する共有データ
+		AccessShareData m_accessData;
 
 	public:
 

@@ -546,8 +546,12 @@
     <ClCompile Include="Src\Board\Access\AccessBoard.cpp">
       <Filter>Src\Board\Access</Filter>
     </ClCompile>
-    <ClCompile Include="Src\BoardShareData\AccessShareData\AccessShareData.cpp" />
-    <ClCompile Include="Src\BoardShareData\AccessShareData\StageData\StageData.cpp" />
+    <ClCompile Include="Src\BoardShareData\AccessShareData\AccessShareData.cpp">
+      <Filter>Src\BoardShareData\AccessShareData</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\BoardShareData\AccessShareData\StageData\StageData.cpp">
+      <Filter>Src\BoardShareData\AccessShareData\StageData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
