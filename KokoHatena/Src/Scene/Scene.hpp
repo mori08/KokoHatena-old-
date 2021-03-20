@@ -11,6 +11,7 @@ enum class SceneName
 
 	TEST_LOAD,   // ロードシーンのテスト
 	RECORD_LOAD, // レコードのロード
+	DESKTOP_LOAD, // デスクトップのロード
 
 	DESKTOP      // デスクトップ
 };

@@ -14,8 +14,17 @@ namespace Kokoha
 	}
 
 
+	void AccessShareData::init()
+	{
+		m_stageData.init();
+	}
+
+
 	Optional<String> AccessShareData::load()
 	{
+		// ‰Šú‰»
+		init();
+
 		// “ú•t
 		const int32 date = RecordManager::instance().getRecord(U"Date");
 

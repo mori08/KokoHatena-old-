@@ -44,6 +44,11 @@ namespace Kokoha
 	public:
 
 		/// <summary>
+		/// LoadDesktopSceneでのRecordの内容に応じた初期化
+		/// </summary>
+		void load();
+
+		/// <summary>
 		/// ボードの状態変更をリストに追加
 		/// </summary>
 		/// <param name="role"> ボードの種類 </param>

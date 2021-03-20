@@ -27,6 +27,11 @@ namespace Kokoha
 	public:
 
 		/// <summary>
+		/// 初期化
+		/// </summary>
+		void init();
+
+		/// <summary>
 		/// ステージデータを記述したファイルの読み込み
 		/// </summary>
 		/// <returns> エラーメッセージ </returns>

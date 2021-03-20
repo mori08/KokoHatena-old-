@@ -9,6 +9,12 @@ namespace Kokoha
 	}
 
 
+	void BoardShareData::load()
+	{
+		m_accessData.load();
+	}
+
+
 	void BoardShareData::addBoardStateChange(Board::Role role, BoardStateChange stateChange)
 	{
 		m_boardStateChangeList.emplace_back(role, stateChange);

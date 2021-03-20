@@ -255,6 +255,7 @@
     <ClCompile Include="Src\RecordManager\RecordManager.cpp" />
     <ClCompile Include="Src\RecordManager\Record\Record.cpp" />
     <ClCompile Include="Src\Scene\Desktop\DesktopScene.cpp" />
+    <ClCompile Include="Src\Scene\Load\Desktop\LoadDesktopScene.cpp" />
     <ClCompile Include="Src\Scene\Load\LoadScene.cpp" />
     <ClCompile Include="Src\Scene\Load\Record\LoadRecordScene.cpp" />
     <ClCompile Include="Src\Scene\Load\TestLoad\TestLoadScene.cpp" />
@@ -286,6 +287,7 @@
     <ClInclude Include="Src\RecordManager\RecordManager.hpp" />
     <ClInclude Include="Src\RecordManager\Record\Record.hpp" />
     <ClInclude Include="Src\Scene\Desktop\DesktopScene.hpp" />
+    <ClInclude Include="Src\Scene\Load\Desktop\LoadDesktopScene.hpp" />
     <ClInclude Include="Src\Scene\Load\LoadScene.hpp" />
     <ClInclude Include="Src\Scene\Load\Record\LoadRecordScene.hpp" />
     <ClInclude Include="Src\Scene\Load\TestLoad\TestLoadScene.hpp" />

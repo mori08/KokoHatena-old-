@@ -86,8 +86,8 @@
 
 [LoadScene]
     textPos = {x=690,y=530}
-
-[LoadRecordScene]
+        
+[LoadDesktopScene]
     textDrawPos = {x=410,y=410}
     loadingCircle = {x=350.0,y=410.0,r=8.0}
     loadingArcThickness = 1.5
@@ -95,7 +95,7 @@
     smallCircleNum = 8
     logoSize = {x=180,y=180}
 
-    [LoadRecordScene.LogoAnim]
+    [LoadDesktopScene.LogoAnim]
         posOrder = [
             {t=0.04,x=0,y=0},
             {t=0.04,x=1,y=0},

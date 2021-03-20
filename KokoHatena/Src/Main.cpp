@@ -8,6 +8,7 @@
 #include "Scene/Title/TitleScene.hpp"
 #include "Scene/Load/TestLoad/TestLoadScene.hpp"
 #include "Scene/Load/Record/LoadRecordScene.hpp"
+#include "Scene/Load/Desktop/LoadDesktopScene.hpp"
 #include "Scene/Desktop/DesktopScene.hpp"
 
 
@@ -31,10 +32,11 @@ void Main()
 
 	// シーン
 	MyApp sceneManager;
-	sceneManager.add<Kokoha::TitleScene>     (SceneName::TITLE);
-	sceneManager.add<Kokoha::TestLoadScene>  (SceneName::TEST_LOAD);
-	sceneManager.add<Kokoha::LoadRecordScene>(SceneName::RECORD_LOAD);
-	sceneManager.add<Kokoha::DesktopScene>   (SceneName::DESKTOP);
+	sceneManager.add<Kokoha::TitleScene>      (SceneName::TITLE);
+	sceneManager.add<Kokoha::TestLoadScene>   (SceneName::TEST_LOAD);
+	sceneManager.add<Kokoha::LoadRecordScene> (SceneName::RECORD_LOAD);
+	sceneManager.add<Kokoha::LoadDesktopScene>(SceneName::DESKTOP_LOAD);
+	sceneManager.add<Kokoha::DesktopScene>    (SceneName::DESKTOP);
 
 	while (System::Update())
 	{

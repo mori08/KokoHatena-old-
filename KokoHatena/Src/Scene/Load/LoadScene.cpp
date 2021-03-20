@@ -13,6 +13,11 @@ namespace Kokoha
 	}
 
 
+	LoadScene::LoadScene(const InitData& init)
+		: IScene(init)
+	{
+	}
+
 	LoadScene::~LoadScene()
 	{
 	}
@@ -61,6 +66,13 @@ namespace Kokoha
 
 	void LoadScene::subUpdate()
 	{
+	}
+
+
+	void LoadScene::setLoadThread(std::function<SceneName()> loadFunc)
+	{
+		// スレッドの開始
+		m_loadThread = std::async(std::launch::async, loadFunc);
 	}
 
 }

@@ -22,6 +22,12 @@ namespace Kokoha
 
 		LoadScene(const InitData& init, std::function<SceneName()> loadFunc);
 
+		/// <remarks>
+		/// こちら側のコンストラクタを使用する場合
+		/// 必ずsetLoadThreadで関数を設定すること
+		/// </remarks>
+		LoadScene(const InitData& init);
+
 		virtual ~LoadScene();
 
 	private:
@@ -34,12 +40,18 @@ namespace Kokoha
 
 		void drawFadeOut(double) const override;
 
-	private:
+	protected:
 
 		/// <summary>
 		/// 演出用の更新
 		/// </summary>
 		virtual void subUpdate();
+
+		/// <summary>
+		/// スレッドに関数の設定
+		/// </summary>
+		/// <param name="loadFunc"> 関数 </param>
+		void setLoadThread(std::function<SceneName()> loadFunc);
 
 	};
 }

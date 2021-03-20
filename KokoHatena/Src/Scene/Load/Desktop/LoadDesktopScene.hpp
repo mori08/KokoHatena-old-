@@ -8,16 +8,18 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// LoadRecordSceneクラス
-	/// RecordManagerにRecordを読み込む
+	/// LoadDesktopSceneクラス
+	/// Recordの内容に応じてboardShareDataを初期化
 	/// </summary>
-	class LoadRecordScene : public LoadScene
+	class LoadDesktopScene : public LoadScene
 	{
 	private:
 
+		SliceTexture m_boardLogo;
+
 	public:
 
-		LoadRecordScene(const InitData init);
+		LoadDesktopScene(const InitData& init);
 
 	private:
 
