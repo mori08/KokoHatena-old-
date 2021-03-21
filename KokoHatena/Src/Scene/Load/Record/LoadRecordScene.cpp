@@ -1,5 +1,6 @@
 #include "LoadRecordScene.hpp"
 #include "../../../RecordManager/RecordManager.hpp"
+#include "../../../Config/Config.hpp"
 
 
 namespace Kokoha
@@ -34,7 +35,9 @@ namespace Kokoha
 
 	void LoadRecordScene::draw() const
 	{
-		
+		static const Point TEXT_POS = Config::get<Point>(U"LoadRecordScene.textPos");
+
+		FontAsset(U"15")(U"セーブデータを確認中" + String(U"...").substr()).draw(TEXT_POS);
 	}
 
 
