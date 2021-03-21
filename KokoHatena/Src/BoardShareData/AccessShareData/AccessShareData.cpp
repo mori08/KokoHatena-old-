@@ -65,6 +65,12 @@ namespace Kokoha
 
 	void AccessShareData::update()
 	{
+		m_lightList.clear();
+
+		static Point pos(1,1);
+		pos += Point(KeyD.pressed() - KeyA.pressed(), KeyS.pressed() - KeyW.pressed());
+
+		m_lightList.emplace_back(Circle(pos, 100), Vec2::Zero(), 0);
 	}
 
 
@@ -93,6 +99,11 @@ namespace Kokoha
 #endif // _DEBUG
 
 			m_stageData.draw();
+
+			for (const auto& light : m_lightList)
+			{
+				light.draw(m_stageData);
+			}
 		}
 		Graphics2D::Flush();
 		m_render.resolve();

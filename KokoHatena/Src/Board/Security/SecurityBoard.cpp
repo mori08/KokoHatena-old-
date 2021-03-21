@@ -45,7 +45,7 @@ namespace Kokoha
 	}
 
 
-	void SecurityBoard::drawInBoard(const BoardShareData& shareData) const
+	void SecurityBoard::drawInBoard(const BoardShareData&) const
 	{
 		if (!m_state) { return; }
 

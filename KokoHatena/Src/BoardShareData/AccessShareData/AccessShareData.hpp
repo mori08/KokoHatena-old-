@@ -2,6 +2,7 @@
 
 
 #include "StageData/StageData.hpp"
+#include "Light/AccessLight.hpp"
 
 
 namespace Kokoha
@@ -19,6 +20,9 @@ namespace Kokoha
 
 		// レンダーテクスチャ
 		const MSRenderTexture m_render;
+
+		// 光のリスト
+		std::list<AccessLight> m_lightList;
 
 	public:
 
@@ -46,6 +50,14 @@ namespace Kokoha
 		/// 描画
 		/// </summary>
 		void draw() const;
+
+		/// <summary>
+		/// 光を描画する
+		/// </summary>
+		/// <param name="circle"> 光 </param>
+		/// <param name="direction"> 向き </param>
+		/// <param name="cosin"> 視野[-1,1] -1以下なら全範囲, 1以上なら光なし </param>
+		void drawLight(const Circle& circle,Vec2& direction,double cosin) const;
 
 	};
 }

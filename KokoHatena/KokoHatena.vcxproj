@@ -233,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\BoardShareData\AccessShareData\AccessShareData.cpp" />
+    <ClCompile Include="Src\BoardShareData\AccessShareData\Light\AccessLight.cpp" />
     <ClCompile Include="Src\BoardShareData\AccessShareData\StageData\StageData.cpp" />
     <ClCompile Include="Src\BoardShareData\BoardShareData.cpp" />
     <ClCompile Include="Src\BoardShareData\SecurityShareData\SecurityShareData.cpp" />
@@ -265,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\BoardShareData\AccessShareData\AccessShareData.hpp" />
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Light\AccessLight.hpp" />
     <ClInclude Include="Src\BoardShareData\AccessShareData\StageData\StageData.hpp" />
     <ClInclude Include="Src\BoardShareData\BoardShareData.hpp" />
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityShareData.hpp" />

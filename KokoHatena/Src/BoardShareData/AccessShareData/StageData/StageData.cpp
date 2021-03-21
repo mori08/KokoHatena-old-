@@ -12,14 +12,6 @@ namespace
 
 namespace Kokoha
 {
-    bool StageData::isWalkAble(const Point& square) const
-    {
-        if (square.x < 0 || square.x >= WIDTH) { return false; }
-        if (square.y < 0 || square.y >= HEIGHT) { return false; }
-        return !m_terrain[squareToInteger(square)];
-    }
-
-
     Vec2 StageData::getPath(const Vec2& pixelS, const Vec2& pixelT) const
     {
 		// Œo˜H’Tõ‚ğs‚¤Å’Z‹——£

@@ -188,6 +188,9 @@
     <Filter Include="Src\Scene\Load\Desktop">
       <UniqueIdentifier>{a58fbc6d-2052-473c-91e4-de855fc9e182}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Light">
+      <UniqueIdentifier>{e9eb38ed-3fa0-488a-9122-93fc878b12e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -558,6 +561,9 @@
     <ClCompile Include="Src\Scene\Load\Desktop\LoadDesktopScene.cpp">
       <Filter>Src\Scene\Load\Desktop</Filter>
     </ClCompile>
+    <ClCompile Include="Src\BoardShareData\AccessShareData\Light\AccessLight.cpp">
+      <Filter>Src\BoardShareData\AccessShareData\Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -652,6 +658,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\Load\Desktop\LoadDesktopScene.hpp">
       <Filter>Src\Scene\Load\Desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Light\AccessLight.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\Light</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

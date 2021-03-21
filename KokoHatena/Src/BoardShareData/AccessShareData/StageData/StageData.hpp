@@ -113,13 +113,40 @@ namespace Kokoha
 	public:
 
 		/// <summary>
+		/// 指定されたマス座標がステージ内にあるか
+		/// </summary>
+		/// <param name="square"> マス座標 </param>
+		/// <returns>
+		/// ステージ内であるとき true , それ以外のとき false
+		/// </returns>
+		bool isInBoard(const Point& square) const
+		{
+			return square.x >= 0 && square.x < WIDTH && square.y >= 0 && square.y < HEIGHT;
+		}
+
+		/// <summary>
+		/// 指定されたマス座標がステージ内にあるか
+		/// </summary>
+		/// <param name="square"> ピクセル座標 </param>
+		/// <returns>
+		/// ステージ内であるとき true , それ以外のとき false
+		/// </returns>
+		bool isInBoard(const Vec2& pixel) const
+		{
+			return pixel.x >= 0 && pixel.x < WIDTH&& pixel.y >= 0 && pixel.y < HEIGHT;
+		}
+
+		/// <summary>
 		/// 指定されたマス座標が行動可能か
 		/// </summary>
 		/// <param name="square"> マス座標 </param>
 		/// <returns>
 		/// ステージ外であるときや障害物があるとき false , それ以外のとき true
 		/// </returns>
-		bool isWalkAble(const Point& square) const;
+		bool isWalkAble(const Point& square) const
+		{
+			return isInBoard(square) && !m_terrain[squareToInteger(square)];
+		}
 
 		/// <summary>
 		/// 指定されたピクセル座標が行動可能か

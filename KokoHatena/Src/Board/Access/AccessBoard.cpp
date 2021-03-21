@@ -14,8 +14,9 @@ namespace Kokoha
 	}
 
 
-	void AccessBoard::updateInBoard(BoardShareData&)
+	void AccessBoard::updateInBoard(BoardShareData& shareData)
 	{
+		shareData.m_accessData.update();
 	}
 
 
