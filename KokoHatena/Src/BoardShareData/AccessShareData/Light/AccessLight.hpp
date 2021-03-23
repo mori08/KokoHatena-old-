@@ -18,18 +18,33 @@ namespace Kokoha
 		Circle m_circle;
 
 		// 方向
-		Vec2 m_direction;
+		double m_direction;
 
-		// 範囲(余弦)
-		double m_cosin;
+		// 範囲
+		double m_angle;
 
 	public:
 
-		AccessLight(const Circle& circle, const Vec2& direction, double cosin);
+		AccessLight(const Circle& circle, double direction, double angle);
 
 	public:
 
 		void draw(const StageData& stageData) const;
+
+	private:
+
+		/// <summary>
+		/// 初期の光の座標を設定
+		/// </summary>
+		/// <param name="lightPosList"> 光を示す座標リスト </param>
+		void setInitLightPos(std::list<Vec2>& lightPosList) const;
+
+		/// <summary>
+		/// 影の部分を設定
+		/// </summary>
+		/// <param name="lightPosList"> 光を示す座標リスト </param>
+		/// <param name="rect"> 影をつくる長方形 </param>
+		void setShadow(std::list<Vec2>& lightPosList,const RectF& rect) const;
 
 	};
 }

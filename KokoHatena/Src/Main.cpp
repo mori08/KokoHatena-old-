@@ -42,7 +42,7 @@ void Main()
 	{
 		sceneManager.update();
 
-		Kokoha::showFPS();
+		//Kokoha::showFPS();
 		Kokoha::RecordManager::instance().writeDebugText();
 	}
 }

@@ -105,6 +105,26 @@ namespace Kokoha
 	}
 
 	/// <summary>
+	/// 長方形の頂点リストを取得
+	/// </summary>
+	/// <param name="rect"> 長方形 </param>
+	/// <returns> 頂点リスト </returns>
+	inline const Array<Vec2> getRectNode(const RectF& rect)
+	{
+		return { rect.tl(),rect.tr(),rect.br(),rect.bl() };
+	}
+
+	/// <summary>
+	/// 長方形の辺リストを取得
+	/// </summary>
+	/// <param name="rect"> 長方形 </param>
+	/// <returns> 頂点リスト </returns>
+	inline const Array<Line> getRectEdge(const RectF& rect)
+	{
+		return { rect.top(),rect.right(),rect.bottom(),rect.left() };
+	}
+
+	/// <summary>
 	/// 長方形内にある格子点のリストの取得
 	/// </summary>
 	/// <param name="rect"> 長方形 </param>

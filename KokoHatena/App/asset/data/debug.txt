@@ -1,6 +1,6 @@
 ﻿
 [ D ]
-   0 < [Date]
+   1 < [Date]
 
 [ M ]
    0 < [MessageBoss]

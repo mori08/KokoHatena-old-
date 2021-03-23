@@ -93,6 +93,18 @@ namespace Kokoha
 	}
 
 	template<>
+	inline Line Config::get(const String& name)
+	{
+		return Line
+		(
+			instance().m_toml[name][U"x1"].get<double>(),
+			instance().m_toml[name][U"y1"].get<double>(),
+			instance().m_toml[name][U"x2"].get<double>(),
+			instance().m_toml[name][U"y2"].get<double>()
+		);
+	}
+
+	template<>
 	inline Animation Config::get(const String& name)
 	{
 		PosOrder posOrder;

@@ -73,6 +73,8 @@
         size = {x=600,y=480}
         [Board.Access.Stage]
             minLength = 2.0
+        [Board.Access.Light]
+            stage = {x=-10,y=-10,w=620,h=470}
 
 [BoardSymbol]
     height = 60

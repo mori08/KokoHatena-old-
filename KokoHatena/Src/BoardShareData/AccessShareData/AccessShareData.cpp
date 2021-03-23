@@ -66,11 +66,17 @@ namespace Kokoha
 	void AccessShareData::update()
 	{
 		m_lightList.clear();
-
-		static Point pos(1,1);
+		static double direction = 0.2 * Math::Pi;
+		static double goalDire = 0.2 * Math::Pi;
+		internalDividingPoint(direction, goalDire, 0.1);
+		static Point pos(230,140);
+		goalDire += 0.1 * Math::Pi * Mouse::Wheel();
 		pos += Point(KeyD.pressed() - KeyA.pressed(), KeyS.pressed() - KeyW.pressed());
 
-		m_lightList.emplace_back(Circle(pos, 100), Vec2::Zero(), 0);
+		static double direction2 = 0;
+
+		m_lightList.emplace_back(Circle(pos, 100), direction, Math::Pi / 6);
+		m_lightList.emplace_back(Circle(570, 390, 100), Scene::Time() , Math::Pi / 8);
 	}
 
 
@@ -89,7 +95,7 @@ namespace Kokoha
 			// デバッグ時に薄い明りとマスを示す線を描画
 			if (debugMode)
 			{
-				Scene::Rect().draw(Color(MyWhite, 0x40));
+				Scene::Rect().draw(Color(MyWhite, 0x20));
 				for (int32 i = 0; i < StageData::N; ++i)
 				{
 					const Point square = StageData::integerToSquare(i);
