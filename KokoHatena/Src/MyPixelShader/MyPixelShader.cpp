@@ -17,6 +17,12 @@ namespace Kokoha
 			std::move(PixelShader(U"asset/shader/TitleLogoShader.hlsl", { { U"PSConstants2D", 0 }, { U"Shift", 1 } }))
 		);
 		
+		instance().m_shaderMap.try_emplace
+		(
+			Type::ACCESS_LIGHT,
+			std::move(PixelShader(U"asset/shader/AccessLight.hlsl", { { U"PSConstants2D", 0 }, { U"Light", 1 } }))
+		);
+
 		for (const auto& itr : instance().m_shaderMap)
 		{
 			if (!itr.second)

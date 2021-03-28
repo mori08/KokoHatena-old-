@@ -1,6 +1,7 @@
 #include "AccessLight.hpp"
 #include "../../../MyLibrary/MyLibrary.hpp"
 #include "../../../Config/Config.hpp"
+#include "../../../MyPixelShader/MyPixelShader.hpp"
 
 
 namespace
@@ -9,6 +10,17 @@ namespace
 	constexpr double ENOUGH_LENGTH = 1e4;
 	// 十分短い長さ 障害物の隙間を埋めるための長さ
 	constexpr double EPSILON = 1e-2;
+
+	/// <summary>
+	/// 光についての定数バッファ(PS_1)
+	/// </summary>
+	struct Light
+	{
+		Float4 g_color;  // 色
+		Float2 g_center; // 中心
+		float  g_r;      // 半径
+		float  g_blur;   // ぼかし
+	};
 }
 
 
@@ -24,15 +36,18 @@ namespace Kokoha
 
 	void AccessLight::draw(const StageData& stageData) const
 	{
+		// 光の不透明度
+		static double ALPHA = Config::get<double>(U"Board.Access.Light.alpha");
+		// 光のぼかし
+		static float BLUR = Config::get<float>(U"Board.Access.Light.blur");
+
 		if (!stageData.isWalkAble(m_circle.center)) { return; }
 
-		// 光を示す座標
+		// 光の設定
 		std::list<Vec2> lightPosList;
-		
 		setInitLightPos(lightPosList);
 
-		ClearPrint();
-
+		// 影の設定
 		for (int32 i = 0; i < StageData::N; ++i)
 		{
 			const Point square = stageData.integerToSquare(i);
@@ -40,14 +55,27 @@ namespace Kokoha
 			setShadow(lightPosList, RectF(StageData::SQUARE_SIZE * square, StageData::SQUARE_SIZE * Vec2::One()));
 		}
 
-		Circle(m_circle.center, 5).draw(Palette::White);
-
+		// listをArrayに変換
 		Array<Vec2> posAry;
 		for (const auto& pos : lightPosList)
 		{
 			posAry.emplace_back(pos);
 		}
-		Polygon(posAry).draw(ColorF(MyWhite, 0.6));
+
+		{
+			// 定数バッファの設定
+			ConstantBuffer<Light> cb;
+			cb->g_color  = ColorF(MyWhite, ALPHA).rgba();
+			cb->g_center = m_circle.center;
+			cb->g_r      = static_cast<float>(m_circle.r);
+			cb->g_blur   = BLUR;
+			Graphics2D::SetConstantBuffer(ShaderStage::Pixel, 1, cb);
+			// シェーダの開始
+			ScopedCustomShader2D shader(MyPixelShader::get(MyPixelShader::Type::ACCESS_LIGHT));
+
+			// 光の描画
+			Polygon(posAry).draw();
+		}
 	}
 
 

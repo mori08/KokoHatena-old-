@@ -75,8 +75,8 @@ namespace Kokoha
 
 		static double direction2 = 0;
 
-		m_lightList.emplace_back(Circle(pos, 100), direction, Math::Pi / 6);
-		m_lightList.emplace_back(Circle(570, 390, 100), Scene::Time() , Math::Pi / 8);
+		m_lightList.emplace_back(Circle(pos, 200), direction, Math::Pi / 6);
+		//m_lightList.emplace_back(Circle(570,420, 400), 2*Scene::Time(), Math::Pi / 6);
 	}
 
 

@@ -20,7 +20,8 @@ namespace Kokoha
 		enum class Type
 		{
 			BOARD_SYMBOL,
-			TITLE_LOGO
+			TITLE_LOGO,
+			ACCESS_LIGHT
 		};
 
 	private:
