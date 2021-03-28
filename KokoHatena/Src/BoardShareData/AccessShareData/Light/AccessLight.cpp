@@ -48,11 +48,16 @@ namespace Kokoha
 		setInitLightPos(lightPosList);
 
 		// ‰e‚Ìİ’è
-		for (int32 i = 0; i < StageData::N; ++i)
+		Point beginPos = StageData::pixelToSquare(m_circle.center - m_circle.r*Vec2::One());
+		Point endPos   = StageData::pixelToSquare(m_circle.center + m_circle.r*Vec2::One());
+		for (int32 x = Max(beginPos.x, 0); x <= Min(endPos.x, StageData::WIDTH - 1); ++x)
 		{
-			const Point square = stageData.integerToSquare(i);
-			if (stageData.isWalkAble(square)) { continue; }
-			setShadow(lightPosList, RectF(StageData::SQUARE_SIZE * square, StageData::SQUARE_SIZE * Vec2::One()));
+			for (int32 y = Max(beginPos.y, 0); y <= Min(endPos.y, StageData::HEIGHT - 1); ++y)
+			{
+				const Point square = Point(x, y);
+				if (stageData.isWalkAble(square)) { continue; }
+				setShadow(lightPosList, RectF(StageData::SQUARE_SIZE * square, StageData::SQUARE_SIZE * Vec2::One()));
+			}
 		}
 
 		// list‚ğArray‚É•ÏŠ·
