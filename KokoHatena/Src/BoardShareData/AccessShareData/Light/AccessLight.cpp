@@ -43,21 +43,21 @@ namespace Kokoha
 
 		if (!stageData.isWalkAble(m_circle.center)) { return; }
 
+		// Œõ‚ğ’·•ûŒ`‚Å‹ß—
+		Quad lightQuad =
+			RectF(0, -(m_circle.r + BLUR) * Sin(m_angle), (m_circle.r + BLUR), 2 * (m_circle.r + BLUR) * Sin(m_angle))
+			.rotatedAt(Vec2::Zero(), m_direction)
+			.moveBy(m_circle.center);
+
 		// Œõ‚Ìİ’è
 		std::list<Vec2> lightPosList;
 		setInitLightPos(lightPosList);
 
 		// ‰e‚Ìİ’è
-		Point beginPos = StageData::pixelToSquare(m_circle.center - m_circle.r*Vec2::One());
-		Point endPos   = StageData::pixelToSquare(m_circle.center + m_circle.r*Vec2::One());
-		for (int32 x = Max(beginPos.x, 0); x <= Min(endPos.x, StageData::WIDTH - 1); ++x)
+		for (const auto& block : stageData.getBlockList())
 		{
-			for (int32 y = Max(beginPos.y, 0); y <= Min(endPos.y, StageData::HEIGHT - 1); ++y)
-			{
-				const Point square = Point(x, y);
-				if (stageData.isWalkAble(square)) { continue; }
-				setShadow(lightPosList, RectF(StageData::SQUARE_SIZE * square, StageData::SQUARE_SIZE * Vec2::One()));
-			}
+			if (!block.intersects(lightQuad)) { continue; }
+			setShadow(lightPosList, block);
 		}
 
 		// list‚ğArray‚É•ÏŠ·

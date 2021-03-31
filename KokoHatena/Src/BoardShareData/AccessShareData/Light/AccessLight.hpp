@@ -23,6 +23,9 @@ namespace Kokoha
 		// ”ÍˆÍ
 		double m_angle;
 
+		// F
+		// TODO
+
 	public:
 
 		AccessLight(const Circle& circle, double direction, double angle);

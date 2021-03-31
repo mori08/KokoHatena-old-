@@ -51,13 +51,5 @@ namespace Kokoha
 		/// </summary>
 		void draw() const;
 
-		/// <summary>
-		/// Œõ‚ğ•`‰æ‚·‚é
-		/// </summary>
-		/// <param name="circle"> Œõ </param>
-		/// <param name="direction"> Œü‚« </param>
-		/// <param name="cosin"> ‹–ì[-1,1] -1ˆÈ‰º‚È‚ç‘S”ÍˆÍ, 1ˆÈã‚È‚çŒõ‚È‚µ </param>
-		void drawLight(const Circle& circle,Vec2& direction,double cosin) const;
-
 	};
 }

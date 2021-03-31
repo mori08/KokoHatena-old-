@@ -29,6 +29,9 @@ namespace Kokoha
 
 		// 地形 trueのとき障害物あり
 		std::array<bool, N> m_terrain;
+		
+		// 地形のリスト(AccessLightで使用)
+		Array<Rect> m_blockList;
 
 		// [i][j] : i -> j への最短経路(単位ベクトル)
 		std::array<std::array<Vec2, N>, N> m_path;
@@ -181,6 +184,14 @@ namespace Kokoha
 		double getDistance(const Vec2& pixelS, const Vec2& pixelT)const;
 
 		/// <summary>
+		/// 障害物(影計算用にまとめたもの)のリストを取得
+		/// </summary>
+		const Array<Rect>& getBlockList() const
+		{
+			return m_blockList;
+		}
+
+		/// <summary>
 		/// 初期化
 		/// </summary>
 		void init();
@@ -203,6 +214,16 @@ namespace Kokoha
 		/// 必ずLoadSceneの派生クラスを使って別スレッドで処理する.
 		/// </remarks>
 		void searchPath();
+
+		/// <summary>
+		/// 障害物を少数の長方形にまとめめる
+		/// </summary>
+		/// <remarks>
+		/// ※ 注意 ※
+		/// O(N^3)かかる処理
+		/// 必ずLoadSceneの派生クラスを使って別スレッドで処理する.
+		/// </remarks>
+		void makeBlockList();
 
 		/// <summary>
 		/// 地形の描画

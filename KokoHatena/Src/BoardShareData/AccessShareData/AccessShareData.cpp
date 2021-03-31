@@ -59,6 +59,9 @@ namespace Kokoha
 		// 経路探索
 		m_stageData.searchPath();
 
+		// 障害物のまとめ
+		m_stageData.makeBlockList();
+
 		return none;
 	}
 
@@ -72,6 +75,7 @@ namespace Kokoha
 		static Point pos(230,140);
 		goalDire += 0.1 * Math::Pi * Mouse::Wheel();
 		pos += Point(KeyD.pressed() - KeyA.pressed(), KeyS.pressed() - KeyW.pressed());
+		pos += Point(KeyRight.up() - KeyLeft.up(), KeyDown.up() - KeyUp.up());
 
 		static double direction2 = 0;
 
@@ -87,22 +91,6 @@ namespace Kokoha
 		m_render.clear(MyBlack);
 		{
 			ScopedRenderTarget2D target(m_render);
-
-#ifdef _DEBUG
-			static bool debugMode = true;
-			debugMode ^= Key0.up();
-
-			// デバッグ時に薄い明りとマスを示す線を描画
-			if (debugMode)
-			{
-				Scene::Rect().draw(Color(MyWhite, 0x20));
-				for (int32 i = 0; i < StageData::N; ++i)
-				{
-					const Point square = StageData::integerToSquare(i);
-					Rect(StageData::SQUARE_SIZE * square, StageData::SQUARE_SIZE).drawFrame(1, MyBlack);
-				}
-			}
-#endif // _DEBUG
 
 			m_stageData.draw();
 

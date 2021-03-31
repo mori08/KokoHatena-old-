@@ -52,6 +52,7 @@ namespace Kokoha
 		{
 			m_terrain[i] = false;
 		}
+		m_blockList.clear();
 	}
 
 
@@ -86,14 +87,75 @@ namespace Kokoha
 	}
 
 
+	void StageData::makeBlockList()
+	{
+		Array<Array<int32>> isChecked(WIDTH, Array<int32>(HEIGHT, 0));
+
+		for (int32 i = 0; i < N; ++i)
+		{
+			// 左上の座標
+			Point p = integerToSquare(i);
+			if (isWalkAble(p) || isChecked[p.x][p.y]) { continue; }
+
+			// サイズ
+			Size s = Size::One();
+			while (p.x + s.x < WIDTH && !isWalkAble(Point(p.x + s.x, p.y))) { s.x++; }
+			while (p.y + s.y < HEIGHT)
+			{
+				bool flag = true;
+				for (int32 x = p.x; x < p.x + s.x; ++x)
+				{
+					if (isWalkAble(Point(x, p.y + s.y))) { flag = false; break; }
+				}
+				if (!flag) { break; }
+				s.y++;
+			}
+
+			m_blockList.emplace_back(p * SQUARE_SIZE, s * SQUARE_SIZE);
+
+			// チェックリストの更新
+			for (const auto& square : getGridPoint(Rect(p, s - Point::One())))
+			{
+				isChecked[square.x][square.y] = 1;
+			}
+		}
+	}
+
+
 	void StageData::draw() const
 	{
+#ifdef _DEBUG
+		static bool debugMode = true;
+		debugMode ^= Key0.up();
+
+		// デバッグ時に薄い明りとマスを示す線を描画
+		if (debugMode)
+		{
+			Scene::Rect().draw(Color(MyWhite, 0x20));
+			for (int32 i = 0; i < StageData::N; ++i)
+			{
+				const Point square = StageData::integerToSquare(i);
+				Rect(StageData::SQUARE_SIZE * square, StageData::SQUARE_SIZE).drawFrame(1, MyBlack);
+			}
+		}
+#endif // _DEBUG
+
 		for (int32 i = 0; i < N; ++i)
 		{
 			const Point square = integerToSquare(i);
 			if (isWalkAble(square)) { continue; }
 			Rect(SQUARE_SIZE * square, SQUARE_SIZE).draw(MyBlack);
 		}
+
+#ifdef _DEBUG
+
+		if (debugMode)
+		{
+			if (m_blockList.empty()) { return; }
+			m_blockList[(int32)(Scene::Time()) % m_blockList.size()].drawFrame(1, Palette::Aqua);
+			FontAsset(U"15")(ToString((int32)(Scene::Time()) % m_blockList.size())).drawAt(m_blockList[(int32)(Scene::Time()) % m_blockList.size()].center(), Palette::Aqua);
+		}
+#endif // _DEBUG
 	}
 
 
