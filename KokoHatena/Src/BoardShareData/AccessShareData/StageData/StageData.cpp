@@ -99,13 +99,13 @@ namespace Kokoha
 
 			// ÉTÉCÉY
 			Size s = Size::One();
-			while (p.x + s.x < WIDTH && !isWalkAble(Point(p.x + s.x, p.y))) { s.x++; }
+			while (p.x + s.x < WIDTH && !isWalkAble(Point(p.x + s.x, p.y)) && !isChecked[p.x + s.x][p.y]) { s.x++; }
 			while (p.y + s.y < HEIGHT)
 			{
 				bool flag = true;
 				for (int32 x = p.x; x < p.x + s.x; ++x)
 				{
-					if (isWalkAble(Point(x, p.y + s.y))) { flag = false; break; }
+					if (isWalkAble(Point(x, p.y + s.y))||isChecked[x][p.y + s.y]) { flag = false; break; }
 				}
 				if (!flag) { break; }
 				s.y++;

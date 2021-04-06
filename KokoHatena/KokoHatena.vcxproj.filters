@@ -191,6 +191,18 @@
     <Filter Include="Src\BoardShareData\AccessShareData\Light">
       <UniqueIdentifier>{e9eb38ed-3fa0-488a-9122-93fc878b12e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Light\Polar">
+      <UniqueIdentifier>{ecfbc8cc-13ce-456f-9bff-ecc3db7c86d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarAngle">
+      <UniqueIdentifier>{ebd118a2-b2a4-4fea-b34d-8e9e1cf65047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPos">
+      <UniqueIdentifier>{8616f67a-7b8a-4f1c-81d4-980005f78c39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair">
+      <UniqueIdentifier>{d0458d3e-dac2-42ef-b2fa-50f4018f4f6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -664,6 +676,15 @@
     </ClInclude>
     <ClInclude Include="Src\BoardShareData\AccessShareData\Light\AccessLight.hpp">
       <Filter>Src\BoardShareData\AccessShareData\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarAngle\PolarAngle.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\Light\Polar\PolarAngle</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPos\PolarPos.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\Light\Polar\PolarPos</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair\PolarPair.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\Light\Polar\PolarPair</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

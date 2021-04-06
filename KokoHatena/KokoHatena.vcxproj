@@ -267,6 +267,9 @@
   <ItemGroup>
     <ClInclude Include="Src\BoardShareData\AccessShareData\AccessShareData.hpp" />
     <ClInclude Include="Src\BoardShareData\AccessShareData\Light\AccessLight.hpp" />
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarAngle\PolarAngle.hpp" />
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair\PolarPair.hpp" />
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPos\PolarPos.hpp" />
     <ClInclude Include="Src\BoardShareData\AccessShareData\StageData\StageData.hpp" />
     <ClInclude Include="Src\BoardShareData\BoardShareData.hpp" />
     <ClInclude Include="Src\BoardShareData\SecurityShareData\SecurityShareData.hpp" />
