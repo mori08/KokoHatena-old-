@@ -203,6 +203,12 @@
     <Filter Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair">
       <UniqueIdentifier>{d0458d3e-dac2-42ef-b2fa-50f4018f4f6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Object">
+      <UniqueIdentifier>{a47d1933-9f6a-454d-a261-000f8e959f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Object\Type">
+      <UniqueIdentifier>{24a3a63c-5d18-4f1d-9716-4c8eab827b47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -585,6 +591,9 @@
     <ClCompile Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair\PolarPair.cpp">
       <Filter>Src\BoardShareData\AccessShareData\Light\Polar\PolarPair</Filter>
     </ClCompile>
+    <ClCompile Include="Src\BoardShareData\AccessShareData\Object\Type\AccessObjectType.cpp">
+      <Filter>Src\BoardShareData\AccessShareData\Object\Type</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -691,6 +700,12 @@
     </ClInclude>
     <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair\PolarPair.hpp">
       <Filter>Src\BoardShareData\AccessShareData\Light\Polar\PolarPair</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Object\AccessObject.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Object\Type\AccessObjectType.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\Object\Type</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
