@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../PolarAngle/PolarAngle.hpp"
-#include "../../../../../MyLibrary/MyLibrary.hpp"
 
 
 namespace Kokoha
@@ -29,6 +28,12 @@ namespace Kokoha
 			, m_distance(distance)
 		{
 		}
+
+		/// <summary>
+		/// 直交座標から極座標への変換
+		/// </summary>
+		/// <param name="pos"> 直交座標 </param>
+		PolarPos(const Vec2& pos);
 
 	public:
 
@@ -58,10 +63,16 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="center"> 中心座標 </param>
 		/// <returns> 直交座標 </returns>
-		Vec2 toOrthogonalPos(const Vec2& center)const
-		{
-			return std::move(center + m_distance * angleToVec(m_angle));
-		}
+		Vec2 toOrthogonalPos(const Vec2& center)const;
+
+		/// <summary>
+		/// 2つの極座標を通る直線
+		/// </summary>
+		/// <param name="p1"> 極座標1 </param>
+		/// <param name="p2"> 極座標2 </param>
+		/// <param name="angle"> 角度 </param>
+		/// <returns> 指定した角度での直線との距離 交点がないなら none </returns>
+		static Optional<double> twoVecToLine(const PolarPos& p1, const PolarPos& p2, double angle);
 
 	};
 }

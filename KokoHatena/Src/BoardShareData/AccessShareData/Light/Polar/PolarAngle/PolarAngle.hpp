@@ -16,7 +16,7 @@ namespace Kokoha
 	private:
 
 		// Šp“x”äŠr—p‚Ì’è”
-		static const int32 ANGLE_COMP = 1e5;
+		static const int32 ANGLE_COMP = (int32)1e5;
 
 	public:
 

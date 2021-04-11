@@ -2,6 +2,7 @@
 
 
 #include "../StageData/StageData.hpp"
+#include "Polar/PolarPair/PolarPair.hpp"
 
 
 namespace Kokoha
@@ -23,9 +24,6 @@ namespace Kokoha
 		// 範囲
 		double m_angle;
 
-		// 色
-		// TODO
-
 	public:
 
 		AccessLight(const Circle& circle, double direction, double angle);
@@ -37,17 +35,23 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// 初期の光の座標を設定
+		/// 初期の光の座標の設定
 		/// </summary>
-		/// <param name="lightPosList"> 光を示す座標リスト </param>
-		void setInitLightPos(std::list<Vec2>& lightPosList) const;
+		/// <param name="lightPosMap"> 光を示す座標 </param>
+		void setInitLightPos(std::set<PolarPair>& lightPosSet) const;
 
 		/// <summary>
 		/// 影の部分を設定
 		/// </summary>
-		/// <param name="lightPosList"> 光を示す座標リスト </param>
+		/// <param name="lightPosSet"> 光を示す極座標リスト </param>
 		/// <param name="rect"> 影をつくる長方形 </param>
-		void setShadow(std::list<Vec2>& lightPosList,const RectF& rect) const;
+		void setShadow(std::set<PolarPair>& lightPosSet, const RectF& rect) const;
+
+		/// <summary>
+		/// 光を描画
+		/// </summary>
+		/// <param name="lightPosSet"></param>
+		void drawLight(const std::set<PolarPair>& lightPosSet)const;
 
 	};
 }

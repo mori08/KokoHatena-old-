@@ -579,6 +579,12 @@
     <ClCompile Include="Src\BoardShareData\AccessShareData\Light\AccessLight.cpp">
       <Filter>Src\BoardShareData\AccessShareData\Light</Filter>
     </ClCompile>
+    <ClCompile Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPos\PolarPos.cpp">
+      <Filter>Src\BoardShareData\AccessShareData\Light\Polar\PolarPos</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair\PolarPair.cpp">
+      <Filter>Src\BoardShareData\AccessShareData\Light\Polar\PolarPair</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">

@@ -71,16 +71,16 @@ namespace Kokoha
 		m_lightList.clear();
 		static double direction = 0.2 * Math::Pi;
 		static double goalDire = 0.2 * Math::Pi;
+		static double angle = Math::Pi / 6;
 		internalDividingPoint(direction, goalDire, 0.1);
-		static Point pos(230,140);
+		angle += (KeyQ.up() - KeyE.up()) * 0.1 * Math::Pi;
+		angle = Clamp(angle, 0.0, Math::Pi);
+		static Point pos(1,1);
 		goalDire += 0.1 * Math::Pi * Mouse::Wheel();
 		pos += Point(KeyD.pressed() - KeyA.pressed(), KeyS.pressed() - KeyW.pressed());
 		pos += Point(KeyRight.up() - KeyLeft.up(), KeyDown.up() - KeyUp.up());
 
-		static double direction2 = 0;
-
-		m_lightList.emplace_back(Circle(pos, 200), direction, Math::Pi / 6);
-		//m_lightList.emplace_back(Circle(570,420, 400), 2*Scene::Time(), Math::Pi / 6);
+		m_lightList.emplace_back(Circle(pos, 200), direction, angle);
 	}
 
 

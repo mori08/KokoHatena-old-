@@ -138,11 +138,39 @@ namespace Kokoha
 	/// <returns> 単位ベクトル </returns>
 	/// <remarks>
 	/// 0(rad)をベクトル(1,0)に対応させ，
-	/// 反時計回りを正の方向とする
+	/// 時計回りを正の方向とする
 	/// </remarks>
 	inline constexpr Vec2 angleToVec(double angle)
 	{
 		return std::move(Vec2(Cos(angle), Sin(angle)));
+	}
+
+	/// <summary>
+	/// 2ベクトルがなす角度を取得
+	/// </summary>
+	/// <param name="v1"> ベクトル1 </param>
+	/// <param name="v2"> ベクトル2 </param>
+	/// <returns> 角度(rad) [-Pi,Pi) </returns>
+	/// <remarks>
+	/// ベクトル1を基準にして時計回りを正として計算
+	/// </remarks>
+	inline double twoVecToAngle(Vec2 v1, Vec2 v2)
+	{
+		v1.normalize(); v2.normalize();
+		return Acos(Clamp(v1.dot(v2), -1.0, 1.0)) * (v1.x * v2.y - v1.y * v2.x > 0 ? 1 : -1);
+	}
+
+	/// <summary>
+	/// ベクトルがx軸となす角度を取得
+	/// </summary>
+	/// <param name="v"> ベクトル </param>
+	/// <returns> 角度(rad) [-Pi,Pi) </returns>
+	/// <remarks>
+	/// ベクトル1を基準にして時計回りを正として計算
+	/// </remarks>
+	inline double vecToAngle(const Vec2& v)
+	{
+		return twoVecToAngle(Vec2(1, 0), v);
 	}
 
 }
