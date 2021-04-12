@@ -209,6 +209,9 @@
     <Filter Include="Src\BoardShareData\AccessShareData\Object\Type">
       <UniqueIdentifier>{24a3a63c-5d18-4f1d-9716-4c8eab827b47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Object\Test">
+      <UniqueIdentifier>{8136c319-cc78-43df-bd1b-3ef667f7449e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -594,6 +597,9 @@
     <ClCompile Include="Src\BoardShareData\AccessShareData\Object\Type\AccessObjectType.cpp">
       <Filter>Src\BoardShareData\AccessShareData\Object\Type</Filter>
     </ClCompile>
+    <ClCompile Include="Src\BoardShareData\AccessShareData\Object\Test\TestObject.cpp">
+      <Filter>Src\BoardShareData\AccessShareData\Object\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -706,6 +712,9 @@
     </ClInclude>
     <ClInclude Include="Src\BoardShareData\AccessShareData\Object\Type\AccessObjectType.hpp">
       <Filter>Src\BoardShareData\AccessShareData\Object\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Object\Test\TestObject.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\Object\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

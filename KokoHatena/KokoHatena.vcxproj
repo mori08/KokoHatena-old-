@@ -236,6 +236,7 @@
     <ClCompile Include="Src\BoardShareData\AccessShareData\Light\AccessLight.cpp" />
     <ClCompile Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair\PolarPair.cpp" />
     <ClCompile Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPos\PolarPos.cpp" />
+    <ClCompile Include="Src\BoardShareData\AccessShareData\Object\Test\TestObject.cpp" />
     <ClCompile Include="Src\BoardShareData\AccessShareData\Object\Type\AccessObjectType.cpp" />
     <ClCompile Include="Src\BoardShareData\AccessShareData\StageData\StageData.cpp" />
     <ClCompile Include="Src\BoardShareData\BoardShareData.cpp" />
@@ -274,6 +275,7 @@
     <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPair\PolarPair.hpp" />
     <ClInclude Include="Src\BoardShareData\AccessShareData\Light\Polar\PolarPos\PolarPos.hpp" />
     <ClInclude Include="Src\BoardShareData\AccessShareData\Object\AccessObject.hpp" />
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Object\Test\TestObject.hpp" />
     <ClInclude Include="Src\BoardShareData\AccessShareData\Object\Type\AccessObjectType.hpp" />
     <ClInclude Include="Src\BoardShareData\AccessShareData\StageData\StageData.hpp" />
     <ClInclude Include="Src\BoardShareData\BoardShareData.hpp" />

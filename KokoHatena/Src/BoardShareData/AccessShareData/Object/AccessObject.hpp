@@ -14,7 +14,7 @@ namespace Kokoha
 	/// </summary>
 	class AccessObject
 	{
-	private:
+	protected:
 
 		// 位置と判定用の範囲
 		Circle m_body;
@@ -30,11 +30,13 @@ namespace Kokoha
 		{
 		}
 
+		virtual ~AccessObject() {}
+
 		/// <summary>
 		/// 入力
 		/// </summary>
 		/// <param name="cursorPos"> カーソルの座標 </param>
-		virtual void input(const Vec2& cursorPos) {}
+		virtual void input(const Vec2&) {}
 
 		/// <summary>
 		/// 更新
@@ -88,4 +90,6 @@ namespace Kokoha
 		}
 
 	};
+
+	using AccessObjectPtr = std::unique_ptr<AccessObject>;
 }

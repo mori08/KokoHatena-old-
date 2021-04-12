@@ -3,6 +3,7 @@
 #include "../../Config/Config.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
 
+#include "Object/Test/TestObject.hpp"
 
 namespace Kokoha
 {
@@ -10,13 +11,15 @@ namespace Kokoha
 	AccessShareData::AccessShareData()
 		: m_render(640, 450)
 	{
-
+		setMakeObjectFunc<TestObject>(U"test");
 	}
 
 
 	void AccessShareData::init()
 	{
 		m_stageData.init();
+		m_lightList.clear();
+		m_objectList.clear();
 	}
 
 
@@ -62,25 +65,34 @@ namespace Kokoha
 		// 障害物のまとめ
 		m_stageData.makeBlockList();
 
+		// オブジェクトの追加
+		TOMLReader objToml(U"asset/data/stage/object.toml");
+		for (const auto& objData : objToml[U"Date" + ToString(date) + U".obj"].tableArrayView())
+		{
+			const String name = objData[U"type"].getString();
+			const Vec2 pos = StageData::squareToPixel(Point(objData[U"pos.x"].get<int32>(), objData[U"pos.y"].get<int32>()));
+			m_objectList.emplace_back(m_makeObjectFuncMap[name](pos));	
+		}
 		return none;
+	}
+
+
+	void AccessShareData::input(const Vec2& cursorPos)
+	{
+		for (auto& obj : m_objectList)
+		{
+			obj->input(cursorPos);
+		}
 	}
 
 
 	void AccessShareData::update()
 	{
 		m_lightList.clear();
-		static double direction = 0.2 * Math::Pi;
-		static double goalDire = 0.2 * Math::Pi;
-		static double angle = Math::Pi / 6;
-		internalDividingPoint(direction, goalDire, 0.1);
-		angle += (KeyQ.up() - KeyE.up()) * 0.1 * Math::Pi;
-		angle = Clamp(angle, 0.0, Math::Pi);
-		static Point pos(1,1);
-		goalDire += 0.1 * Math::Pi * Mouse::Wheel();
-		pos += Point(KeyD.pressed() - KeyA.pressed(), KeyS.pressed() - KeyW.pressed());
-		pos += Point(KeyRight.up() - KeyLeft.up(), KeyDown.up() - KeyUp.up());
-
-		m_lightList.emplace_back(Circle(pos, 200), direction, angle);
+		for (auto& obj : m_objectList)
+		{
+			obj->update(*this);
+		}
 	}
 
 
@@ -97,6 +109,11 @@ namespace Kokoha
 			for (const auto& light : m_lightList)
 			{
 				light.draw(m_stageData);
+			}
+
+			for (const auto& obj : m_objectList)
+			{
+				obj->draw();
 			}
 		}
 		Graphics2D::Flush();
