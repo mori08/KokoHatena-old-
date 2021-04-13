@@ -89,6 +89,34 @@ namespace Kokoha
 			return (m_type & type) ? Optional<Vec2>(m_body.center) : Optional<Vec2>(none);
 		}
 
+	protected:
+
+		/// <summary>
+		/// オブジェクトを移動
+		/// </summary>
+		/// <param name="movement"> 移動量 </param>
+		/// <param name="shareData"> AccessShareData </param>
+		/// <returns> 実際に移動した移動量 </returns>
+		Vec2 walk(Vec2 movement, const AccessShareData& shareData);
+
+		/// <summary>
+		/// オブジェクトを目的地へ移動
+		/// </summary>
+		/// <param name="speed"> 速さ </param>
+		/// <param name="goal"> 目的地 </param>
+		/// <param name="shareData"> AccessShareData </param>
+		/// <returns> 実際に移動した移動量 </returns>
+		Vec2 walkToGoal(double speed, const Vec2& goal, const AccessShareData& shareData);
+
+		/// <summary>
+		/// 道の真ん中を通ってオブジェクトを目的地へ移動
+		/// </summary>
+		/// <param name="speed"> 速さ </param>
+		/// <param name="goal"> 目的地 </param>
+		/// <param name="shareData"> AccessShareData </param>
+		/// <returns> 実際に移動した移動量 </returns>
+		Vec2 walkToGoalThroughCenter(double speed, const Vec2& goal, const AccessShareData& shareData);
+
 	};
 
 	using AccessObjectPtr = std::unique_ptr<AccessObject>;

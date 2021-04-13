@@ -79,9 +79,11 @@ namespace Kokoha
 
 	void AccessShareData::input(const Vec2& cursorPos)
 	{
+		static const int32 BOARD_HEIGHT = Config::get<int32>(U"Board.controlFrameHeight");
+
 		for (auto& obj : m_objectList)
 		{
-			obj->input(cursorPos);
+			obj->input(cursorPos + Vec2(0, BOARD_HEIGHT));
 		}
 	}
 

@@ -9,8 +9,9 @@ namespace Kokoha
 	}
 
 
-	void AccessBoard::inputInBoard(BoardShareData&)
+	void AccessBoard::inputInBoard(BoardShareData& shareData)
 	{
+		shareData.m_accessData.input(cursorPosFInBoard());
 	}
 
 

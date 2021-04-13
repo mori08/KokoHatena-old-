@@ -46,11 +46,11 @@ namespace Kokoha
 
 		// 光を長方形で近似
 		Quad lightQuad =
-			(m_angle < Math::HalfPi 
-			? RectF(0, -m_circle.r * Sin(m_angle), m_circle.r, 2 * m_circle.r * Sin(m_angle))
-			: RectF(m_circle.r*Cos(m_angle), -m_circle.r, m_circle.r*(1-Cos(m_angle)), 2 * m_circle.r)
-			).rotatedAt(Vec2::Zero(), m_direction).moveBy(m_circle.center);
-		
+			(m_angle < Math::HalfPi
+				? RectF(0, -m_circle.r * Sin(m_angle), m_circle.r, 2 * m_circle.r * Sin(m_angle))
+				: RectF(m_circle.r * Cos(m_angle), -m_circle.r, m_circle.r * (1 - Cos(m_angle)), 2 * m_circle.r)
+				).rotatedAt(Vec2::Zero(), m_direction).moveBy(m_circle.center);
+
 		// 光の極座標リスト
 		std::set<PolarPair> lightPosSet;
 
@@ -111,7 +111,7 @@ namespace Kokoha
 			if (shadowPosSet.count(shadowPos))
 			{
 				auto itr = shadowPosSet.find(shadowPos);
-				shadowPos.posPair.first .setR(itr->posPair.first.r());
+				shadowPos.posPair.first.setR(itr->posPair.first.r());
 				shadowPos.posPair.second.setR(itr->posPair.second.r());
 				shadowPosSet.erase(itr);
 			}
@@ -132,11 +132,11 @@ namespace Kokoha
 		// 光の形を影に合わせて変更
 		auto lightItr = lightPosSet.begin();
 		auto shadowItr = shadowPosSet.begin();
-		std::pair<double, double> lightPre (lightItr->m_angle , lightItr->posPair.first.r());
+		std::pair<double, double> lightPre(lightItr->m_angle, lightItr->posPair.first.r());
 		std::pair<double, double> shadowPre(shadowItr->m_angle, shadowItr->posPair.first.r());
 		while (lightItr != lightPosSet.end() && shadowItr != shadowPosSet.end())
 		{
-			PolarPos lightPrePos (lightPre.first,  lightPre.second);
+			PolarPos lightPrePos(lightPre.first, lightPre.second);
 			PolarPos shadowPrePos(shadowPre.first, shadowPre.second);
 
 			if (*lightItr < *shadowItr)
@@ -151,7 +151,7 @@ namespace Kokoha
 
 				auto crossR = PolarPos::twoVecToLine(shadowItr->posPair.first, shadowPrePos, lightItr->m_angle);
 				if (!crossR) { ++lightItr; continue; }
-				
+
 				if (crossR.value() > lightItr->posPair.first.r() && crossR.value() > lightItr->posPair.second.r())
 				{
 					++lightItr; continue;
@@ -165,7 +165,7 @@ namespace Kokoha
 				PolarPair newPolar(*lightItr);
 				newPolar.posPair.first.setR(crossR.value());
 				newPolar.posPair.second.setR(crossR.value());
-				lightItr = lightPosSet.erase(lightItr); 
+				lightItr = lightPosSet.erase(lightItr);
 				lightPosSet.emplace(newPolar);
 				continue;
 			}
@@ -199,9 +199,9 @@ namespace Kokoha
 			shadowPre = { shadowItr->m_angle,shadowItr->posPair.second.r() };
 
 			PolarPair newPolar(*lightItr);
-			newPolar.posPair.first .setR(shadowItr->posPair.first .r());
+			newPolar.posPair.first.setR(shadowItr->posPair.first.r());
 			newPolar.posPair.second.setR(shadowItr->posPair.second.r());
-			
+
 			lightItr = lightPosSet.erase(lightItr);
 			++shadowItr;
 			lightPosSet.emplace(newPolar);
@@ -213,62 +213,30 @@ namespace Kokoha
 	{
 		if (lightPosSet.empty()) { return; }
 
-		static bool debugMode = true;
-		if (KeySpace.down()) { debugMode = !debugMode; }
-
-		if (debugMode)
+		Array<Vec2> posAry;
+		for (const auto& polar : lightPosSet)
 		{
-			Vec2 pre = lightPosSet.begin()->posPair.first.toOrthogonalPos(m_circle.center);
-
-			for (const auto& polar : lightPosSet)
-			{
-				Line(pre, polar.posPair.first.toOrthogonalPos(m_circle.center))
-					.drawArrow(6, Vec2(10, 20), Palette::Red);
-
-				Circle(polar.posPair.first.toOrthogonalPos(m_circle.center), 4).draw(Palette::Red);
-
-				if (Abs(polar.posPair.first.r() - polar.posPair.second.r()) < 0.1)
-				{
-					Circle(polar.posPair.first.toOrthogonalPos(m_circle.center), 8).drawFrame(2, Palette::Red);
-				}
-				else
-				{
-					Line
-					(
-						polar.posPair.first.toOrthogonalPos(m_circle.center),
-						polar.posPair.second.toOrthogonalPos(m_circle.center)
-					).drawArrow(6, Vec2(10, 20), Palette::Red);
-				}
-				pre = polar.posPair.second.toOrthogonalPos(m_circle.center);
-			}
+			posAry.emplace_back(polar.posPair.first.toOrthogonalPos(m_circle.center));
+			posAry.emplace_back(polar.posPair.second.toOrthogonalPos(m_circle.center));
 		}
-		else
+
+		ColorF color = MyWhite; color.setA(0.5);
+
 		{
-			Array<Vec2> posAry;
-			for (const auto& polar : lightPosSet)
-			{
-				posAry.emplace_back(polar.posPair.first .toOrthogonalPos(m_circle.center));
-				posAry.emplace_back(polar.posPair.second.toOrthogonalPos(m_circle.center));
-			}
-			
-			ColorF color = MyWhite; color.setA(0.5);
+			// 定数バッファの設定
+			ConstantBuffer<Light> cb;
+			cb->g_color = color.rgba();
+			cb->g_center = m_circle.center;
+			cb->g_r = (float)m_circle.r;
+			cb->g_direction = (float)m_direction;
+			cb->g_angle = (float)m_angle;
+			Graphics2D::SetConstantBuffer(ShaderStage::Pixel, 1, cb);
 
-			{
-				// 定数バッファの設定
-				ConstantBuffer<Light> cb;
-				cb->g_color     = color.rgba();
-				cb->g_center    = m_circle.center;
-				cb->g_r         = (float)m_circle.r;
-				cb->g_direction = (float)m_direction;
-				cb->g_angle     = (float)m_angle;
-				Graphics2D::SetConstantBuffer(ShaderStage::Pixel, 1, cb);
+			// シェーダの開始
+			ScopedCustomShader2D shader(MyPixelShader::get(MyPixelShader::Type::ACCESS_LIGHT));
 
-				// シェーダの開始
-				ScopedCustomShader2D shader(MyPixelShader::get(MyPixelShader::Type::ACCESS_LIGHT));
-
-				// 光の描画
-				Polygon(posAry).draw();
-			}
+			// 光の描画
+			Polygon(posAry).draw();
 		}
 	}
 }

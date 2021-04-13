@@ -77,6 +77,8 @@
             stage = {x=0,y=0,w=600,h=450}
             alpha = 0.9
             blur  = 0.4
+        [Board.Access.Object]
+            walkCenter = 0.3
 
 [BoardSymbol]
     height = 60

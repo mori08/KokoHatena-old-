@@ -4,9 +4,35 @@
 
 namespace Kokoha
 {
-	void TestObject::update(AccessShareData&)
+	TestObject::TestObject(const Vec2& pos)
+		: AccessObject(Circle(pos, 10), AccessObjectType::PLAYER)
+	{
+		goal = StageData::integerToPixel(Random(StageData::N - 1));
+		direction = 0;
+	}
+
+
+	void TestObject::input(const Vec2&)
 	{
 		
+	}
+
+
+	void TestObject::update(AccessShareData& shareData)
+	{
+		const Vec2 movement = walkToGoalThroughCenter(60.0, goal, shareData);
+		
+		if (movement.isZero())
+		{
+			goal = StageData::integerToPixel(Random(StageData::N - 1));
+		}
+		else
+		{
+			internalDividingPoint(direction, vecToAngle(movement), 1e-2);
+		}
+
+		//shareData.addLight(Circle(m_body.center, 30), direction, Math::Pi);
+		shareData.addLight(Circle(m_body.center, 120), direction, Math::Pi / 6);
 	}
 
 

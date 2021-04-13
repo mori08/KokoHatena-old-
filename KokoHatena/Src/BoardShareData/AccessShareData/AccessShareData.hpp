@@ -79,6 +79,17 @@ namespace Kokoha
 			return m_stageData;
 		}
 
+		/// <summary>
+		/// Œõ‚Ì’Ç‰Á
+		/// </summary>
+		/// <param name="circle"> Œõ‚Ì”ÍˆÍ(’†S‚Æ”¼Œa) </param>
+		/// <param name="direction"> •ûŒü </param>
+		/// <param name="angle"> ”ÍˆÍ </param>
+		void addLight(const Circle& circle, double direction = 0, double angle = Math::Pi)
+		{
+			m_lightList.emplace_back(circle, direction, angle);
+		}
+
 	private:
 
 		/// <summary>
