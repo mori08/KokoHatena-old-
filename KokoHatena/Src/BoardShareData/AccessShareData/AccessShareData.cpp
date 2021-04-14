@@ -4,6 +4,7 @@
 #include "../../MyLibrary/MyLibrary.hpp"
 
 #include "Object/Test/TestObject.hpp"
+#include "Object/Player/PlayerObject.hpp"
 
 namespace Kokoha
 {
@@ -11,7 +12,8 @@ namespace Kokoha
 	AccessShareData::AccessShareData()
 		: m_render(640, 450)
 	{
-		setMakeObjectFunc<TestObject>(U"test");
+		setMakeObjectFunc<TestObject>  (U"test");
+		setMakeObjectFunc<PlayerObject>(U"player");
 	}
 
 
@@ -83,7 +85,7 @@ namespace Kokoha
 
 		for (auto& obj : m_objectList)
 		{
-			obj->input(cursorPos + Vec2(0, BOARD_HEIGHT));
+			obj->input(cursorPos - Vec2(0, BOARD_HEIGHT));
 		}
 	}
 

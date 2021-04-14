@@ -28,11 +28,10 @@ namespace Kokoha
 		}
 		else
 		{
-			internalDividingPoint(direction, vecToAngle(movement), 1e-2);
+			internalDividingPoint(direction, direction + twoVecToAngle(angleToVec(direction), movement), 1e-1);
 		}
 
-		//shareData.addLight(Circle(m_body.center, 30), direction, Math::Pi);
-		shareData.addLight(Circle(m_body.center, 120), direction, Math::Pi / 6);
+		shareData.addLight(Circle(m_body.center, 240), direction, Math::Pi / 6);
 	}
 
 

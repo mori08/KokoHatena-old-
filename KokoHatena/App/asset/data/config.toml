@@ -79,6 +79,19 @@
             blur  = 0.4
         [Board.Access.Object]
             walkCenter = 0.3
+            [Board.Access.Object.Player]
+                r = 10
+                textureSize = {x=30,y=30}
+                speed = 60
+                [Board.Access.Object.Player.Anim]
+                    posOrder = [
+                        {t=3.0,x=0,y=0},
+                        {t=0.1,x=1,y=0},
+                        {t=0.1,x=2,y=0},
+                        {t=0.1,x=1,y=0},
+                        {t=0.1,x=0,y=0}
+                    ]
+                    loop = true
 
 [BoardSymbol]
     height = 60
