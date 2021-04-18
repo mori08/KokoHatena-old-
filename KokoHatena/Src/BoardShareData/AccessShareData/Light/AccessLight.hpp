@@ -51,7 +51,22 @@ namespace Kokoha
 		/// 光を描画
 		/// </summary>
 		/// <param name="lightPosSet"></param>
-		void drawLight(const std::set<PolarPair>& lightPosSet)const;
+		void drawLight(std::set<PolarPair>& lightPosSet)const;
+
+		/// <summary>
+		/// 線分上でr=m_circle.rとなる角度を探す
+		/// </summary>
+		/// <param name="p1"> 極座標p1 </param>
+		/// <param name="p2"> 極座標p2 </param>
+		/// <returns> 対応する角度 </returns>
+		void getAngleFromLine(const PolarPos& p1, const PolarPos& p2, std::set<PolarPair>& lightPosSet) const;
+
+		/// <summary>
+		/// 座標を光の配列に追加
+		/// </summary>
+		/// <param name="polar"> 追加する極座標 </param>
+		/// <param name="posAry"> 座標の配列 </param>
+		void addToPosAry(PolarPos polar, Array<Vec2>& posAry)const;
 
 	};
 }

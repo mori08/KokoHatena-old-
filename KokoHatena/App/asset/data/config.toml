@@ -75,14 +75,15 @@
             minLength = 2.0
         [Board.Access.Light]
             stage = {x=0,y=0,w=600,h=450}
-            alpha = 0.9
-            blur  = 0.4
+            quality = 24
         [Board.Access.Object]
             walkCenter = 0.3
             [Board.Access.Object.Player]
                 r = 10
                 textureSize = {x=30,y=30}
                 speed = 60
+                lightSpinSpeed = 0.1
+                lightRadius = 200
                 [Board.Access.Object.Player.Anim]
                     posOrder = [
                         {t=3.0,x=0,y=0},

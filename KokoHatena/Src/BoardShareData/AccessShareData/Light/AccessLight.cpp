@@ -39,10 +39,8 @@ namespace Kokoha
 
 	void AccessLight::draw(const StageData& stageData) const
 	{
-		// 光の不透明度
-		static double ALPHA = Config::get<double>(U"Board.Access.Light.alpha");
-
 		if (!stageData.isWalkAble(m_circle.center)) { return; }
+		if (m_circle.r < 1e-1 || m_angle < 1e-2) { return; }
 
 		// 光を長方形で近似
 		Quad lightQuad =
@@ -68,14 +66,12 @@ namespace Kokoha
 
 		// 描画
 		drawLight(lightPosSet);
-		Circle(m_circle.center, 4).draw(MyWhite).drawFrame(0, 2, MyBlack);
-		//lightQuad.drawFrame(1, Palette::Blue);
 	}
 
 
 	void AccessLight::setInitLightPos(std::set<PolarPair>& lightPosSet) const
 	{
-		static RectF STAGE_RECT = Config::get<Rect>(U"Board.Access.Light.stage");
+		static const RectF STAGE_RECT = Config::get<Rect>(U"Board.Access.Light.stage");
 
 		for (const Vec2& node : getRectNode(STAGE_RECT))
 		{
@@ -209,34 +205,146 @@ namespace Kokoha
 	}
 
 
-	void AccessLight::drawLight(const std::set<PolarPair>& lightPosSet) const
+	void AccessLight::drawLight(std::set<PolarPair>& lightPosSet) const
 	{
 		if (lightPosSet.empty()) { return; }
 
 		Array<Vec2> posAry;
-		for (const auto& polar : lightPosSet)
+		double startAngle  = vecToAngle(angleToVec(m_direction - m_angle));
+		double finishAngle = vecToAngle(angleToVec(m_direction + m_angle));
+		for (auto pre = lightPosSet.begin(), itr = std::next(pre); itr != lightPosSet.end(); pre = itr, ++itr)
 		{
-			posAry.emplace_back(polar.posPair.first.toOrthogonalPos(m_circle.center));
-			posAry.emplace_back(polar.posPair.second.toOrthogonalPos(m_circle.center));
+			getAngleFromLine(pre->posPair.second, itr->posPair.first, lightPosSet);
+			if (pre->m_angle < startAngle && startAngle < itr->m_angle)
+			{
+				if (auto r = PolarPos::twoVecToLine(pre->posPair.second, itr->posPair.first, startAngle))
+				{
+					lightPosSet.insert(PolarPair(startAngle, r.value()));
+				}
+			}
+			if (pre->m_angle < finishAngle && finishAngle < itr->m_angle)
+			{
+				if (auto r = PolarPos::twoVecToLine(pre->posPair.second, itr->posPair.first, finishAngle))
+				{
+					lightPosSet.insert(PolarPair(finishAngle, r.value()));
+				}
+			}
+		}
+
+		static const int32 QUALITY = Config::get<int32>(U"Board.Access.Light.quality");
+		auto itr = lightPosSet.begin();
+		std::pair<double, double> pre = { itr->m_angle, itr->posPair.first.r() };
+		for (int32 i = -QUALITY; i <= QUALITY;)
+		{
+			const double angle = Math::Pi * i / QUALITY;
+
+			if (angle > itr->m_angle)
+			{
+				addToPosAry(itr->posPair.first, posAry);
+				addToPosAry(itr->posPair.second, posAry);
+				pre = { itr->m_angle, itr->posPair.second.r() };
+				if (++itr == lightPosSet.end()) { break; }
+				continue;
+			}
+
+			PolarPos prePolar(pre.first, pre.second);
+			auto optR = PolarPos::twoVecToLine(prePolar, itr->posPair.first, angle);
+
+			if (optR && optR.value() > m_circle.r)
+			{
+				addToPosAry(PolarPos(angle, m_circle.r), posAry);
+			}
+
+			++i;
 		}
 
 		ColorF color = MyWhite; color.setA(0.5);
+		Polygon(posAry).draw(color);
+	}
 
+
+	void AccessLight::getAngleFromLine(const PolarPos& p1, const PolarPos& p2, std::set<PolarPair>& lightPosSet) const
+	{
+		if (p1.r() - m_circle.r < 0 && p2.r() - m_circle.r < 0) { return; }
+
+		if ((p1.r() - m_circle.r) * (p2.r() - m_circle.r) < 0)
 		{
-			// 定数バッファの設定
-			ConstantBuffer<Light> cb;
-			cb->g_color = color.rgba();
-			cb->g_center = m_circle.center;
-			cb->g_r = (float)m_circle.r;
-			cb->g_direction = (float)m_direction;
-			cb->g_angle = (float)m_angle;
-			Graphics2D::SetConstantBuffer(ShaderStage::Pixel, 1, cb);
+			// 交点を計算
+			double l = p1.m_angle, g = p2.m_angle;
+			if (p1.r() > p2.r()) { std::swap(l, g); }
+			while (true)
+			{
+				const double m = (l + g) / 2;
+				if (auto r = PolarPos::twoVecToLine(p1, p2, m))
+				{
+					if (Abs(r.value() - m_circle.r) < 1e-2) 
+					{
+						lightPosSet.insert(PolarPair(m, r.value()));
+						return;
+					}
 
-			// シェーダの開始
-			ScopedCustomShader2D shader(MyPixelShader::get(MyPixelShader::Type::ACCESS_LIGHT));
-
-			// 光の描画
-			Polygon(posAry).draw();
+					if (r.value() < m_circle.r) { l = m; }
+					else { g = m; }
+					continue;
+				}
+				return;
+			}
 		}
+
+		// m_circle.centerに一番近い点を計算
+		std::pair<double, double>
+			lp = { p1.m_angle, p1.r() },
+			gp = { p2.m_angle, p2.r() };
+		
+		while (Abs(gp.first - lp.first) * m_circle.r > 1e-1)
+		{
+			const double angle = (lp .first + gp.first) / 2;
+			if (auto r = PolarPos::twoVecToLine(p1, p2, angle))
+			{
+				if (lp.second > gp.second) { lp = { angle, r.value() }; }
+				else { gp = { angle, r.value() }; }
+
+				continue;
+			}
+			return;
+		}
+
+		if (lp.second > m_circle.r) { return; }
+
+		double l = lp.first, g = p2.m_angle;
+		while (true)
+		{
+			const double m = (l + g) / 2;
+			if (auto r = PolarPos::twoVecToLine(p1, p2, m))
+			{
+				if (Abs(r.value() - m_circle.r) < 1e-2)
+				{
+					lightPosSet.insert(PolarPair(m, r.value()));
+					lightPosSet.insert(PolarPair(2 * lp.first - m, r.value()));
+					return;
+				}
+
+				if (r.value() < m_circle.r) { l = m; }
+				else { g = m; }
+				continue;
+			}
+			return;
+		}
+		return;
+		
+	}
+
+
+	void AccessLight::addToPosAry(PolarPos polar, Array<Vec2>& posAry) const
+	{
+		double r = Abs(twoVecToAngle(angleToVec(m_direction), angleToVec(polar.m_angle))) < m_angle + 1e-2
+			? m_circle.r
+			: 0;
+
+		polar.setR(r);
+		Vec2 pos = polar.toOrthogonalPos(m_circle.center);
+		
+		if (!posAry.empty() && posAry.rbegin()->distanceFrom(pos) < 1e-1) { return; }
+		posAry.emplace_back(pos);
 	}
 }

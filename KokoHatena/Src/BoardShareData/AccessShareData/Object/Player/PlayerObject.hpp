@@ -19,7 +19,10 @@ namespace Kokoha
 		SliceTexture m_texture;
 
 		// ˆÚ“®—Ê
-		Vec2 movement;
+		Vec2 m_movement;
+
+		// Œõ‚Ì•ûŒü
+		std::pair<double,double> m_direction;
 
 	public:
 
@@ -34,6 +37,10 @@ namespace Kokoha
 		void draw()const override;
 
 		void checkAnother(const AccessObject&) override;
+
+	private:
+
+		void walkPlayer(const Vec2& movement, const AccessShareData& shareData);
 
 	};
 }
