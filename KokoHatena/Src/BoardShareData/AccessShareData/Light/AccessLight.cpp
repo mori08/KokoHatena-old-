@@ -11,29 +11,23 @@ namespace
 	constexpr double ENOUGH_LENGTH = 1e4;
 	// 十分短い長さ 障害物の隙間を埋めるための長さ
 	constexpr double EPSILON = 1e-1;
-
-	/// <summary>
-	/// 光についての定数バッファ(PS_1)
-	/// </summary>
-	struct Light
-	{
-		Float4 g_color;     // 色
-		Float2 g_center;    // 中心
-		float  g_r;         // 半径
-		float  g_direction; // 方向
-		float  g_angle;     // 範囲
-		Float3 _unused;
-	};
 }
 
 
 namespace Kokoha
 {
-	AccessLight::AccessLight(const Circle& circle, double direction, double angle)
+	AccessLight::AccessLight(const Circle& circle, double direction, double angle, const ColorF color)
 		: m_circle(circle)
 		, m_direction(direction)
 		, m_angle(angle)
+		, m_color(color)
 	{
+	}
+
+
+	ColorF AccessLight::white(double alpha)
+	{
+		return ColorF(MyWhite).setA(alpha);
 	}
 
 
@@ -259,7 +253,7 @@ namespace Kokoha
 		}
 
 		ColorF color = MyWhite; color.setA(0.5);
-		Polygon(posAry).draw(color);
+		Polygon(posAry).draw(m_color);
 	}
 
 

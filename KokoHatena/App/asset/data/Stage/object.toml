@@ -1,25 +1,4 @@
 [Date1]
 [[Date1.obj]]
-    type = "test"
-    pos = {x=2,y=0}
-[[Date1.obj]]
-    type = "test"
-    pos = {x=2,y=0}
-[[Date1.obj]]
-    type = "test"
-    pos = {x=2,y=0}
-[[Date1.obj]]
-    type = "test"
-    pos = {x=2,y=0}
-[[Date1.obj]]
-    type = "test"
-    pos = {x=2,y=0}
-[[Date1.obj]]
-    type = "test"
-    pos = {x=2,y=0}
-[[Date1.obj]]
-    type = "test"
-    pos = {x=2,y=0}
-[[Date1.obj]]
-    type = "test"
+    type = "player"
     pos = {x=2,y=0}

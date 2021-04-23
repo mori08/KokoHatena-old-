@@ -31,7 +31,6 @@ namespace Kokoha
 			internalDividingPoint(direction, direction + twoVecToAngle(angleToVec(direction), movement), 1e-1);
 		}
 
-		shareData.addLight(Circle(m_body.center, 200), direction, Math::Pi/6);
 	}
 
 

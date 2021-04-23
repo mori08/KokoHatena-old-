@@ -124,4 +124,15 @@ namespace Kokoha
 		m_render.resolve();
 		m_render.draw(0, BOARD_HEIGHT);
 	}
+
+
+	void AccessShareData::addLight(const Vec2& center, double direction, const String& info)
+	{
+		m_lightList.emplace_back(
+			Circle(center, Config::get<double>(info + U".radius")),
+			direction,
+			Clamp(Config::get<double>(info + U".angle"), 0.0, Math::Pi),
+			ColorF(MyWhite).setA(Config::get<double>(info + U".alpha"))
+		);
+	}
 }

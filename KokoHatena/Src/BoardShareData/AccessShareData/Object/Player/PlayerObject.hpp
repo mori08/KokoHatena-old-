@@ -24,6 +24,9 @@ namespace Kokoha
 		// Œõ‚Ì•ûŒü
 		std::pair<double,double> m_direction;
 
+		// ˆÚ“®‰Â”\‚©
+		bool m_isWalking;
+
 	public:
 
 		PlayerObject(const Vec2& pos);
