@@ -234,14 +234,22 @@ namespace Kokoha
 
 			if (angle > itr->m_angle)
 			{
-				addToPosAry(itr->posPair.first, posAry);
-				addToPosAry(itr->posPair.second, posAry);
+				if (Abs(twoVecToAngle(angleToVec(m_direction), angleToVec(itr->m_angle))) > m_angle - 1e-3)
+				{
+					addToPosAry(PolarPos(itr->m_angle, std::min(itr->posPair.first.r(), itr->posPair.second.r())), posAry);
+				}
+				else
+				{
+					addToPosAry(itr->posPair.first, posAry);
+					addToPosAry(itr->posPair.second, posAry);
+				}
 				pre = { itr->m_angle, itr->posPair.second.r() };
 				if (++itr == lightPosSet.end()) { break; }
 				continue;
 			}
 
 			PolarPos prePolar(pre.first, pre.second);
+
 			auto optR = PolarPos::twoVecToLine(prePolar, itr->posPair.first, angle);
 
 			if (optR && optR.value() > m_circle.r)
@@ -331,7 +339,7 @@ namespace Kokoha
 
 	void AccessLight::addToPosAry(PolarPos polar, Array<Vec2>& posAry) const
 	{
-		double r = Abs(twoVecToAngle(angleToVec(m_direction), angleToVec(polar.m_angle))) < m_angle + 1e-2
+		double r = Abs(twoVecToAngle(angleToVec(m_direction), angleToVec(polar.m_angle))) < m_angle + 1e-10
 			? m_circle.r
 			: 0;
 

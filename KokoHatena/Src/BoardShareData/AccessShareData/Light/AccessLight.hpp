@@ -18,7 +18,7 @@ namespace Kokoha
 		// Œõ‚ð•\‚·‰~
 		const Circle m_circle;
 
-		// •ûŒü
+		// Œõ‚Ì•ûŒü
 		const double m_direction;
 
 		// ”ÍˆÍ
