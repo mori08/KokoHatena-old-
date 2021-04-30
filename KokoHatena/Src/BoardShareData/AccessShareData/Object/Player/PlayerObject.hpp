@@ -21,11 +21,11 @@ namespace Kokoha
 		// 移動量
 		Vec2 m_movement;
 
-		// 光の方向
-		std::pair<double,double> m_direction;
+		// 移動の目的値
+		Vec2 m_goal;
 
-		// 移動可能か
-		bool m_isWalking;
+		// trueのとき目的値を変更, falseのときは目的値を固定
+		bool m_isChangingGoal;
 
 	public:
 

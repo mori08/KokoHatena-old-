@@ -18,12 +18,6 @@ namespace Kokoha
 		// 光を表す円
 		const Circle m_circle;
 
-		// 光の方向
-		const double m_direction;
-
-		// 範囲
-		const double m_angle;
-
 		// 色
 		const ColorF m_color;
 
@@ -34,9 +28,8 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="circle"> 光の範囲 </param>
 		/// <param name="direction"> 方向 </param>
-		/// <param name="angle"> 視野 </param>
 		/// <param name="color"> 色 </param>
-		AccessLight(const Circle& circle, double direction, double angle, const ColorF color);
+		AccessLight(const Circle& circle, const ColorF color);
 
 		/// <summary>
 		/// 不透明度を指定して白を作成

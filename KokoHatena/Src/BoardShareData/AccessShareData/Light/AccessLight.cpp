@@ -16,10 +16,8 @@ namespace
 
 namespace Kokoha
 {
-	AccessLight::AccessLight(const Circle& circle, double direction, double angle, const ColorF color)
+	AccessLight::AccessLight(const Circle& circle, const ColorF color)
 		: m_circle(circle)
-		, m_direction(direction)
-		, m_angle(angle)
 		, m_color(color)
 	{
 	}
@@ -34,14 +32,10 @@ namespace Kokoha
 	void AccessLight::draw(const StageData& stageData) const
 	{
 		if (!stageData.isWalkAble(m_circle.center)) { return; }
-		if (m_circle.r < 1e-1 || m_angle < 1e-2) { return; }
+		if (m_circle.r < 1e-1) { return; }
 
 		// 光を長方形で近似
-		Quad lightQuad =
-			(m_angle < Math::HalfPi
-				? RectF(0, -m_circle.r * Sin(m_angle), m_circle.r, 2 * m_circle.r * Sin(m_angle))
-				: RectF(m_circle.r * Cos(m_angle), -m_circle.r, m_circle.r * (1 - Cos(m_angle)), 2 * m_circle.r)
-				).rotatedAt(Vec2::Zero(), m_direction).moveBy(m_circle.center);
+		RectF lightRect(Arg::center(m_circle.center), 2 * m_circle.r);
 
 		// 光の極座標リスト
 		std::set<PolarPair> lightPosSet;
@@ -52,7 +46,7 @@ namespace Kokoha
 		// 影の設定
 		for (const RectF& block : stageData.getBlockList())
 		{
-			if (block.intersects(lightQuad))
+			if (block.intersects(lightRect))
 			{
 				setShadow(lightPosSet, block);
 			}
@@ -204,26 +198,6 @@ namespace Kokoha
 		if (lightPosSet.empty()) { return; }
 
 		Array<Vec2> posAry;
-		double startAngle  = vecToAngle(angleToVec(m_direction - m_angle));
-		double finishAngle = vecToAngle(angleToVec(m_direction + m_angle));
-		for (auto pre = lightPosSet.begin(), itr = std::next(pre); itr != lightPosSet.end(); pre = itr, ++itr)
-		{
-			getAngleFromLine(pre->posPair.second, itr->posPair.first, lightPosSet);
-			if (pre->m_angle < startAngle && startAngle < itr->m_angle)
-			{
-				if (auto r = PolarPos::twoVecToLine(pre->posPair.second, itr->posPair.first, startAngle))
-				{
-					lightPosSet.insert(PolarPair(startAngle, r.value()));
-				}
-			}
-			if (pre->m_angle < finishAngle && finishAngle < itr->m_angle)
-			{
-				if (auto r = PolarPos::twoVecToLine(pre->posPair.second, itr->posPair.first, finishAngle))
-				{
-					lightPosSet.insert(PolarPair(finishAngle, r.value()));
-				}
-			}
-		}
 
 		static const int32 QUALITY = Config::get<int32>(U"Board.Access.Light.quality");
 		auto itr = lightPosSet.begin();
@@ -234,15 +208,8 @@ namespace Kokoha
 
 			if (angle > itr->m_angle)
 			{
-				if (Abs(twoVecToAngle(angleToVec(m_direction), angleToVec(itr->m_angle))) > m_angle - 1e-3)
-				{
-					addToPosAry(PolarPos(itr->m_angle, std::min(itr->posPair.first.r(), itr->posPair.second.r())), posAry);
-				}
-				else
-				{
-					addToPosAry(itr->posPair.first, posAry);
-					addToPosAry(itr->posPair.second, posAry);
-				}
+				addToPosAry(itr->posPair.first , posAry);
+				addToPosAry(itr->posPair.second, posAry);
 				pre = { itr->m_angle, itr->posPair.second.r() };
 				if (++itr == lightPosSet.end()) { break; }
 				continue;
@@ -339,11 +306,7 @@ namespace Kokoha
 
 	void AccessLight::addToPosAry(PolarPos polar, Array<Vec2>& posAry) const
 	{
-		double r = Abs(twoVecToAngle(angleToVec(m_direction), angleToVec(polar.m_angle))) < m_angle + 1e-10
-			? m_circle.r
-			: 0;
-
-		polar.setR(r);
+		polar.setR(m_circle.r);
 		Vec2 pos = polar.toOrthogonalPos(m_circle.center);
 		
 		if (!posAry.empty() && posAry.rbegin()->distanceFrom(pos) < 1e-1) { return; }

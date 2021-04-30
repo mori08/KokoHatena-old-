@@ -86,11 +86,9 @@
                 [Board.Access.Object.Player.FrontLight]
                     radius = 200
                     alpha = 0.7
-                    angle = 0.5
                 [Board.Access.Object.Player.RoundLight]
                     radius = 30
                     alpha = 0.3
-                    angle = 4
                 [Board.Access.Object.Player.Anim]
                     posOrder = [
                         {t=3.0,x=0,y=0},

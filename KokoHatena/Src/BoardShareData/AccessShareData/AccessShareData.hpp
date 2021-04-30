@@ -85,9 +85,9 @@ namespace Kokoha
 		/// <param name="circle"> 光の範囲(中心と半径) </param>
 		/// <param name="direction"> 方向 </param>
 		/// <param name="angle"> 範囲 </param>
-		void addLight(const Circle& circle, double direction, double angle, const ColorF& color)
+		void addLight(const Circle& circle, const ColorF& color)
 		{
-			m_lightList.emplace_back(circle, direction, angle, color);
+			m_lightList.emplace_back(circle, color);
 		}
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace Kokoha
 		/// <param name="center"> 中心 </param>
 		/// <param name="direction"> 方向 </param>
 		/// <param name="info"> 半径・視野範囲・色についてのtomlへのパス </param>
-		void addLight(const Vec2& center, double direction, const String& info);
+		void addLight(const Vec2& center, const String& info);
 
 	private:
 
