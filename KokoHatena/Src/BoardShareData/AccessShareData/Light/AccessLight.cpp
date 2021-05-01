@@ -198,6 +198,10 @@ namespace Kokoha
 		if (lightPosSet.empty()) { return; }
 
 		Array<Vec2> posAry;
+		for (auto pre = lightPosSet.begin(), itr = std::next(pre); itr != lightPosSet.end(); pre = itr, ++itr)
+		{
+			getAngleFromLine(pre->posPair.second, itr->posPair.first, lightPosSet);
+		}
 
 		static const int32 QUALITY = Config::get<int32>(U"Board.Access.Light.quality");
 		auto itr = lightPosSet.begin();
