@@ -215,6 +215,9 @@
     <Filter Include="Src\BoardShareData\AccessShareData\Object\Player">
       <UniqueIdentifier>{97a0e648-f72f-4ce9-a2a3-5220eeb67c9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\BoardShareData\AccessShareData\Object\Player\PlayerDirection">
+      <UniqueIdentifier>{d5b10521-08cb-456f-b9ce-fa3526fddb2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -609,6 +612,9 @@
     <ClCompile Include="Src\BoardShareData\AccessShareData\Object\Player\PlayerObject.cpp">
       <Filter>Src\BoardShareData\AccessShareData\Object\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Src\BoardShareData\AccessShareData\Object\Player\PlayerDirection\PlayerDirection.cpp">
+      <Filter>Src\BoardShareData\AccessShareData\Object\Player\PlayerDirection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Scene\Title\TitleScene.hpp">
@@ -727,6 +733,9 @@
     </ClInclude>
     <ClInclude Include="Src\BoardShareData\AccessShareData\Object\Player\PlayerObject.hpp">
       <Filter>Src\BoardShareData\AccessShareData\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\BoardShareData\AccessShareData\Object\Player\PlayerDirection\PlayerDirection.hpp">
+      <Filter>Src\BoardShareData\AccessShareData\Object\Player\PlayerDirection</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

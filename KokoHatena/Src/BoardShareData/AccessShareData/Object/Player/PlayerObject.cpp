@@ -31,6 +31,8 @@ namespace Kokoha
 		{
 			m_movement = SPEED * Scene::DeltaTime() * (m_goal - m_body.center).normalized();
 		}
+
+		m_playerDirection.input(m_body.center, m_goal, m_isChangingGoal);
 	}
 
 
@@ -38,22 +40,22 @@ namespace Kokoha
 	{
 		m_texture.update();
 
-		/*
 		walkPlayer(Vec2(m_movement.x, 0), shareData);
 		walkPlayer(Vec2(0, m_movement.y), shareData);
 		m_movement = Vec2::Zero();
-		*/
-		m_body.center += Vec2(KeyD.pressed() - KeyA.pressed(), KeyS.pressed() - KeyW.pressed());
-		m_body.center += Vec2(KeyRight.down() - KeyLeft.down(), KeyDown.down() - KeyUp.down());
 		
-		shareData.addLight(m_body.center, U"Board.Access.Object.Player.FrontLight");
+		m_body.center += debugMovement();
+
+		shareData.addLight(m_body.center, U"Board.Access.Object.Player.Light");
+
+		m_playerDirection.update();
 	}
 
 
 	void PlayerObject::draw() const
 	{
 		m_texture.getTexture().drawAt(m_body.center);
-		Circle(m_goal, 2).draw(Palette::White);
+		m_playerDirection.draw();
 	}
 
 

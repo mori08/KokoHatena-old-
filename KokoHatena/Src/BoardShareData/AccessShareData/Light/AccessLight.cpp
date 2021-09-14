@@ -231,7 +231,6 @@ namespace Kokoha
 			++i;
 		}
 
-		ColorF color = MyWhite; color.setA(0.5);
 		Polygon(posAry).draw(m_color);
 	}
 
@@ -245,12 +244,12 @@ namespace Kokoha
 			// Œð“_‚ðŒvŽZ
 			double l = p1.m_angle, g = p2.m_angle;
 			if (p1.r() > p2.r()) { std::swap(l, g); }
-			while (true)
+			while(true)
 			{
 				const double m = (l + g) / 2;
 				if (auto r = PolarPos::twoVecToLine(p1, p2, m))
 				{
-					if (Abs(r.value() - m_circle.r) < 1e-2) 
+					if (Abs(r.value() - m_circle.r) < 1e-2)
 					{
 						lightPosSet.insert(PolarPair(m, r.value()));
 						return;
@@ -262,7 +261,11 @@ namespace Kokoha
 				}
 				return;
 			}
+			return;
 		}
+
+		if (Abs(p1.r() - m_circle.r) < 1e-2) { return; }
+		if (Abs(p2.r() - m_circle.r) < 1e-2) { return; }
 
 		// m_circle.center‚Éˆê”Ô‹ß‚¢“_‚ðŒvŽZ
 		std::pair<double, double>
@@ -285,7 +288,7 @@ namespace Kokoha
 		if (lp.second > m_circle.r) { return; }
 
 		double l = lp.first, g = p2.m_angle;
-		while (true)
+		while(true)
 		{
 			const double m = (l + g) / 2;
 			if (auto r = PolarPos::twoVecToLine(p1, p2, m))
@@ -293,6 +296,7 @@ namespace Kokoha
 				if (Abs(r.value() - m_circle.r) < 1e-2)
 				{
 					lightPosSet.insert(PolarPair(m, r.value()));
+					if (2 * lp.first - m < p1.m_angle) { return; }
 					lightPosSet.insert(PolarPair(2 * lp.first - m, r.value()));
 					return;
 				}
@@ -304,7 +308,6 @@ namespace Kokoha
 			return;
 		}
 		return;
-		
 	}
 
 

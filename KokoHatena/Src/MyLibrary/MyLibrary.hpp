@@ -173,4 +173,15 @@ namespace Kokoha
 		return twoVecToAngle(Vec2(1, 0), v);
 	}
 
+	/// <summary>
+	/// デバッグ用動作
+	/// </summary>
+	/// <returns> 移動量 </returns>
+	inline Point debugMovement()
+	{
+		return Point(KeyD.pressed() - KeyA.pressed(), KeyS.pressed() - KeyW.pressed())
+			+ Point(KeyRight.down() - KeyLeft.down(), KeyDown.down() - KeyUp.down());
+	}
+
+
 }

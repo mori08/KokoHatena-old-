@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "PlayerDirection/PlayerDirection.hpp"
 #include "../../AccessShareData.hpp"
 #include "../../../../SliceTexture/SliceTexture.hpp"
 
@@ -23,6 +24,9 @@ namespace Kokoha
 
 		// 移動の目的値
 		Vec2 m_goal;
+
+		// 移動方向を示す光
+		PlayerDirection m_playerDirection;
 
 		// trueのとき目的値を変更, falseのときは目的値を固定
 		bool m_isChangingGoal;
